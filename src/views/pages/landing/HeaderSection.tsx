@@ -18,7 +18,7 @@ import { motion } from 'framer-motion';
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
 
-import { DASHBOARD_PATH } from 'config';
+// import { DASHBOARD_PATH } from 'config';
 import useConfig from 'hooks/useConfig';
 
 // assets
@@ -34,6 +34,7 @@ import BgLight from 'assets/images/landing/bg-hero-block-light.png';
 
 // types
 import { ThemeDirection, ThemeMode } from 'types/config';
+import { INVITATIONS_PATH } from 'config';
 
 // styles
 const HeaderImage = styled('img')(({ theme }) => ({
@@ -135,7 +136,7 @@ const HeaderSection = () => {
                                         <AnimateButton>
                                             <Button
                                                 component={RouterLink}
-                                                to={DASHBOARD_PATH}
+                                                to={INVITATIONS_PATH}
                                                 target="_blank"
                                                 size="large"
                                                 variant="contained"

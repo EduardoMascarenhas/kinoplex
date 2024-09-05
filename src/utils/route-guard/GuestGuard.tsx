@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom';
 
 // project imports
 import useAuth from 'hooks/useAuth';
-import { DASHBOARD_PATH } from 'config';
+// import { DASHBOARD_PATH } from 'config';
+import { INVITATIONS_PATH } from 'config';
 import { GuardProps } from 'types';
 import { useEffect } from 'react';
 
@@ -19,7 +20,7 @@ const GuestGuard = ({ children }: GuardProps) => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            navigate(DASHBOARD_PATH, { replace: true });
+            navigate(INVITATIONS_PATH, { replace: true });
         }
     }, [isLoggedIn, navigate]);
 

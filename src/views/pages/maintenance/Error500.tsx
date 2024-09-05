@@ -8,13 +8,14 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import { DASHBOARD_PATH } from 'config';
+// import { DASHBOARD_PATH } from 'config';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { gridSpacing } from 'store/constant';
 
 // assets
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 import error500 from 'assets/images/maintenance/500-error.svg';
+import { INVITATIONS_PATH } from 'config';
 
 // ==============================|| ERROR PAGE ||============================== //
 
@@ -32,7 +33,7 @@ const Error = () => (
                     Server error 500. we fixing the problem. please try again at a later stage.
                 </Typography>
                 <AnimateButton>
-                    <Button variant="contained" size="large" component={Link} to={DASHBOARD_PATH}>
+                    <Button variant="contained" size="large" component={Link} to={INVITATIONS_PATH}>
                         <HomeTwoToneIcon sx={{ fontSize: '1.3rem', mr: 0.75 }} /> Home
                     </Button>
                 </AnimateButton>

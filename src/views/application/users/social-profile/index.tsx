@@ -25,7 +25,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
 import ImagePlaceholder from 'ui-component/cards/Skeleton/ImagePlaceholder';
 import { gridSpacing } from 'store/constant';
-import { DASHBOARD_PATH } from 'config';
+// import { DASHBOARD_PATH } from 'config';
 
 // assets
 import { IconFriends, IconInbox, IconPhoto, IconUserPlus, IconUsers } from '@tabler/icons-react';
@@ -36,6 +36,7 @@ import Cover from 'assets/images/profile/img-profile-bg.png';
 
 // types
 import { ThemeMode } from 'types/config';
+import { INVITATIONS_PATH } from 'config';
 
 function a11yProps(index: number) {
     return {
@@ -133,12 +134,12 @@ const SocialProfile = () => {
     }, [tab]);
 
     let breadcrumbLinks = [
-        { title: 'Home', to: DASHBOARD_PATH },
+        { title: 'Home', to: INVITATIONS_PATH },
         { title: 'Social Profile', to: '/apps/user/social-profile/posts' },
         { title: breadcrumbTitle }
     ];
     if (tab === 'posts') {
-        breadcrumbLinks = [{ title: 'Home', to: DASHBOARD_PATH }, { title: 'User' }, { title: 'Social Profile' }];
+        breadcrumbLinks = [{ title: 'Home', to: INVITATIONS_PATH }, { title: 'User' }, { title: 'Social Profile' }];
     }
 
     const [isLoading, setLoading] = useState(true);

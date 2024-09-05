@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import { DASHBOARD_PATH } from 'config';
+// import { DASHBOARD_PATH } from 'config';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { gridSpacing } from 'store/constant';
 
@@ -24,6 +24,7 @@ import imageParts from 'assets/images/maintenance/img-bg-parts.svg';
 
 // types
 import { ThemeMode } from 'types/config';
+import { INVITATIONS_PATH } from 'config';
 
 // styles
 const CardMediaWrapper = styled('div')({
@@ -94,7 +95,7 @@ const UnderConstruction = () => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <AnimateButton>
-                                        <Button variant="contained" size="large" component={Link} to={DASHBOARD_PATH}>
+                                        <Button variant="contained" size="large" component={Link} to={INVITATIONS_PATH}>
                                             <HomeTwoToneIcon sx={{ fontSize: '1.3rem', mr: 0.75 }} /> Home
                                         </Button>
                                     </AnimateButton>

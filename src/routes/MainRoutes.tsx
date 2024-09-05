@@ -172,6 +172,10 @@ const UtilsGrid = Loadable(lazy(() => import('views/utilities/Grid')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
+// Convites
+const DashboardInvitations = Loadable(lazy(() => import('views/invitations/Dashboard')));
+const InvitationsCreate = Loadable(lazy(() => import('views/invitations/Create')));
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -685,7 +689,23 @@ const MainRoutes = {
         {
             path: '/dashboard/analytics',
             element: <DashboardAnalytics />
-        }
+        },
+        {
+            path: '/invitations/dashboard',
+            element: <DashboardInvitations />
+        },
+        {
+            path: '/invitations/create-opportunities',
+            element: <InvitationsCreate />
+        },
+        {
+            path: '/invitations/sales',
+            element: <DashboardAnalytics />
+        },
+        {
+            path: '/invitations/types',
+            element: <DashboardAnalytics />
+        },
     ]
 };
 

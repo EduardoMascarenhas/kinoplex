@@ -1,4 +1,9 @@
 {
+    "invitations": "Invitations",
+    "opportunities": "Opportunities",
+    "sales": "Sales",
+    "types": "Types",
+
     "dashboard": "Dashboard",
     "default": "Default",
     "analytics": "Analytics",

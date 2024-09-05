@@ -15,7 +15,8 @@ import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
 
 import { dispatch } from 'store';
 import { getUserStory, getUserStoryOrder, getProfiles, getComments, getItems, getColumns, getColumnsOrder } from 'store/slices/kanban';
-import { DASHBOARD_PATH } from 'config';
+// import { DASHBOARD_PATH } from 'config';
+import { INVITATIONS_PATH } from 'config';
 
 // types
 import { ThemeMode } from 'types/config';
@@ -64,12 +65,12 @@ export default function KanbanPage() {
     }, [tab]);
 
     let breadcrumbLinks = [
-        { title: 'Home', to: DASHBOARD_PATH },
+        { title: 'Home', to: INVITATIONS_PATH },
         { title: 'Kanban', to: '/apps/kanban/board' },
         { title: breadcrumbTitle }
     ];
     if (tab === 'board') {
-        breadcrumbLinks = [{ title: 'Home', to: DASHBOARD_PATH }, { title: 'Kanban' }];
+        breadcrumbLinks = [{ title: 'Home', to: INVITATIONS_PATH }, { title: 'Kanban' }];
     }
 
     useEffect(() => {
