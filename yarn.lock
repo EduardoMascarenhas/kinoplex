@@ -4148,6 +4148,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-input-mask@npm:^2":
+  version: 2.0.5
+  resolution: "@types/react-input-mask@npm:2.0.5"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/43750b72da9eeb8acc6b6a78093c0a5a040feecd6d2d26340c12c1a4cb6f0e8b69f988cbdb426203306f8db2c20919897d7246b83eac9ad7a0d3d367600f59d9
+  languageName: node
+  linkType: hard
+
 "@types/react-slick@npm:^0.23.13":
   version: 0.23.13
   resolution: "@types/react-slick@npm:0.23.13"
@@ -5078,6 +5087,7 @@ __metadata:
     "@types/react-dom": "npm:^18.2.19"
     "@types/react-draft-wysiwyg": "npm:^1.13.8"
     "@types/react-google-recaptcha": "npm:^2.1.9"
+    "@types/react-input-mask": "npm:^2"
     "@types/react-slick": "npm:^0.23.13"
     "@types/react-syntax-highlighter": "npm:^15.5.11"
     "@types/react-window": "npm:^1.8.8"
@@ -5131,6 +5141,7 @@ __metadata:
     react-fast-marquee: "npm:^1.6.4"
     react-google-recaptcha: "npm:^3.1.0"
     react-hook-form: "npm:^7.50.1"
+    react-input-mask: "npm:^2.0.4"
     react-intl: "npm:^6.6.2"
     react-map-gl: "npm:^7.1.7"
     react-markdown: "npm:^9.0.1"
@@ -7967,6 +7978,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"invariant@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "invariant@npm:2.2.4"
+  dependencies:
+    loose-envify: "npm:^1.0.0"
+  checksum: 10c0/5af133a917c0bcf65e84e7f23e779e7abc1cd49cb7fdc62d00d1de74b0d8c1b5ee74ac7766099fb3be1b05b26dfc67bab76a17030d2fe7ea2eef867434362dfc
+  languageName: node
+  linkType: hard
+
 "ip-address@npm:^9.0.5":
   version: 9.0.5
   resolution: "ip-address@npm:9.0.5"
@@ -10687,6 +10707,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-input-mask@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "react-input-mask@npm:2.0.4"
+  dependencies:
+    invariant: "npm:^2.2.4"
+    warning: "npm:^4.0.2"
+  peerDependencies:
+    react: ">=0.14.0"
+    react-dom: ">=0.14.0"
+  checksum: 10c0/89fc110a99e79ee3fa3f63696d5d46ab8889c653b33c0e50c6b24d70b715e1c8d475b8637ceb9e0f4fcacec5e39f653156faef4f5f06972886c4b1e643f66a82
+  languageName: node
+  linkType: hard
+
 "react-intl@npm:^6.6.2":
   version: 6.6.2
   resolution: "react-intl@npm:6.6.2"
@@ -12829,7 +12862,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"warning@npm:^4.0.3":
+"warning@npm:^4.0.2, warning@npm:^4.0.3":
   version: 4.0.3
   resolution: "warning@npm:4.0.3"
   dependencies:

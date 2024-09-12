@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -14,11 +13,9 @@ import { useFormik } from 'formik';
 
 // project imports
 import ClientInfo from './ClientInfo';
-import ItemList from './ItemList';
 import AmountCard from './AmountCard';
 import SelectItem from './SelectItem';
 import InputLabel from 'ui-component/extended/Form/InputLabel';
-import MainCard from 'ui-component/cards/MainCard';
 
 import { useDispatch } from 'store';
 import { gridSpacing } from 'store/constant';
@@ -27,14 +24,15 @@ import { openSnackbar } from 'store/slices/snackbar';
 // types
 import { UserProfile } from 'types/user-profile';
 import { AddInvoice, InvoiceAmount, InvoiceItems } from 'types/invoice';
+import MainCardInvitations from 'ui-component/cards/MainCardInvitations';
 
 // yup validation-schema
 const validationSchema = yup.object({
     invoiceNumber: yup.string().required('Invoice Number is Required'),
-    customerName: yup.string().required('Client Name is Required'),
-    customerEmail: yup.string().email('Enter a valid email').required('Client Email is Required'),
-    customerPhone: yup.string().min(10, 'Phone number should be of minimum 10 characters').required('Client Phone is Required'),
-    customerAddress: yup.string().required('Client Address is Required'),
+    customerName: yup.string().required('A Razão Social é obrigatória!'),
+    customerEmail: yup.string().email('Digite um E-mail válido!').required('O E-mail do cliente é obrigatório!'),
+    customerPhone: yup.string().min(14, 'Digite um Telefone válido!').required('O Telefone do cliente é obrigatório!'),
+    customerAddress: yup.string().required('O Cargo é obrigatório!'),
     orderStatus: yup.string().required('Order Status is required')
 });
 
@@ -132,22 +130,11 @@ function CreateOpportunities() {
     };
 
     return (
-        <MainCard title="Create Invoice">
+        <MainCardInvitations title="Nova oportunidade">
             <form onSubmit={formik.handleSubmit}>
                 <Grid container spacing={gridSpacing}>
                     {/* client info */}
                     <ClientInfo {...{ formik, handleOnSelectValue }} />
-
-                    <Grid item xs={12}>
-                        <Divider />
-                    </Grid>
-
-                    {/* item list page */}
-                    {productsData.length > 0 && (
-                        <Grid item xs={12}>
-                            <ItemList {...{ productsData, deleteProductHandler }} />
-                        </Grid>
-                    )}
 
                     {addItemClicked ? (
                         <Grid item xs={12}>
@@ -157,22 +144,14 @@ function CreateOpportunities() {
                     ) : (
                         <Grid item xs={12}>
                             <Button variant="text" onClick={() => setAddItemClicked(true)}>
-                                + Add Item
+                                + Adicionar Convite
                             </Button>
                         </Grid>
                     )}
 
-                    <Grid item xs={12}>
-                        <Divider />
-                    </Grid>
-
                     {/* total card */}
                     <Grid item xs={12}>
                         <AmountCard {...{ allAmounts }} />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <Divider />
                     </Grid>
 
                     <Grid item xs={12}>
@@ -189,10 +168,6 @@ function CreateOpportunities() {
                         </Stack>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <Divider />
-                    </Grid>
-
                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <Button variant="contained" type="submit">
                             Add Invoice
@@ -200,7 +175,7 @@ function CreateOpportunities() {
                     </Grid>
                 </Grid>
             </form>
-        </MainCard>
+        </MainCardInvitations>
     );
 }
 

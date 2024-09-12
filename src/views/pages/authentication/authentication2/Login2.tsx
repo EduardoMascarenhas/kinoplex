@@ -13,7 +13,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import AuthWrapper2 from '../AuthWrapper2';
 import AuthCardWrapper from '../AuthCardWrapper';
 import AuthLogin from '../auth-forms/AuthLogin';
-import Logo from 'ui-component/Logo';
 import BackgroundPattern2 from 'ui-component/cards/BackgroundPattern2';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 import AuthSlider from 'ui-component/cards/AuthSlider';
@@ -21,6 +20,7 @@ import { AuthSliderProps } from 'types';
 
 // assets
 import imgMain from 'assets/images/auth/img-a2-login.svg';
+import LogoKino from 'ui-component/LogoKino';
 
 // carousel items
 const items: AuthSliderProps[] = [
@@ -56,7 +56,7 @@ const Login = () => {
                     >
                         <Grid item sx={{ display: { xs: 'none', md: 'block' }, m: 3 }}>
                             <Link to="#" aria-label="theme logo">
-                                <Logo />
+                            <LogoKino />
                             </Link>
                         </Grid>
                         <Grid
@@ -69,17 +69,14 @@ const Login = () => {
                         >
                             <Stack justifyContent="center" alignItems="center" spacing={5} m={2}>
                                 <Box component={Link} to="#" sx={{ display: { xs: 'block', md: 'none' } }}>
-                                    <Logo />
+                                    <LogoKino />
                                 </Box>
                                 <AuthCardWrapper border={downLG}>
                                     <Grid container spacing={2} justifyContent="center">
                                         <Grid item>
                                             <Stack alignItems="center" justifyContent="center" spacing={1}>
-                                                <Typography color="secondary.main" gutterBottom variant={downMD ? 'h3' : 'h2'}>
-                                                    Hi, Welcome Back
-                                                </Typography>
                                                 <Typography variant="caption" fontSize="16px" textAlign={downMD ? 'center' : 'inherit'}>
-                                                    Enter your credentials to continue
+                                                Digite seu login e senha para continuar
                                                 </Typography>
                                             </Stack>
                                         </Grid>

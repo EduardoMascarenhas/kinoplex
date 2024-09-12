@@ -56,8 +56,8 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                 submit: null
             }}
             validationSchema={Yup.object().shape({
-                email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                password: Yup.string().max(255).required('Password is required')
+                email: Yup.string().email('Digite um E-mail válido.').max(255).required('O e-mail é obrigatório!'),
+                password: Yup.string().max(255).required('A senha é obrigatória!')
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
@@ -80,7 +80,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
             {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                 <form noValidate onSubmit={handleSubmit} {...others}>
                     <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-email-login">E-mail / Usuário</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-email-login"
                             type="email"
@@ -98,7 +98,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                     </FormControl>
 
                     <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-password-login">Senha</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-password-login"
                             type={showPassword ? 'text' : 'password'}
@@ -140,7 +140,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                                         color="primary"
                                     />
                                 }
-                                label="Keep me logged in"
+                                label="Lembrar meu login"
                             />
                         </Grid>
                         <Grid item>
@@ -155,7 +155,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                                 color="secondary"
                                 sx={{ textDecoration: 'none' }}
                             >
-                                Forgot Password?
+                                Esqueceu sua senha?
                             </Typography>
                         </Grid>
                     </Grid>
@@ -168,7 +168,7 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
                     <Box sx={{ mt: 2 }}>
                         <AnimateButton>
                             <Button color="secondary" disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained">
-                                Sign In
+                                Entrar
                             </Button>
                         </AnimateButton>
                     </Box>

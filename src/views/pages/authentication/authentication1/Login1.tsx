@@ -13,7 +13,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
 import AuthLogin from '../auth-forms/AuthLogin';
-import Logo from 'ui-component/Logo';
 import BackgroundPattern1 from 'ui-component/cards/BackgroundPattern1';
 import AuthSlider from 'ui-component/cards/AuthSlider';
 import { AuthSliderProps } from 'types';
@@ -21,6 +20,7 @@ import { AuthSliderProps } from 'types';
 // assets
 import AuthBlueCard from 'assets/images/auth/auth-blue-card.svg';
 import AuthPurpleCard from 'assets/images/auth/auth-purple-card.svg';
+import LogoKino from 'ui-component/LogoKino';
 
 // carousel items
 const items: AuthSliderProps[] = [
@@ -61,17 +61,14 @@ const Login = () => {
                                             justifyContent={{ xs: 'center', md: 'flex-start' }}
                                             textAlign={{ xs: 'center', md: 'inherit' }}
                                         >
-                                            <Typography color="secondary.main" gutterBottom variant={downMD ? 'h3' : 'h2'}>
-                                                Hi, Welcome Back
-                                            </Typography>
                                             <Typography color="textPrimary" gutterBottom variant="h4">
-                                                Login in to your account
+                                            Digite seu login e senha para continuar
                                             </Typography>
                                         </Stack>
                                     </Grid>
                                     <Grid item sx={{ mb: { xs: 3, sm: 0 } }}>
                                         <Link to="#" aria-label="theme logo">
-                                            <Logo />
+                                            <LogoKino />
                                         </Link>
                                     </Grid>
                                 </Grid>
