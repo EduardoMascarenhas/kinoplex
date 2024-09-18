@@ -9,11 +9,11 @@ import SubCard from 'ui-component/cards/SubCard';
 
 // types
 import { ThemeMode } from 'types/config';
-import { InvoiceAmount } from 'types/invoice';
+import { ConviteQuantia } from 'types/convite';
 
 // ==============================|| INVOICE - AMOUNT CARD ||============================== //
 
-function AmountCard({ allAmounts }: { allAmounts: InvoiceAmount }) {
+function AmountCard({ allAmounts }: { allAmounts: ConviteQuantia }) {
     const theme = useTheme();
 
     return (
@@ -23,51 +23,9 @@ function AmountCard({ allAmounts }: { allAmounts: InvoiceAmount }) {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Grid container spacing={1}>
-                                <Grid item xs={6}>
-                                    <Typography align="right" variant="subtitle1">
-                                        Sub Total :
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography align="right" variant="body2">
-                                        ${Math.round(allAmounts.subTotal * 100) / 100}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography align="right" variant="subtitle1">
-                                        Tax (10%) :
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography align="right" variant="body2">
-                                        ${Math.round(allAmounts.taxesAmount * 100) / 100}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography align="right" variant="subtitle1">
-                                        Discount (5%) :
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography align="right" variant="body2">
-                                        ${Math.round(allAmounts.discountAmount * 100) / 100}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Divider />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Grid container spacing={1}>
-                                <Grid item xs={6}>
-                                    <Typography align="right" color="primary" variant="subtitle1">
-                                        Total :
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography align="right" color="primary" variant="subtitle1">
-                                        ${Math.round(allAmounts.totalAmount * 100) / 100}
+                                <Grid item xs={12}>
+                                    <Typography fontSize={16} align="right" color="primary" variant="subtitle1">
+                                        Total: R$ {Math.round(allAmounts.quantiaTotal * 100) / 100}
                                     </Typography>
                                 </Grid>
                             </Grid>
