@@ -29,6 +29,7 @@ export type InvoiceAmount = {
 };
 
 export type AddInvoice = {
+    rate: any;
     about?: string | undefined;
     brand?: string | undefined;
     categories?: string[];
