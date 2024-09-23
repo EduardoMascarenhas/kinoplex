@@ -10,9 +10,9 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 
 // project imports
-import ClientInfo from './ClientInfo';
-import ItemListEletronico from './ItemListEletronico';
-import AmountCard from './AmountCard';
+import InfoCliente from './InfoCliente';
+import ListaItemEletronico from './ListaItemEletronico';
+import ValorTotal from './ValorTotal';
 import SelectItem from './SelectItem';
 import MainCardInvitations from 'ui-component/cards/MainCardInvitations';
 
@@ -24,7 +24,7 @@ import { openSnackbar } from 'store/slices/snackbar';
 import { AddConvite, ConviteItems, ConviteQuantia } from 'types/convite';
 import { PerfilCliente } from 'types/perfil-cliente';
 import Stack from '@mui/material/Stack';
-import ItemListImpresso from './ItemListImpresso';
+import ListaItemImpresso from './ListaItemImpresso';
 
 // yup validation-schema
 const validationSchema = yup.object({
@@ -32,13 +32,13 @@ const validationSchema = yup.object({
     customerName: yup.string().required('A Razão Social é obrigatória!'),
     customerEmail: yup.string().email('Digite um E-mail válido!').required('O E-mail do cliente é obrigatório!'),
     customerPhone: yup.string().min(14, 'Digite um Telefone válido!').required('O Telefone do cliente é obrigatório!'),
-    customerAddress: yup.string().required('O Cargo é obrigatório!'),
+    customerEndereco: yup.string().required('O Cargo é obrigatório!'),
     orderStatus: yup.string().required('Order Status is required')
 });
 
 // ==============================|| CREATE INVOICE ||============================== //
 
-function CreateOpportunities() {
+function Oportunidades() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -50,19 +50,18 @@ function CreateOpportunities() {
         valorDesconto: 0,
         quantiaTotal: 0
     });
-    const [convitesData, setConvitesData] = useState<ConviteItems[]>([]);
+    const [convitesEletronicos, setConvitesEletronicos] = useState<ConviteItems[]>([]);
+    const [convitesImpressos, setConvitesImpressos] = useState<ConviteItems[]>([]);
     const [addItemClicked, setAddItemClicked] = useState<boolean>(true);
     const [fieldValue, setFieldValue] = useState<PerfilCliente>();
-    const [tipoConvite, setTipoConvite] = useState<'eletronico' | 'impresso'>('eletronico');
 
     // to delete row in order details
-    const deleteConviteHandler = (id: number) => {
-        setConvitesData(convitesData.filter((item) => item.id !== id));
-    };
-
-    // Função para lidar com a mudança do tipo de convite
-    const handleTipoConviteChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setTipoConvite(event.target.value as 'eletronico' | 'impresso');
+    const deleteConviteHandler = (id: number, tipo: 'eletronico' | 'impresso') => {
+        if (tipo === 'eletronico') {
+            setConvitesEletronicos(convitesEletronicos.filter((item) => item.id !== id));
+        } else {
+            setConvitesImpressos(convitesImpressos.filter((item) => item.id !== id));
+        }
     };
 
     const handleOnSelectValue = (value: PerfilCliente) => {
@@ -117,62 +116,75 @@ function CreateOpportunities() {
             valorDesconto: 0,
             quantiaTotal: 0
         };
-        convitesData.forEach((item) => {
+        convitesEletronicos.forEach((item) => {
+            amounts.subTotal += item.total as number;
+        });
+        convitesImpressos.forEach((item) => {
             amounts.subTotal += item.total as number;
         });
         amounts.quantiaImpostos = amounts.subTotal * amounts.valorTaxaAplicada;
         amounts.valorDesconto = (amounts.subTotal + amounts.quantiaImpostos) * amounts.valorDescontoAplicado;
         amounts.quantiaTotal = amounts.subTotal + amounts.quantiaImpostos - amounts.valorDesconto;
         setAllAmounts(amounts);
-    }, [convitesData]);
+    }, [convitesEletronicos, convitesImpressos]);
 
     // add item handler
-    const handleAddItem = (addingData: AddConvite) => {
-        setConvitesData([
-            ...convitesData,
-            {
-                id: addingData.id,
-                descricao: addingData.descricao,
-                quantidade: addingData.quantidade,
-                preco_unitario: addingData.preco_unitario,
-                lote: addingData.lote,
-                numeracao: addingData.numeracao,
-                serie: addingData.serie,
-                disponibilidade: addingData.disponibilidade,
-                tipo: addingData.tipo,
-                total: addingData.quantiaTotal
-            }
-        ]);
 
+    const handleAddItem = (addingData: AddConvite) => {
+        if (addingData.tipo === 'eletronico') {
+            setConvitesEletronicos((prev) => [
+                ...prev,
+                {
+                    id: addingData.id,
+                    descricao: addingData.descricao,
+                    quantidade: addingData.quantidade,
+                    preco_unitario: addingData.preco_unitario,
+                    lote: addingData.lote,
+                    numeracao: addingData.numeracao,
+                    serie: addingData.serie,
+                    disponibilidade: addingData.disponibilidade,
+                    total: addingData.quantiaTotal
+                }
+            ]);
+        } else if (addingData.tipo === 'impresso') {
+            setConvitesImpressos((prev) => [
+                ...prev,
+                {
+                    id: addingData.id,
+                    descricao: addingData.descricao,
+                    quantidade: addingData.quantidade,
+                    preco_unitario: addingData.preco_unitario,
+                    lote: addingData.lote,
+                    numeracao: addingData.numeracao,
+                    serie: addingData.serie,
+                    disponibilidade: addingData.disponibilidade,
+                    total: addingData.quantiaTotal
+                }
+            ]);
+        }
         setAddItemClicked(false);
     };
 
     return (
-        <MainCardInvitations title="Nova oportunidade">
+        <MainCardInvitations title="Oportunidade">
             <form onSubmit={formik.handleSubmit}>
                 <Grid container spacing={gridSpacing}>
                     {/* client info */}
-                    <ClientInfo {...{ formik, handleOnSelectValue }} />
+                    <InfoCliente {...{ formik, handleOnSelectValue }} />
 
                     {/* item list page */}
+                    {convitesEletronicos.length > 0 && (
+                        <Grid item xs={12}>
+                            <ListaItemEletronico convitesData={convitesEletronicos} deleteConviteHandler={(id) => deleteConviteHandler(id, 'eletronico')} />
+                        </Grid>
+                    )}
 
-                   
-                        {convitesData[0]?.tipo === 'eletronico' ? (
-                            <Grid item xs={12}>
-                                {convitesData.length > 0 && (
-                                    <ItemListEletronico {...{ convitesData, deleteConviteHandler, handleTipoConviteChange }} />
-                                )}
-                            </Grid>
-                        ) : (
-                            convitesData[0]?.tipo === 'impresso' && (
-                                <Grid item xs={12}>
-                                    {convitesData.length > 0 && (
-                                        <ItemListImpresso {...{ convitesData, deleteConviteHandler, handleTipoConviteChange }} />
-                                    )}
-                                </Grid>
-                            )
-                        )}
-                   
+                    {convitesImpressos.length > 0 && (
+                        <Grid item xs={12}>
+                            <ListaItemImpresso convitesData={convitesImpressos} deleteConviteHandler={(id) => deleteConviteHandler(id, 'impresso')} />
+                        </Grid>
+                    )}
+
                     {addItemClicked ? (
                         <Grid item xs={12}>
                             {/* select item page */}
@@ -188,7 +200,7 @@ function CreateOpportunities() {
 
                     {/* total card */}
                     <Grid item xs={12}>
-                        <AmountCard {...{ allAmounts }} />
+                        <ValorTotal {...{ allAmounts }} />
                     </Grid>
 
                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -196,7 +208,7 @@ function CreateOpportunities() {
                             <Button variant="contained" type="submit" size="small">
                                 Gravar
                             </Button>
-                            <Button variant="contained" type="submit" size="small">
+                            <Button variant="outlined" type="submit" size="small">
                                 Enviar para faturamento
                             </Button>
                         </Stack>
@@ -207,4 +219,4 @@ function CreateOpportunities() {
     );
 }
 
-export default CreateOpportunities;
+export default Oportunidades;

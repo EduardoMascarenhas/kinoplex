@@ -11,12 +11,12 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { PerfilCliente } from 'types/perfil-cliente';
 import clientes from 'api/clientes.json';  // Importando o JSON local
 
-interface ClientInfoProps {
+interface ClienteInfoProps {
     formik: any;
     handleOnSelectValue: (value: PerfilCliente) => void;
 }
 
-const ClientInfo = ({ formik, handleOnSelectValue }: ClientInfoProps) => {
+const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
     const [client, setClient] = useState<PerfilCliente[]>([]);
     
     // Simulando o carregamento de dados do JSON
@@ -122,4 +122,4 @@ const ClientInfo = ({ formik, handleOnSelectValue }: ClientInfoProps) => {
     );
 };
 
-export default ClientInfo;
+export default InfoCliente;

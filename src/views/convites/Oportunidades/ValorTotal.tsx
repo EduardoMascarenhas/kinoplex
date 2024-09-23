@@ -1,6 +1,5 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
@@ -13,7 +12,7 @@ import { ConviteQuantia } from 'types/convite';
 
 // ==============================|| INVOICE - AMOUNT CARD ||============================== //
 
-function AmountCard({ allAmounts }: { allAmounts: ConviteQuantia }) {
+function ValorTotal({ allAmounts }: { allAmounts: ConviteQuantia }) {
     const theme = useTheme();
 
     return (
@@ -37,4 +36,4 @@ function AmountCard({ allAmounts }: { allAmounts: ConviteQuantia }) {
     );
 }
 
-export default AmountCard;
+export default ValorTotal;

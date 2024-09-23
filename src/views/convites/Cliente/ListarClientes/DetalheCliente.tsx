@@ -33,7 +33,7 @@ interface RowDetailProps {
 
 // ==============================|| CLIENT LIST - DETAILS ||============================== //
 
-const ClientDetails = ({ rowValue, handleDrawerClose }: RowDetailProps) => {
+const DetalheCliente = ({ rowValue, handleDrawerClose }: RowDetailProps) => {
     const theme = useTheme();
     const balance = Math.floor(Math.random() * 4);
     const matchesXs = useMediaQuery(theme.breakpoints.down('sm'));
@@ -218,4 +218,4 @@ const ClientDetails = ({ rowValue, handleDrawerClose }: RowDetailProps) => {
     );
 };
 
-export default ClientDetails;
+export default DetalheCliente;

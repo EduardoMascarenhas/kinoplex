@@ -173,9 +173,12 @@ const UtilsGrid = Loadable(lazy(() => import('views/utilities/Grid')));
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 // Convites
-const DashboardInvitations = Loadable(lazy(() => import('views/invitations/Dashboard')));
-const InvitationsCreate = Loadable(lazy(() => import('views/invitations/Create')));
-
+const DashboardInvitations = Loadable(lazy(() => import('views/convites/Dashboard')));
+const Oportunidades = Loadable(lazy(() => import('views/convites/Oportunidades')));
+const ListarOportunidades = Loadable(lazy(() => import('views/convites/ListarOportunidades')));
+const DetalheOportunidade = Loadable(lazy(() => import('views/convites/DetalheOportunidade')));
+const AdicionarCliente = Loadable(lazy(() => import('views/convites/Cliente/AdicionarCliente')));
+const ListarClientes = Loadable(lazy(() => import('views/convites/Cliente/ListarClientes')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -691,19 +694,35 @@ const MainRoutes = {
             element: <DashboardAnalytics />
         },
         {
-            path: '/invitations/dashboard',
+            path: '/convites/dashboard',
             element: <DashboardInvitations />
         },
         {
-            path: '/invitations/create-opportunities',
-            element: <InvitationsCreate />
+            path: '/convites/criar-oportunidades',
+            element: <Oportunidades />
         },
         {
-            path: '/invitations/sales',
+            path: '/convites/listar-oportunidades',
+            element: <ListarOportunidades />
+        },
+        {
+            path: '/convites/detalhe-oportunidade',
+            element: <DetalheOportunidade />
+        },
+        {
+            path: '/convites/cliente/adicionar-cliente',
+            element: <AdicionarCliente />
+        },
+        {
+            path: '/convites/cliente/listar-clientes',
+            element: <ListarClientes />
+        },
+        {
+            path: '/convites/sales',
             element: <DashboardAnalytics />
         },
         {
-            path: '/invitations/types',
+            path: '/convites/types',
             element: <DashboardAnalytics />
         },
     ]

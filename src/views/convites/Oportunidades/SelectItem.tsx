@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // material-ui
-import { Autocomplete, Button, FormControl, Grid, Stack, TextField, Typography } from '@mui/material';
+import { Autocomplete, Button, ButtonGroup, FormControl, Grid, Menu, MenuItem, Stack, TextField, Typography } from '@mui/material';
 
 // project imports
 import { gridSpacing } from 'store/constant';
@@ -28,6 +28,10 @@ const TypographyConvite = styled(Typography)({
     padding: '0 12px'
 });
 
+const ButtonGroupKino = styled(ButtonGroup)({
+    border: '1px solid #ff7e00'
+});
+
 function SelectItem({ handleAddItem, setAddItemClicked }: Props) {
     const [convites, setConvites] = useState<ConviteEletronico[] & ConviteImpresso[]>([]);
     const [selectedItem, setSelectedItem] = useState<ConviteEletronico & ConviteImpresso | null>(null);
@@ -35,7 +39,23 @@ function SelectItem({ handleAddItem, setAddItemClicked }: Props) {
     const [unitPrice, setUnitPrice] = useState<number>(0);
     const [amount, setAmount] = useState<number>(0);
     const [errors, setErrors] = useState({ quantityError: '' });
-    const [conviteType, setConviteType] = useState<'eletronico' | 'impresso'>('eletronico');
+    const [conviteType, setConviteType] = useState<'eletronico' | 'impresso' | null>(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+
+    const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuItemClick = (type: 'eletronico' | 'impresso') => {
+        setConviteType(type);
+        setAnchorEl(null); // Fechar o menu
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
 
     const convitesEletronicos: ConviteEletronico[] = [
         { id: 1, descricao: 'Eletrônico A', preco_unitario: 100, tipo: 'eletronico' },
@@ -129,7 +149,7 @@ function SelectItem({ handleAddItem, setAddItemClicked }: Props) {
 
     return (
         <>
-            {conviteType === 'eletronico' && (
+            {conviteType === 'eletronico' && conviteType != null && (
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={3}>
                         <Stack spacing={1}>
@@ -193,7 +213,7 @@ function SelectItem({ handleAddItem, setAddItemClicked }: Props) {
                 </Grid>
             )}
 
-            {conviteType === 'impresso' && (
+            {conviteType === 'impresso' && conviteType != null && (
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={3}>
                         <Stack spacing={1}>
@@ -215,30 +235,6 @@ function SelectItem({ handleAddItem, setAddItemClicked }: Props) {
 
                     {selectedItem && (
                         <>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Lote:</InputLabel>
-                                    <TypographyConvite variant='body1'>{selectedItem?.lote}</TypographyConvite>
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Série:</InputLabel>
-                                    <TypographyConvite variant='body1'>{selectedItem?.serie}</TypographyConvite>
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Numeração:</InputLabel>
-                                    <TypographyConvite variant='body1'>{selectedItem?.numeracao}</TypographyConvite>
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Disponível:</InputLabel>
-                                    <TypographyConvite variant='body1'>{selectedItem?.disponibilidade}</TypographyConvite>
-                                </Stack>
-                            </Grid>
                             <Grid item xs={12} md={3}>
                                 <Stack spacing={1}>
                                     <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Quantidade:</InputLabel>
@@ -277,24 +273,54 @@ function SelectItem({ handleAddItem, setAddItemClicked }: Props) {
                 </Grid>
             )}
 
-            <Grid container spacing={gridSpacing} mt={2}>
-                <Grid item xs={12} display="flex" direction="row" spacing={1} alignItems="center" justifyContent="space-between">
-                    <Stack direction="row" spacing={1}>
-                        <Button
-                            color="secondary"
-                            variant={conviteType === 'eletronico' ? 'contained' : 'outlined'}
-                            onClick={() => setConviteType('eletronico')}
-                        >
-                            Convite Eletrônico
-                        </Button>
-                        <Button
-                            color="secondary"
-                            variant={conviteType === 'impresso' ? 'contained' : 'outlined'}
-                            onClick={() => setConviteType('impresso')}
-                        >
-                            Convite Impresso
-                        </Button>
-                    </Stack>
+            {conviteType === null && (
+                <Grid container spacing={gridSpacing}>
+                    <Grid item xs={12} display="flex" direction="row" spacing={1} alignItems="center" justifyContent="space-between">
+                        <Stack direction="row" spacing={1}>
+                            <ButtonGroupKino variant="outlined" color="secondary">
+                                <Button>
+                                    {conviteType === null
+                                        ? 'Tipo convite'
+                                        : conviteType === 'eletronico'
+                                            ? 'Eletrônico'
+                                            : 'Impresso'}
+                                </Button>
+                                <Button
+                                    color="secondary"
+                                    onClick={handleMenuClick}
+                                    aria-controls={open ? 'split-button-menu' : undefined}
+                                    aria-expanded={open ? 'true' : undefined}
+                                    aria-haspopup="menu"
+                                >
+                                    ▼
+                                </Button>
+                                <Menu
+                                    id="split-button-menu"
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                >
+                                    <MenuItem
+                                        selected={conviteType === 'eletronico'}
+                                        onClick={() => handleMenuItemClick('eletronico')}
+                                    >
+                                        Convite Eletrônico
+                                    </MenuItem>
+                                    <MenuItem
+                                        selected={conviteType === 'impresso'}
+                                        onClick={() => handleMenuItemClick('impresso')}
+                                    >
+                                        Convite Impresso
+                                    </MenuItem>
+                                </Menu>
+                            </ButtonGroupKino>
+                        </Stack>
+                    </Grid>
+                </Grid>
+            )}
+
+            <Grid container spacing={gridSpacing}>
+                <Grid item xs={12} display="flex" direction="row" spacing={1} alignItems="center" justifyContent="flex-end">
 
                     <Stack direction="row" spacing={1}>
                         <Button color="error" onClick={() => setAddItemClicked(false)}>

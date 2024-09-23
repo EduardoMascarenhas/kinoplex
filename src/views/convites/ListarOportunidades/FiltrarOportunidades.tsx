@@ -18,16 +18,17 @@ import AddIcon from '@mui/icons-material/AddTwoTone';
 
 // types
 import { KeyedObject } from 'types';
-import { UserProfile } from 'types/user-profile';
+import { Invoice } from 'types/invoice';
+import Button from '@mui/material/Button';
 
 interface Props {
-    users: UserProfile[];
-    setUsers: (users: UserProfile[]) => void;
+    rows: Invoice[];
+    setRows: (rows: Invoice[]) => void;
 }
 
-// ==============================|| CLIENT LIST - FILTER ||============================== //
+// ==============================|| INVOICE LIST - FILTER ||============================== //
 
-const ClientFilter = ({ users, setUsers }: Props) => {
+const FiltrarOportunidades = ({ rows, setRows }: Props) => {
     const [search, setSearch] = React.useState<string>('');
 
     const handleSearch = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
@@ -35,10 +36,11 @@ const ClientFilter = ({ users, setUsers }: Props) => {
         setSearch(newString || '');
 
         if (newString) {
-            const newRows = users?.filter((row: KeyedObject) => {
+            const newRows = rows?.filter((row: KeyedObject) => {
                 let matches = true;
 
-                const properties = ['id', 'name', 'email', 'contact', 'role', 'location', 'about'];
+                const properties = ['customer_name', 'date', 'email', 'due_date', 'invoice_id', 'quantity', 'status'];
+
                 let containsQuery = false;
 
                 properties.forEach((property) => {
@@ -52,11 +54,15 @@ const ClientFilter = ({ users, setUsers }: Props) => {
                 }
                 return matches;
             });
-            setUsers(newRows);
+            setRows(newRows);
         } else {
-            setUsers(users);
+            setRows(rows);
         }
     };
+
+    const handleCriarOportunidade = () => {
+        window.location.href = "/convites/criar-oportunidades";
+    }
 
     return (
         <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" spacing={2}>
@@ -69,7 +75,7 @@ const ClientFilter = ({ users, setUsers }: Props) => {
                     )
                 }}
                 onChange={handleSearch}
-                placeholder="Search client"
+                placeholder="Buscar Oportunidade"
                 value={search}
                 size="small"
                 sx={{ width: { xs: 1, sm: 'auto' } }}
@@ -91,17 +97,14 @@ const ClientFilter = ({ users, setUsers }: Props) => {
                     </IconButton>
                 </Tooltip>
 
-                {/* client add & dialog */}
-                <Tooltip title="Add Client">
-                    <Link to="/apps/invoice/client/add-client">
-                        <Fab color="primary" size="small" sx={{ boxShadow: 'none', width: 32, height: 32, minHeight: 32 }}>
-                            <AddIcon fontSize="small" />
-                        </Fab>
-                    </Link>
+                <Tooltip title="Oportunidades">
+                    <Button variant="contained" onClick={() => handleCriarOportunidade()} size="small">
+                        <AddIcon fontSize="small" /> Oportunidade
+                    </Button>
                 </Tooltip>
             </Stack>
         </Stack>
     );
 };
 
-export default ClientFilter;
+export default FiltrarOportunidades;

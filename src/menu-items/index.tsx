@@ -8,13 +8,13 @@ import utilities from './utilities';
 import support from './support';
 import other from './other';
 import { NavItemType } from 'types';
-import invitations from './invitations';
+import convites from './convites';
 
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems: { items: NavItemType[] } = {
-    items: [invitations, dashboard, application, forms, elements, samplePage, pages, utilities, support, other]
+    items: [convites, dashboard, application, forms, elements, samplePage, pages, utilities, support, other]
 };
 
 export default menuItems;
