@@ -168,48 +168,44 @@ function SelectItem({ handleAddItem, setAddItemClicked }: Props) {
                             </FormControl>
                         </Stack>
                     </Grid>
-                    {selectedItem && (
-                        <>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Quantidade:</InputLabel>
-                                    <TextField
-                                        fullWidth
-                                        type="number"
-                                        name="quantity"
-                                        value={selectedQuantity}
-                                        onChange={handleQuantityChange}
-                                        error={Boolean(errors.quantityError)}
-                                        helperText={errors.quantityError}
-                                        disabled={!selectedItem?.id}
-                                    />
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Preço Unitário:</InputLabel>
-                                    <TextField
-                                        fullWidth
-                                        name="unitPrice"
-                                        value={formatCurrency(unitPrice)}
-                                        onChange={handlePriceChange}
-                                        disabled={!selectedItem?.id}
-                                    />
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Total:</InputLabel>
-                                    <TextField
-                                        fullWidth
-                                        name="amount"
-                                        value={formatCurrency(amount)}
-                                        disabled={!selectedItem?.id}
-                                    />
-                                </Stack>
-                            </Grid>
-                        </>
-                    )}
+                    <Grid item xs={12} md={3}>
+                        <Stack spacing={1}>
+                            <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Quantidade:</InputLabel>
+                            <TextField
+                                fullWidth
+                                type="number"
+                                name="quantity"
+                                value={selectedQuantity}
+                                onChange={handleQuantityChange}
+                                error={Boolean(errors.quantityError)}
+                                helperText={errors.quantityError}
+                                disabled={!selectedItem?.id}
+                            />
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Stack spacing={1}>
+                            <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Preço Unitário:</InputLabel>
+                            <TextField
+                                fullWidth
+                                name="unitPrice"
+                                value={formatCurrency(unitPrice)}
+                                onChange={handlePriceChange}
+                                disabled={!selectedItem?.id}
+                            />
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Stack spacing={1}>
+                            <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Total:</InputLabel>
+                            <TextField
+                                fullWidth
+                                name="amount"
+                                value={formatCurrency(amount)}
+                                disabled={!selectedItem?.id}
+                            />
+                        </Stack>
+                    </Grid>
                 </Grid>
             )}
 
@@ -232,44 +228,39 @@ function SelectItem({ handleAddItem, setAddItemClicked }: Props) {
                             </FormControl>
                         </Stack>
                     </Grid>
-
-                    {selectedItem && (
-                        <>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Quantidade:</InputLabel>
-                                    <TextField
-                                        fullWidth
-                                        type="number"
-                                        name="quantity"
-                                        value={selectedQuantity}
-                                        onChange={handleQuantityChange}
-                                        error={Boolean(errors.quantityError)}
-                                        helperText={errors.quantityError}
-                                        disabled={!selectedItem?.id}
-                                    />
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Preço Unitário:</InputLabel>
-                                    <TextField
-                                        fullWidth
-                                        name="unitPrice"
-                                        value={formatCurrency(unitPrice)}
-                                        onChange={handlePriceChange}
-                                        disabled={!selectedItem?.id}
-                                    />
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <Stack spacing={1}>
-                                    <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Total:</InputLabel>
-                                    <TypographyConvite variant='body1'>{formatCurrency(amount)}</TypographyConvite>
-                                </Stack>
-                            </Grid>
-                        </>
-                    )}
+                    <Grid item xs={12} md={3}>
+                        <Stack spacing={1}>
+                            <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Quantidade:</InputLabel>
+                            <TextField
+                                fullWidth
+                                type="number"
+                                name="quantity"
+                                value={selectedQuantity}
+                                onChange={handleQuantityChange}
+                                error={Boolean(errors.quantityError)}
+                                helperText={errors.quantityError}
+                                disabled={!selectedItem?.id}
+                            />
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Stack spacing={1}>
+                            <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Preço Unitário:</InputLabel>
+                            <TextField
+                                fullWidth
+                                name="unitPrice"
+                                value={formatCurrency(unitPrice)}
+                                onChange={handlePriceChange}
+                                disabled={!selectedItem?.id}
+                            />
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Stack spacing={1}>
+                            <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>Total:</InputLabel>
+                            <TypographyConvite variant='body1'>{formatCurrency(amount)}</TypographyConvite>
+                        </Stack>
+                    </Grid>
                 </Grid>
             )}
 

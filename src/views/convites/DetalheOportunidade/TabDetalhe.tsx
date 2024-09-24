@@ -66,7 +66,7 @@ const TabDetalhe = () => {
                             <Grid container spacing={3}>
                                 <Grid item>
                                     <Tooltip title="Laboratorio de Analises Clinicas Dr. Roberto Franco do Amaral Ltda">
-                                        <TextoLimitado texto={'Laboratorio de Analises Clinicas Dr. Roberto Franco do Amaral Ltda'} limite={30} />
+                                         <TextoLimitado texto={'Laboratorio de Analises Clinicas Dr. Roberto Franco do Amaral Ltda'} limite={30} />
                                     </Tooltip>
                                 </Grid>
                                 <Grid item>

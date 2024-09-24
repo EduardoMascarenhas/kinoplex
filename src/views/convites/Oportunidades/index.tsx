@@ -25,6 +25,8 @@ import { AddConvite, ConviteItems, ConviteQuantia } from 'types/convite';
 import { PerfilCliente } from 'types/perfil-cliente';
 import Stack from '@mui/material/Stack';
 import ListaItemImpresso from './ListaItemImpresso';
+import SelectItemEletronico from './SelectItemEletronico';
+import SelectItemImpresso from './SelectItemImpresso';
 
 // yup validation-schema
 const validationSchema = yup.object({
@@ -173,28 +175,17 @@ function Oportunidades() {
                     <InfoCliente {...{ formik, handleOnSelectValue }} />
 
                     {/* item list page */}
-                    {convitesEletronicos.length > 0 && (
+                    {convitesEletronicos.length >= 0 && (
                         <Grid item xs={12}>
                             <ListaItemEletronico convitesData={convitesEletronicos} deleteConviteHandler={(id) => deleteConviteHandler(id, 'eletronico')} />
+                            <SelectItemEletronico handleAddItem={handleAddItem} setAddItemClicked={setAddItemClicked} />
                         </Grid>
                     )}
 
-                    {convitesImpressos.length > 0 && (
+                    {convitesImpressos.length >= 0 && (
                         <Grid item xs={12}>
                             <ListaItemImpresso convitesData={convitesImpressos} deleteConviteHandler={(id) => deleteConviteHandler(id, 'impresso')} />
-                        </Grid>
-                    )}
-
-                    {addItemClicked ? (
-                        <Grid item xs={12}>
-                            {/* select item page */}
-                            <SelectItem {...{ handleAddItem, setAddItemClicked }} />
-                        </Grid>
-                    ) : (
-                        <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            <Button variant="outlined" color="secondary" onClick={() => setAddItemClicked(true)}>
-                                + Adicionar Convite
-                            </Button>
+                            <SelectItemImpresso handleAddItem={handleAddItem} setAddItemClicked={setAddItemClicked} />
                         </Grid>
                     )}
 

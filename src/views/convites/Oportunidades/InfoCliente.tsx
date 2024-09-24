@@ -31,7 +31,7 @@ const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
 
     return (
         <>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={6}>
                 <Stack spacing={1}>
                     <InputLabel sx={{ color: 'grey.500', fontWeight: '400' }}>
                         Razão Social / Nome Fantasia:

@@ -58,7 +58,7 @@ export const TextoLimitado: React.FC<TextoLimitadoProps> = ({ texto, limite }) =
 
     return (
         <Typography variant="body1">
-            <strong>Nome/Razão Social:</strong> {textoLimitado}
+            {textoLimitado}
         </Typography>
     );
 };
