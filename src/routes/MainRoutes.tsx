@@ -7,6 +7,7 @@ import Loadable from 'ui-component/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 
 import { loader as productsLoader, productLoader } from 'api/products';
+import EventDetail from 'views/event';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -177,6 +178,10 @@ const DashboardInvitations = Loadable(lazy(() => import('views/invitations/Dashb
 const InvitationsCreate = Loadable(lazy(() => import('views/invitations/Create')));
 const InvitationsInvites = Loadable(lazy(() => import('views/invitations/Invites')));
 const CreateInvitation = Loadable(lazy(() => import('views/invitations/Invites/create')));
+const EventList = Loadable(lazy(() => import('views/events')));
+const EventDetails = Loadable(lazy(() => import('views/event')));
+const EventEdit = Loadable(lazy(() => import('views/event-edit')));
+const EventNew = Loadable(lazy(() => import('views/event-new')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -701,12 +706,28 @@ const MainRoutes = {
             element: <InvitationsCreate />
         },
         {
-            path: '/invitations/invites',
+            path: '/convites',
             element: <InvitationsInvites />
         },
         {
-            path: '/invitations/invite/create',
+            path: '/convites/novo',
             element: <CreateInvitation />
+        },
+        {
+            path: '/eventos',
+            element: <EventList />
+        },
+        {
+            path: '/evento/detalhes/:id',
+            element: <EventDetails />
+        },
+        {
+            path: '/evento/editar/:id',
+            element: <EventEdit />
+        },
+        {
+            path: '/evento/novo',
+            element: <EventNew />
         },
         {
             path: '/invitations/sales',

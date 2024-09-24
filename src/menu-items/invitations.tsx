@@ -2,7 +2,7 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconDashboard, IconDeviceAnalytics, IconMailSearch } from '@tabler/icons-react';
+import { IconDashboard, IconDeviceAnalytics, IconMailSearch, IconTimelineEvent, IconTicket, IconCalendarEvent } from '@tabler/icons-react';
 
 // type
 import { NavItemType } from 'types';
@@ -10,7 +10,10 @@ import { NavItemType } from 'types';
 const icons = {
     IconDashboard: IconDashboard,
     IconDeviceAnalytics: IconDeviceAnalytics,
-    IconMailSearch: IconMailSearch
+    IconMailSearch: IconMailSearch,
+    IconTimelineEvent: IconTimelineEvent,
+    IconTicket: IconTicket,
+    IconCalendarEvent: IconCalendarEvent
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
@@ -41,8 +44,16 @@ const invitations: NavItemType = {
             id: 'invite-list',
             title: <FormattedMessage id="Convites" />,
             type: 'item',
-            url: '/invitations/invites',
-            icon: icons.IconMailSearch,
+            url: '/convites',
+            icon: icons.IconTicket,
+            breadcrumbs: false
+        },
+        {
+            id: 'event-list',
+            title: <FormattedMessage id="Eventos" />,
+            type: 'item',
+            url: '/eventos',
+            icon: icons.IconCalendarEvent,
             breadcrumbs: false
         },
         {

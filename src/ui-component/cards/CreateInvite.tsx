@@ -11,7 +11,8 @@ import {
     InputLabel,
     FormControlLabel,
     Checkbox,
-    Grid
+    Grid,
+    Stack
 } from '@mui/material';
 import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -53,9 +54,9 @@ export default function CreateInvite() {
                     <h3>Dados do Tipo de Convite</h3>
                 </AccordionSummary>
                 <AccordionDetails sx={{ display: 'flex-column', gap: '15px', alignItems: 'center' }}>
-                    <Grid container sx={{ paddingY: '15px' }}>
-                        <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                            <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                    <Grid container>
+                        <Grid item xs={12} md={3}>
+                            <Stack spacing={1}>
                                 <Box sx={{ display: 'flex' }}>
                                     <h4>Categoria</h4>
                                 </Box>
@@ -69,8 +70,9 @@ export default function CreateInvite() {
                                         ))}
                                     </Select>
                                 </FormControl>
-                            </Grid>
-
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12}>
                             <DadosCineticket categoria={category.value} />
                         </Grid>
                     </Grid>

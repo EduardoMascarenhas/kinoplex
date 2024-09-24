@@ -18,8 +18,6 @@ import { ThemeMode } from 'types/config';
 import { KeyedObject } from 'types';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import AddClient from 'views/invitations/Client/AddClient';
 import Box from '@mui/material/Box';
 
 // constant
@@ -29,7 +27,7 @@ const headerSX = {
 
 // ==============================|| CUSTOM MAIN CARD ||============================== //
 
-export interface MainCardInvites extends KeyedObject {
+export interface MainCardEventEdit extends KeyedObject {
     border?: boolean;
     boxShadow?: boolean;
     children: React.ReactNode | string;
@@ -46,7 +44,7 @@ export interface MainCardInvites extends KeyedObject {
     title?: React.ReactNode | string;
 }
 
-const MainCardInvites = React.forwardRef(
+const MainCardEventEdit = React.forwardRef(
     (
         {
             border = false,
@@ -61,7 +59,7 @@ const MainCardInvites = React.forwardRef(
             sx = {},
             title,
             ...others
-        }: MainCardInvites,
+        }: MainCardEventEdit,
         ref: Ref<HTMLDivElement>
     ) => {
         const { mode } = useConfig();
@@ -92,10 +90,10 @@ const MainCardInvites = React.forwardRef(
                                     type="submit"
                                     variant="contained"
                                     sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/convites/novo')}
+                                    onClick={() => (window.location.href = '/eventos')}
                                     startIcon={<AddIcon />}
                                 >
-                                    Novo Convite
+                                    Novo Evento
                                 </Button>
                             </InputAdornment>
                         </Box>
@@ -107,10 +105,10 @@ const MainCardInvites = React.forwardRef(
                                 <Button
                                     color="secondary"
                                     sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/convites/novo')}
+                                    onClick={() => (window.location.href = '/eventos')}
                                     startIcon={<AddIcon />}
                                 >
-                                    Novo Convite
+                                    Novo Evento
                                 </Button>
                             </InputAdornment>
                         </Box>
@@ -132,4 +130,4 @@ const MainCardInvites = React.forwardRef(
     }
 );
 
-export default MainCardInvites;
+export default MainCardEventEdit;

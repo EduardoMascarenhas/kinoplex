@@ -11,7 +11,10 @@ import { IconSettings } from '@tabler/icons-react';
 // project import
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
-import { CSVExport } from 'views/forms/tables/TableExports';
+import useConfig from 'hooks/useConfig';
+//import { CSVExport } from 'views/forms/tables/TableExports';
+// types
+import { ThemeMode } from 'types/config';
 
 // table columns
 const columns: GridColDef[] = [
@@ -228,6 +231,7 @@ function TableDataGrid({ Selected, fRows }: { Selected: any; fRows: GridRowsProp
 }
 
 const MenuActions = (params: any) => {
+    const { mode } = useConfig();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = anchorEl ? true : false;
     const handleClickAcao = (event: any) => {
@@ -236,6 +240,8 @@ const MenuActions = (params: any) => {
     const handleCloseAcao = (event: any) => {
         setAnchorEl(null);
     };
+
+    const cogColor = mode === ThemeMode.DARK ? '#fff' : '#364152';
 
     return (
         <>
@@ -255,7 +261,7 @@ const MenuActions = (params: any) => {
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClickAcao}
-                    color="#364152"
+                    color={cogColor}
                 />
                 <Menu
                     id={`menu-${params.id}`}

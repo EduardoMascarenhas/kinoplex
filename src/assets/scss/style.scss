@@ -214,3 +214,6 @@ html[dir='rtl'] .apexcharts-tooltip .apexcharts-tooltip-marker {
 #category-select-label {
     transform: translate(14px, -16px) scale(0.75);
 }
+.disabledEditableTextField div input:disabled {
+    -webkit-text-fill-color: initial !important;
+}
