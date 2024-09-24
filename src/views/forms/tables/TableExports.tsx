@@ -12,10 +12,10 @@ import { IconDeviceFloppy } from '@tabler/icons-react';
 
 export const CSVExport = ({ data, filename, headers }: any) => {
     return (
-        <Tooltip title="CSV Export" placement="left">
+        <Tooltip title="Exportar CSV" placement="left">
             <ButtonBase sx={{ mt: 0.5, '& svg': { color: 'secondary.main' } }}>
                 <CSVLink data={data} filename={filename} headers={headers}>
-                    <IconDeviceFloppy aria-label="Export CSV File" />
+                    <IconDeviceFloppy aria-label="Exportar arquivo CSV" />
                 </CSVLink>
             </ButtonBase>
         </Tooltip>

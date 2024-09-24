@@ -204,3 +204,16 @@ html[dir='rtl'] .apexcharts-tooltip .apexcharts-tooltip-marker {
 .ReactModal__Overlay {
     z-index: 99999 !important;
 }
+//custom
+.actions-icon {
+    cursor: pointer;
+}
+.inativo-row {
+    color: rgb(145, 145, 145);
+}
+#category-select-label {
+    transform: translate(14px, -16px) scale(0.75);
+}
+.disabledEditableTextField div input:disabled {
+    -webkit-text-fill-color: initial !important;
+}

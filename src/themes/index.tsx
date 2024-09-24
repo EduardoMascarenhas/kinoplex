@@ -4,6 +4,7 @@ import { useMemo, ReactNode } from 'react';
 import { createTheme, ThemeOptions, ThemeProvider, Theme, TypographyVariantsOptions } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import StyledEngineProvider from '@mui/material/StyledEngineProvider';
+import { ptBR as corePtBR } from '@mui/material/locale';
 
 // project import
 import useConfig from 'hooks/useConfig';
@@ -50,7 +51,7 @@ export default function ThemeCustomization({ children }: Props) {
         [themeDirection, theme, themeCustomShadows, themeTypography]
     );
 
-    const themes: Theme = createTheme(themeOptions);
+    const themes: Theme = createTheme(themeOptions, corePtBR);
     themes.components = useMemo(
         () => componentStyleOverrides(themes, borderRadius, outlinedFilled),
         [themes, borderRadius, outlinedFilled]
