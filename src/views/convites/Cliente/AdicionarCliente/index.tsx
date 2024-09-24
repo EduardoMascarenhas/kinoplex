@@ -13,9 +13,9 @@ import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 
 // project imports
-import PersonalInformation from './PersonalInformation';
-import ContactDetail from './ContactDetail';
-import Address from './Address';
+import DadosCliente from './DadosCliente';
+import Contato from './Contato';
+import Endereco from './Endereco';
 import OtherDetail from './OtherDetail';
 import useConfig from 'hooks/useConfig';
 import MainCard from 'ui-component/cards/MainCard';
@@ -61,9 +61,9 @@ const tabsOption = [
         caption: 'Contact Information'
     },
     {
-        label: 'Address detail',
+        label: 'Endereco detail',
         icon: <PinDropTwoTone />,
-        caption: 'Address detail'
+        caption: 'Endereco detail'
     },
     {
         label: 'Other Detail',
@@ -79,7 +79,7 @@ interface Props {
 
 // ==============================|| ADD CLIENT ||============================== //
 
-const AddClient = ({ isOpen, handleDialogToggler }: Props) => {
+const AdicionarCliente = ({ isOpen, handleDialogToggler }: Props) => {
     const { mode, borderRadius } = useConfig();
     const [value, setValue] = React.useState<number>(0);
 
@@ -164,13 +164,13 @@ const AddClient = ({ isOpen, handleDialogToggler }: Props) => {
                                 }}
                             >
                                 <TabPanel value={value} index={0}>
-                                    <PersonalInformation />
+                                    <DadosCliente />
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
-                                    <ContactDetail />
+                                    <Contato />
                                 </TabPanel>
                                 <TabPanel value={value} index={2}>
-                                    <Address />
+                                    <Endereco />
                                 </TabPanel>
                                 <TabPanel value={value} index={3}>
                                     <OtherDetail />
@@ -226,4 +226,4 @@ const AddClient = ({ isOpen, handleDialogToggler }: Props) => {
     );
 };
 
-export default AddClient;
+export default AdicionarCliente;

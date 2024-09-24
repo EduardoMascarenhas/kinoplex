@@ -9,7 +9,7 @@ import { gridSpacing } from 'store/constant';
 
 // ==============================|| ADDRESS ||============================== //
 
-const Address = () => {
+const Endereco = () => {
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12} sm={6}>
@@ -37,4 +37,4 @@ const Address = () => {
     );
 };
 
-export default Address;
+export default Endereco;

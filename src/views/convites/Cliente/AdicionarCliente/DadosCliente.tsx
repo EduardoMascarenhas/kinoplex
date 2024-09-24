@@ -13,7 +13,7 @@ import { gridSpacing } from 'store/constant';
 
 // ==============================|| PERSONAL INFORMATION ||============================== //
 
-const PersonalInformation = () => (
+const DadosCliente = () => (
     <Grid container spacing={gridSpacing}>
         <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
@@ -60,4 +60,4 @@ const PersonalInformation = () => (
     </Grid>
 );
 
-export default PersonalInformation;
+export default DadosCliente;

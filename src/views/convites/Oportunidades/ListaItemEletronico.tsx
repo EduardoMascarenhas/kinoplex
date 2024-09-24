@@ -56,7 +56,7 @@ const formatCurrency = (value: any) => {
 
 // ==============================|| CREATE INVOICE - ITEMS ||============================== //
 
-function ItemListEletronico({ convitesData, deleteConviteHandler }: ConviteDataProps) {
+function ListaItemEletronico({ convitesData, deleteConviteHandler }: ConviteDataProps) {
 
     return (
         <Table sx={{ minWidth: 320, border: '1px solid #697586' }} aria-label="customized table">
@@ -88,4 +88,4 @@ function ItemListEletronico({ convitesData, deleteConviteHandler }: ConviteDataP
     );
 }
 
-export default ItemListEletronico;
+export default ListaItemEletronico;

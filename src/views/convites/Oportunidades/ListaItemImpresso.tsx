@@ -3,7 +3,6 @@ import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
@@ -56,17 +55,13 @@ const formatCurrency = (value: any) => {
 
 // ==============================|| CREATE INVOICE - ITEMS ||============================== //
 
-function ItemListImpresso({ convitesData, deleteConviteHandler }: ConviteDataProps) {
+function ListaItemImpresso({ convitesData, deleteConviteHandler }: ConviteDataProps) {
 
     return (
         <Table sx={{ minWidth: 320, border: '1px solid #697586' }} aria-label="customized table">
             <TableHead>
                 <TableRow>
                     <StyledTableCell>Convite Impresso</StyledTableCell>
-                    <StyledTableCell align="right">Lote</StyledTableCell>
-                    <StyledTableCell align="right">Série</StyledTableCell>
-                    <StyledTableCell align="right">Numeração</StyledTableCell>
-                    <StyledTableCell align="right">Disponível</StyledTableCell>
                     <StyledTableCell align="right">Quantidade</StyledTableCell>
                     <StyledTableCell align="right">Preço unitário</StyledTableCell>
                     <StyledTableCell align="right">Total</StyledTableCell>
@@ -77,10 +72,6 @@ function ItemListImpresso({ convitesData, deleteConviteHandler }: ConviteDataPro
                 {convitesData.map((row, index) => (
                     <StyledTableRow hover key={index}>
                         <TableCell>{row.descricao}</TableCell>
-                        <TableCell align="right">{row.lote}</TableCell>
-                        <TableCell align="right">{row.serie}</TableCell>
-                        <TableCell align="right">{row.numeracao}</TableCell>
-                        <TableCell align="right">{row.disponibilidade}</TableCell>
                         <TableCell align="right">{row.quantidade}</TableCell>
                         <TableCell align="right">{formatCurrency(row.preco_unitario)}</TableCell>
                         <TableCell align="right">{formatCurrency(row.total)}</TableCell>
@@ -96,4 +87,4 @@ function ItemListImpresso({ convitesData, deleteConviteHandler }: ConviteDataPro
     );
 }
 
-export default ItemListImpresso;
+export default ListaItemImpresso;

@@ -6,9 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 
 // project-imports
-import ClientFilter from './ClientFilter';
-import ClientDrawer from './ClientDrawer';
-import ClientTable from './ClientTable';
+import FiltroCliente from './FiltroCliente';
+import DrawerCliente from './DrawerCliente';
+import TabelaCliente from './TabelaCliente';
 import MainCard from 'ui-component/cards/MainCard';
 
 import { dispatch, useSelector } from 'store';
@@ -19,7 +19,7 @@ import { UserProfile } from 'types/user-profile';
 
 // ==============================|| CLIENT LIST ||============================== //
 
-const ClientList = () => {
+const ListarClientes = () => {
     const [open, setOpen] = React.useState<boolean>(false);
     const [users, setUsers] = React.useState<UserProfile[]>([]);
 
@@ -38,17 +38,17 @@ const ClientList = () => {
         <MainCard content={false}>
             {/* filter section */}
             <CardContent>
-                <ClientFilter {...{ users: detailCards, setUsers }} />
+                <FiltroCliente {...{ users: detailCards, setUsers }} />
             </CardContent>
 
             {/* table */}
             <Box display={open ? 'flex' : 'block'}>
                 <Grid container sx={{ position: 'relative' }}>
                     <Grid item sm={open ? 5 : 12} xs={12}>
-                        <ClientTable open={open} setOpen={setOpen} users={users} setRowValue={setRowValue} />
+                        <TabelaCliente open={open} setOpen={setOpen} users={users} setRowValue={setRowValue} />
                     </Grid>
                     <Grid item sm={open ? 7 : 12} xs={12} sx={{ borderLeft: '1px solid', borderLeftColor: 'divider' }}>
-                        <ClientDrawer open={open} setOpen={setOpen} rowValue={rowValue!} />
+                        <DrawerCliente open={open} setOpen={setOpen} rowValue={rowValue!} />
                     </Grid>
                 </Grid>
             </Box>
@@ -56,4 +56,4 @@ const ClientList = () => {
     );
 };
 
-export default ClientList;
+export default ListarClientes;

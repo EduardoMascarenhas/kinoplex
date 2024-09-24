@@ -9,7 +9,7 @@ import { gridSpacing } from 'store/constant';
 
 // ==============================|| CONTACT DETAIL ||============================== //
 
-const ContactDetail = () => {
+const Contato = () => {
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12} sm={6}>
@@ -25,4 +25,4 @@ const ContactDetail = () => {
     );
 };
 
-export default ContactDetail;
+export default Contato;

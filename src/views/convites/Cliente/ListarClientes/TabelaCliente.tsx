@@ -16,7 +16,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
 // project imports
-import ClientTableHeader from './ClientTableHeader';
+import CabecalhoTabelaCliente from './CabecalhoTabelaCliente';
 import Avatar from 'ui-component/extended/Avatar';
 
 import { ImagePath, getImageUrl } from 'utils/getImageUrl';
@@ -57,7 +57,7 @@ function stableSort(array: UserProfile[], comparator: (a: UserProfile, b: UserPr
     return stabilizedThis.map((el) => el[0]);
 }
 
-interface ClientTableProps {
+interface TabelaClienteProps {
     open: boolean;
     setOpen: (open: boolean) => void;
     users: UserProfile[] | undefined;
@@ -66,7 +66,7 @@ interface ClientTableProps {
 
 // ==============================|| CLIENT LIST - TABLE ||============================== //
 
-const ClientTable = ({ open, setOpen, users, setRowValue }: ClientTableProps) => {
+const TabelaCliente = ({ open, setOpen, users, setRowValue }: TabelaClienteProps) => {
     const theme = useTheme();
 
     const [order, setOrder] = React.useState<ArrangementOrder>('asc');
@@ -165,7 +165,7 @@ const ClientTable = ({ open, setOpen, users, setRowValue }: ClientTableProps) =>
         <Main>
             <TableContainer>
                 <Table sx={{ minWidth: open ? 300 : 750 }} aria-labelledby="tableTitle">
-                    <ClientTableHeader
+                    <CabecalhoTabelaCliente
                         numSelected={selected.length}
                         order={order}
                         orderBy={orderBy}
@@ -340,4 +340,4 @@ const ClientTable = ({ open, setOpen, users, setRowValue }: ClientTableProps) =>
     );
 };
 
-export default ClientTable;
+export default TabelaCliente;

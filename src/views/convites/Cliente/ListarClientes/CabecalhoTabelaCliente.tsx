@@ -66,7 +66,7 @@ const headCells: HeadCell[] = [
     }
 ];
 
-interface ClientTableHeaderProps {
+interface CabecalhoTabelaClienteProps {
     drawer: boolean;
     selected: string[];
     onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -103,7 +103,7 @@ const EnhancedTableToolbar = ({ numSelected }: EnhancedTableToolbarProps) => (
 
 // ==============================|| CLIENT LIST - HEADER ||============================== //
 
-const ClientTableHeader = ({
+const CabecalhoTabelaCliente = ({
     drawer,
     onSelectAllClick,
     order,
@@ -112,7 +112,7 @@ const ClientTableHeader = ({
     rowCount,
     onRequestSort,
     selected
-}: ClientTableHeaderProps) => {
+}: CabecalhoTabelaClienteProps) => {
     const createSortHandler = (property: string) => (event: React.SyntheticEvent<Element, Event>) => {
         onRequestSort(event, property);
     };
@@ -169,4 +169,4 @@ const ClientTableHeader = ({
     );
 };
 
-export default ClientTableHeader;
+export default CabecalhoTabelaCliente;

@@ -19,7 +19,7 @@ import { KeyedObject } from 'types';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import AddClient from 'views/invitations/Client/AddClient';
+import AddClient from 'views/convites/Client/AddClient';
 import Box from '@mui/material/Box';
 
 // constant
@@ -88,11 +88,6 @@ const MainCardInvitations = React.forwardRef(
                     {!darkTitle && title && (
                         <Box display='flex' alignItems='center' justifyContent='space-between'>
                             <CardHeader sx={headerSX} title={title} action={secondary} />
-                            <InputAdornment position="end">
-                                <Button color="secondary" size="large" type="submit" variant="contained" sx={{mr: '15px'}} onClick={handleDialogToggler} startIcon={<AddIcon />}>
-                                    Nova Empresa
-                                </Button>
-                            </InputAdornment>
                         </Box>
                     )}
                     {darkTitle && title && (
@@ -100,11 +95,6 @@ const MainCardInvitations = React.forwardRef(
                             <CardHeader sx={headerSX} title={<Typography variant="h3">
                                 {title}
                             </Typography>} action={secondary} />
-                            <InputAdornment position="end">
-                                <Button color="secondary" sx={{mr: '15px'}} onClick={handleDialogToggler} startIcon={<AddIcon />}>
-                                    Nova Empresa
-                                </Button>
-                            </InputAdornment>
                         </Box>
                     )}
 
@@ -119,9 +109,6 @@ const MainCardInvitations = React.forwardRef(
                     )}
                     {!content && children}
                 </Card>
-                <Dialog open={open} onClose={handleDialogToggler} sx={{ '& .MuiDialog-paper': { maxWidth: '100%', width: 980 } }}>
-                    {open && <AddClient isOpen handleDialogToggler={handleDialogToggler} />}
-                </Dialog>
             </>
         );
     }

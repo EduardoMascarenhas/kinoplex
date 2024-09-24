@@ -4,12 +4,12 @@ import Drawer from '@mui/material/Drawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 // project imports
-import ClientDetails from './ClientDetails';
+import DetalheCliente from './DetalheCliente';
 
 // types
 import { UserProfile } from 'types/user-profile';
 
-interface ClientDrawerProps {
+interface DrawerClienteProps {
     open: boolean;
     setOpen: (open: boolean) => void;
     rowValue: UserProfile;
@@ -17,7 +17,7 @@ interface ClientDrawerProps {
 
 // ==============================|| CLIENT DETAILS - DRAWER ||============================== //
 
-const ClientDrawer = ({ open, setOpen, rowValue }: ClientDrawerProps) => {
+const DrawerCliente = ({ open, setOpen, rowValue }: DrawerClienteProps) => {
     const downSM = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
     const handleDrawerClose = () => {
@@ -46,10 +46,10 @@ const ClientDrawer = ({ open, setOpen, rowValue }: ClientDrawerProps) => {
                 anchor="right"
                 open={open}
             >
-                <ClientDetails rowValue={rowValue} handleDrawerClose={handleDrawerClose} />
+                <DetalheCliente rowValue={rowValue} handleDrawerClose={handleDrawerClose} />
             </Drawer>
         </>
     );
 };
 
-export default ClientDrawer;
+export default DrawerCliente;
