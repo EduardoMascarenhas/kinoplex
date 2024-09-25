@@ -2,33 +2,33 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconDashboard, IconTicket } from '@tabler/icons-react';
+import { IconDashboard, IconCalendarEvent } from '@tabler/icons-react';
 
 // type
 import { NavItemType } from 'types';
 
 const icons = {
     IconDashboard: IconDashboard,
-    IconTicket: IconTicket
+    IconCalendarEvent: IconCalendarEvent
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
 
-const convites: NavItemType = {
-    id: 'convites',
-    title: <FormattedMessage id="convites" />,
+const eventos: NavItemType = {
+    id: 'eventos',
+    title: <FormattedMessage id="eventos" />,
     icon: icons.IconDashboard,
     type: 'group',
     children: [
         {
             id: 'convites-list',
-            title: <FormattedMessage id="invite-list" />,
+            title: <FormattedMessage id="event-list" />,
             type: 'item',
-            url: '/convites',
-            icon: icons.IconTicket,
+            url: '/eventos',
+            icon: icons.IconCalendarEvent,
             breadcrumbs: false
         }
     ]
 };
 
-export default convites;
+export default eventos;

@@ -1,12 +1,14 @@
 import { useState, useMemo } from 'react';
 
 // material-ui
-import { Box, Stack, Menu, MenuItem, Grid, Chip, Checkbox, FormControlLabel, RadioGroup, Radio } from '@mui/material';
+import { Box, Stack, Tooltip, Grid, Chip, Checkbox, FormControlLabel, RadioGroup, Radio } from '@mui/material';
 import { DataGrid, GridColDef, GridRowsProp, GridValueGetterParams, GridToolbarQuickFilter, GridLogicOperator } from '@mui/x-data-grid';
 import { ptBR } from '@mui/x-data-grid/locales';
 
 // icons
-import { IconSettings } from '@tabler/icons-react';
+import EditIcon from '@mui/icons-material/Edit';
+import NotInterestedIcon from '@mui/icons-material/NotInterested';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 // project import
 import MainCard from 'ui-component/cards/MainCard';
@@ -244,41 +246,41 @@ const MenuActions = (params: any) => {
     const cogColor = mode === ThemeMode.DARK ? '#fff' : '#364152';
 
     return (
-        <>
-            <Box
-                sx={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-            >
-                <IconSettings
-                    id={`icon-${params.id}`}
-                    className="actions-icon teste"
-                    fontSize="small"
-                    aria-controls={open ? `menu-${params.id}` : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClickAcao}
-                    color={cogColor}
-                />
-                <Menu
-                    id={`menu-${params.id}`}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleCloseAcao}
-                    MenuListProps={{
-                        'aria-labelledby': `${params.id}`
-                    }}
-                >
-                    <MenuItem onClick={() => console.log(`alterar ${params.id}`)}>Alterar</MenuItem>
-
-                    {params.status === 'ATIVO' ? <MenuItem onClick={() => console.log(`inativar ${params.id}`)}>Inativar</MenuItem> : <></>}
-                    {params.status === 'INATIVO' ? <MenuItem onClick={() => console.log(`ativar ${params.id}`)}>Ativar</MenuItem> : <></>}
-                </Menu>
-            </Box>
-        </>
+        <Box
+            sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '15px'
+            }}
+        >
+            <Tooltip title="Alterar">
+                <EditIcon className="actions-icon-alterar" onClick={() => console.log(`alterar ${params.id}`)} sx={{ cursor: 'pointer' }} />
+            </Tooltip>
+            {params.status === 'ATIVO' ? (
+                <Tooltip title="Inativar">
+                    <TaskAltIcon
+                        className="actions-icon-inativar"
+                        onClick={() => console.log(`inativar ${params.id}`)}
+                        sx={{ cursor: 'pointer' }}
+                    />
+                </Tooltip>
+            ) : (
+                <></>
+            )}
+            {params.status === 'INATIVO' ? (
+                <Tooltip title="Ativar">
+                    <NotInterestedIcon
+                        className="actions-icon-ativar"
+                        onClick={() => console.log(`ativar ${params.id}`)}
+                        sx={{ cursor: 'pointer' }}
+                    />
+                </Tooltip>
+            ) : (
+                <></>
+            )}
+        </Box>
     );
 };
 
