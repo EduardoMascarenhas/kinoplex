@@ -192,13 +192,14 @@ const EventEdit = Loadable(lazy(() => import('views/event-edit')));
 const EventNew = Loadable(lazy(() => import('views/event-new')));
 // ==============================|| MAIN ROUTING ||============================== //
 
+/*
+    <AuthGuard>
+        <MainLayout />
+    </AuthGuard>
+*/
 const MainRoutes = {
     path: '/',
-    element: (
-        <AuthGuard>
-            <MainLayout />
-        </AuthGuard>
-    ),
+    element: <MainLayout />,
     children: [
         {
             path: '/widget/statistics',
@@ -771,7 +772,7 @@ const MainRoutes = {
         {
             path: '/convites/listar-vendas',
             element: <ListarVendas />
-        },
+        }
     ]
 };
 
