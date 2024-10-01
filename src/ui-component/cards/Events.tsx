@@ -12,8 +12,9 @@ import 'dayjs/locale/pt-br';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 // icons
-import EditIcon from '@mui/icons-material/Edit';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityTwoTone from '@mui/icons-material/VisibilityTwoTone';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
+
 // project import
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
@@ -277,14 +278,14 @@ const MenuActions = (params: any) => {
                 }}
             >
                 <Tooltip title="Detalhes">
-                    <VisibilityIcon
+                    <VisibilityTwoTone
                         className="actions-icon-detalhes"
                         onClick={() => (window.location.href = `/evento/detalhes/${params.id}`)}
                         sx={{ cursor: 'pointer' }}
                     />
                 </Tooltip>
                 <Tooltip title="Editar">
-                    <EditIcon
+                    <EditTwoToneIcon
                         className="actions-icon-editar"
                         onClick={() => (window.location.href = `/evento/editar/${params.id}`)}
                         sx={{ cursor: 'pointer' }}

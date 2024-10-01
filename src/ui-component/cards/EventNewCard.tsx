@@ -1,7 +1,7 @@
 import React from 'react';
 // material-ui
 import { Grid, Box, Accordion, AccordionSummary, AccordionDetails, Button } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
+import BackspaceTwoToneIcon from '@mui/icons-material/BackspaceTwoTone';
 // project import
 import NewEvent from './NewEvent';
 
@@ -19,7 +19,7 @@ export default function EventNewCard() {
                             variant="contained"
                             sx={{ mr: '15px' }}
                             onClick={() => (window.location.href = `/eventos`)}
-                            startIcon={<ArrowBack />}
+                            startIcon={<BackspaceTwoToneIcon />}
                         >
                             Voltar
                         </Button>

@@ -2,15 +2,15 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconDashboard, IconDeviceAnalytics, IconBasket } from '@tabler/icons-react';
+import { IconDashboard } from '@tabler/icons-react';
+import TipsAndUpdatesTwoToneIcon from '@mui/icons-material/TipsAndUpdatesTwoTone';
 
 // type
 import { NavItemType } from 'types';
 
 const icons = {
     IconDashboard: IconDashboard,
-    IconDeviceAnalytics: IconDeviceAnalytics,
-    IconBasket: IconBasket
+    TipsAndUpdatesTwoToneIcon: TipsAndUpdatesTwoToneIcon
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
@@ -25,16 +25,8 @@ const oportunidades: NavItemType = {
             id: 'opportunities-list',
             title: <FormattedMessage id="opportunities-list" />,
             type: 'item',
-            url: '/convites/listar-oportunidades',
-            icon: icons.IconDeviceAnalytics,
-            breadcrumbs: false
-        },
-        {
-            id: 'create-opportunities',
-            title: <FormattedMessage id="create-opportunities" />,
-            type: 'item',
-            url: '/convites/criar-oportunidades',
-            icon: icons.IconDashboard,
+            url: '/oportunidades',
+            icon: icons.TipsAndUpdatesTwoToneIcon,
             breadcrumbs: false
         }
     ]

@@ -40,6 +40,7 @@ import useConfig from 'hooks/useConfig';
 
 // types
 import { ThemeMode } from 'types/config';
+import ThemeModeLayout from 'layout/Customization/ThemeMode';
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -170,73 +171,17 @@ const ProfileSection = () => {
                                         <Box sx={{ p: 2, pb: 0 }}>
                                             <Stack>
                                                 <Stack direction="row" spacing={0.5} alignItems="center">
-                                                    <Typography variant="h4">Good Morning,</Typography>
+                                                    <Typography variant="h4">Olá,</Typography>
                                                     <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
                                                         {user?.name}
                                                     </Typography>
                                                 </Stack>
-                                                <Typography variant="subtitle2">Project Admin</Typography>
+                                                <Typography variant="subtitle2">Admin</Typography>
                                             </Stack>
-                                            <OutlinedInput
-                                                sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
-                                                id="input-search-profile"
-                                                value={value}
-                                                onChange={(e) => setValue(e.target.value)}
-                                                placeholder="Search profile options"
-                                                startAdornment={
-                                                    <InputAdornment position="start">
-                                                        <IconSearch stroke={1.5} size="16px" />
-                                                    </InputAdornment>
-                                                }
-                                                aria-describedby="search-helper-text"
-                                                inputProps={{
-                                                    'aria-label': 'weight'
-                                                }}
-                                            />
-                                            <Divider />
                                         </Box>
                                         <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
+                                            <ThemeModeLayout />
                                             <Box sx={{ p: 2, pt: 0 }}>
-                                                <UpgradePlanCard />
-                                                <Divider />
-                                                <Card sx={{ bgcolor: mode === ThemeMode.DARK ? 'dark.800' : 'primary.light', my: 2 }}>
-                                                    <CardContent>
-                                                        <Grid container spacing={3} direction="column">
-                                                            <Grid item>
-                                                                <Grid item container alignItems="center" justifyContent="space-between">
-                                                                    <Grid item>
-                                                                        <Typography variant="subtitle1">Start DND Mode</Typography>
-                                                                    </Grid>
-                                                                    <Grid item>
-                                                                        <Switch
-                                                                            color="primary"
-                                                                            checked={sdm}
-                                                                            onChange={(e) => setSdm(e.target.checked)}
-                                                                            name="sdm"
-                                                                            size="small"
-                                                                        />
-                                                                    </Grid>
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid item>
-                                                                <Grid item container alignItems="center" justifyContent="space-between">
-                                                                    <Grid item>
-                                                                        <Typography variant="subtitle1">Allow Notifications</Typography>
-                                                                    </Grid>
-                                                                    <Grid item>
-                                                                        <Switch
-                                                                            checked={notification}
-                                                                            onChange={(e) => setNotification(e.target.checked)}
-                                                                            name="sdm"
-                                                                            size="small"
-                                                                        />
-                                                                    </Grid>
-                                                                </Grid>
-                                                            </Grid>
-                                                        </Grid>
-                                                    </CardContent>
-                                                </Card>
-                                                <Divider />
                                                 <List
                                                     component="nav"
                                                     sx={{
@@ -260,7 +205,7 @@ const ProfileSection = () => {
                                                         <ListItemText
                                                             primary={
                                                                 <Typography variant="body2">
-                                                                    <FormattedMessage id="account-settings" />
+                                                                    <FormattedMessage id="Configurações da Conta" />
                                                                 </Typography>
                                                             }
                                                         />
@@ -280,7 +225,7 @@ const ProfileSection = () => {
                                                                 <Grid container spacing={1} justifyContent="space-between">
                                                                     <Grid item>
                                                                         <Typography variant="body2">
-                                                                            <FormattedMessage id="social-profile" />
+                                                                            <FormattedMessage id="Perfil" />
                                                                         </Typography>
                                                                     </Grid>
                                                                     <Grid item>

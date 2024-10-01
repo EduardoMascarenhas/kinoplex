@@ -61,8 +61,8 @@ const FiltrarOportunidades = ({ rows, setRows }: Props) => {
     };
 
     const handleCriarOportunidade = () => {
-        window.location.href = "/convites/criar-oportunidades";
-    }
+        window.location.href = '/convites/criar-oportunidades';
+    };
 
     return (
         <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" spacing={2}>
@@ -80,29 +80,6 @@ const FiltrarOportunidades = ({ rows, setRows }: Props) => {
                 size="small"
                 sx={{ width: { xs: 1, sm: 'auto' } }}
             />
-            <Stack direction="row" alignItems="center" spacing={1.25}>
-                <Tooltip title="Copy">
-                    <IconButton size="large">
-                        <FileCopyIcon />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Print">
-                    <IconButton size="large">
-                        <PrintIcon />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="Filter">
-                    <IconButton size="large">
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
-
-                <Tooltip title="Oportunidades">
-                    <Button variant="contained" onClick={() => handleCriarOportunidade()} size="small">
-                        <AddIcon fontSize="small" /> Oportunidade
-                    </Button>
-                </Tooltip>
-            </Stack>
         </Stack>
     );
 };

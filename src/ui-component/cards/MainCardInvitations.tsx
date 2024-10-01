@@ -11,16 +11,15 @@ import Typography from '@mui/material/Typography';
 import useConfig from 'hooks/useConfig';
 
 // assets
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
 import { KeyedObject } from 'types';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import AddClient from 'views/convites/Client/AddClient';
 import Box from '@mui/material/Box';
+import { useLocation } from 'react-router';
 
 // constant
 const headerSX = {
@@ -64,6 +63,7 @@ const MainCardInvitations = React.forwardRef(
         }: MainCardInvitations,
         ref: Ref<HTMLDivElement>
     ) => {
+        const location = useLocation();
         const [open, setOpen] = useState<boolean>(false);
         const { mode } = useConfig();
         const defaultShadow = mode === ThemeMode.DARK ? '0 2px 14px 0 rgb(33 150 243 / 10%)' : '0 2px 14px 0 rgb(32 40 45 / 8%)';
@@ -86,15 +86,44 @@ const MainCardInvitations = React.forwardRef(
                 >
                     {/* card header and action */}
                     {!darkTitle && title && (
-                        <Box display='flex' alignItems='center' justifyContent='space-between'>
+                        <Box display="flex" alignItems="center" justifyContent="space-between">
                             <CardHeader sx={headerSX} title={title} action={secondary} />
+                            <InputAdornment position="end">
+                                {location.pathname === '/oportunidade/novo' ? (
+                                    <></>
+                                ) : (
+                                    <Button
+                                        color="secondary"
+                                        size="large"
+                                        type="submit"
+                                        variant="contained"
+                                        sx={{ mr: '15px' }}
+                                        onClick={() => (window.location.href = '/oportunidade/novo')}
+                                        startIcon={<AddCircleTwoToneIcon />}
+                                    >
+                                        Nova Oportunidade
+                                    </Button>
+                                )}
+                            </InputAdornment>
                         </Box>
                     )}
                     {darkTitle && title && (
                         <Box>
-                            <CardHeader sx={headerSX} title={<Typography variant="h3">
-                                {title}
-                            </Typography>} action={secondary} />
+                            <CardHeader sx={headerSX} title={<Typography variant="h3">{title}</Typography>} action={secondary} />
+                            <InputAdornment position="end">
+                                {location.pathname === '/oportunidade/novo' ? (
+                                    <></>
+                                ) : (
+                                    <Button
+                                        color="secondary"
+                                        sx={{ mr: '15px' }}
+                                        onClick={() => (window.location.href = '/oportunidade/novo')}
+                                        startIcon={<AddCircleTwoToneIcon />}
+                                    >
+                                        Nova Oportunidade
+                                    </Button>
+                                )}
+                            </InputAdornment>
                         </Box>
                     )}
 

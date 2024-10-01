@@ -1,8 +1,8 @@
 // types
 import { ConfigProps, MenuOrientation, ThemeDirection, ThemeMode } from 'types/config';
 
-// export const DASHBOARD_PATH = '/convites/listar-oportunidades';
-export const INVITATIONS_PATH = '/convites/listar-oportunidades';
+// export const DASHBOARD_PATH = '/oportunidades';
+export const INVITATIONS_PATH = '/oportunidades';
 export const HORIZONTAL_MAX_ITEM = 7;
 
 const config: ConfigProps = {

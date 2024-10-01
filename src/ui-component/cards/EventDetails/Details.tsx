@@ -1,51 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import {
-    Divider,
-    Grid,
-    IconButton,
-    Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
-    Box,
-    TextField,
-    Button
-} from '@mui/material';
-// input mask
-import InputMask from 'react-input-mask';
+import { Divider, Grid, Stack, Typography, Box } from '@mui/material';
 
 // project imports
-import SubCard from 'ui-component/cards/SubCard';
 import Chip from 'ui-component/extended/Chip';
 import { gridSpacing } from 'store/constant';
 
-// assets
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import CalendarTodayTwoToneIcon from '@mui/icons-material/CalendarTodayTwoTone';
-import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
-import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
-import PhoneAndroidTwoToneIcon from '@mui/icons-material/PhoneAndroidTwoTone';
-import EditIcon from '@mui/icons-material/Edit';
-import SaveIcon from '@mui/icons-material/Save';
-
 // types
-import { ThemeMode } from 'types/config';
 import { EventDataType } from 'types/event';
-
-const detailsIconSX = {
-    width: 15,
-    height: 15,
-    verticalAlign: 'text-top',
-    mr: 0.5,
-    mt: 0.25
-};
+import ItemsTable from 'ui-component/itemsTable';
+import SubCardCustom from 'ui-component/custom/SubCardCustom';
 
 const EDetails = ({
     allData,
@@ -54,29 +19,10 @@ const EDetails = ({
     allData: EventDataType;
     handleChangeAllData: (event: any, name: string, category: string) => void;
 }) => {
-    const theme = useTheme();
-    // Calcular o total dos valores do pacote
-    const totalSum = allData?.pacote?.reduce((acc, row) => acc + row.valorTotal, 0) || 0;
-
-    const [editableField, setEditableField] = useState<string | null>(null);
-
-    const toggleEditableField = (field: string) => {
-        setEditableField(editableField === field ? null : field);
-    };
-
-    const handleSaveClick = () => {
-        // Salva os dados e desativa os campos
-        setEditableField(null);
-        console.log('allData: ', allData);
-    };
-
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
-                <SubCard
-                    title={`Id do Evento - ${allData.id}`}
-                    secondary={<Typography variant="subtitle1">Data de Criação do Evento - {`${allData.createdAt}`}</Typography>}
-                >
+                <SubCardCustom allData={allData}>
                     <Grid container spacing={gridSpacing}>
                         <Grid item xs={12}>
                             <Typography variant="h4">Contato</Typography>
@@ -271,103 +217,10 @@ const EDetails = ({
                             </Grid>
                         </Grid>
                     </Grid>
-                </SubCard>
+                </SubCardCustom>
             </Grid>
             <Grid item xs={12}>
-                <SubCard title="Pacote" content={false}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
-                            <TableContainer>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell align="center">Nº</TableCell>
-                                            <TableCell align="left">Tipo / Item</TableCell>
-                                            <TableCell align="center">Quantidade</TableCell>
-                                            <TableCell align="center">Valor Unitário</TableCell>
-                                            <TableCell align="center">Valor Total</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {allData?.pacote?.map((row, index) => (
-                                            <TableRow key={index}>
-                                                <TableCell align="center">{row.id}</TableCell>
-                                                <TableCell align="left">
-                                                    <Typography variant="subtitle1">{row.tipo}</Typography>
-                                                    <Typography variant="body2">{row.item}</Typography>
-                                                </TableCell>
-                                                <TableCell align="center">{row.quantidade}</TableCell>
-                                                <TableCell align="center">R$ {row.valorUnitario}</TableCell>
-                                                <TableCell align="center">R$ {row.valorTotal}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <SubCard sx={{ mx: 3, mb: 3, bgcolor: theme.palette.mode === ThemeMode.DARK ? 'dark.main' : 'primary.light' }}>
-                                <Grid container justifyContent="flex-end" spacing={gridSpacing}>
-                                    <Grid item sm={6} md={4}>
-                                        <Grid container spacing={2}>
-                                            <Grid item xs={12}>
-                                                <Grid container spacing={1}>
-                                                    <Grid item xs={6}>
-                                                        <Typography align="right" variant="subtitle1">
-                                                            Sub Total :
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item xs={6}>
-                                                        <Typography align="right" variant="body2">
-                                                            R$ {totalSum.toFixed(2)}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item xs={6}>
-                                                        <Typography align="right" variant="subtitle1">
-                                                            Taxa (5%) :
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item xs={6}>
-                                                        <Typography align="right" variant="body2" color={'error'}>
-                                                            R$ {(totalSum * 0.05).toFixed(2)}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item xs={6}>
-                                                        <Typography align="right" variant="subtitle1">
-                                                            Desconto (5%) :
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item xs={6}>
-                                                        <Typography align="right" variant="body2" color={'primary'}>
-                                                            R$ {(totalSum * 0.05).toFixed(2)}
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <Divider sx={{ bgcolor: 'dark.main' }} />
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <Grid container spacing={1}>
-                                                    <Grid item xs={6}>
-                                                        <Typography align="right" color="primary" variant="subtitle1">
-                                                            Total :
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item xs={6}>
-                                                        <Typography align="right" color="primary" variant="subtitle1">
-                                                            R$ {totalSum.toFixed(2)}
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </SubCard>
-                        </Grid>
-                    </Grid>
-                </SubCard>
+                <ItemsTable initialItems={allData?.pacote && allData?.pacote?.length ? allData.pacote : []} details={true} />
             </Grid>
         </Grid>
     );

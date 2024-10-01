@@ -10,14 +10,12 @@ import Tabs from '@mui/material/Tabs';
 
 // project imports
 import Details from './Details';
-import Invoice from './Invoice';
-import Status from './Status';
 import MainCard from 'ui-component/cards/MainCard';
+import EGeneralObservation from './GeneralObservation';
 
 // assets
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
-import ReceiptTwoToneIcon from '@mui/icons-material/ReceiptTwoTone';
-import { Summarize } from '@mui/icons-material';
+import SummarizeTwoTone from '@mui/icons-material/SummarizeTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
@@ -102,22 +100,20 @@ const EditEventById = () => {
         ],
         observacoesGerais: [
             {
-                idObservacao: '',
-                dataObservacao: '',
-                observacao: ''
+                id: '',
+                createdAt: '',
+                updatedAt: '',
+                observacao: '',
+                titulo: ''
             }
         ],
-        historicoComentariosObservacoes: [
+        historicoComentarios: [
             {
                 id: '',
+                createdAt: '',
+                updatedAt: '',
                 comentario: '',
-                observacao: ''
-            }
-        ],
-        comentariosSobreOEvento: [
-            {
-                id: '',
-                comentario: ''
+                userName: ''
             }
         ]
     });
@@ -178,11 +174,17 @@ const EditEventById = () => {
                 }}
             >
                 <Tab icon={<DescriptionTwoToneIcon />} component={Link} to="#" label="Detalhes" {...a11yProps(0)} />
+                <Tab icon={<SummarizeTwoTone />} component={Link} to="#" label="Observações Gerais" {...a11yProps(1)} />
             </Tabs>
 
             {/* tab - details */}
             <TabPanel value={value} index={0}>
                 <Details allData={allData} handleChangeAllData={handleChangeData} />
+            </TabPanel>
+
+            {/* tab - details */}
+            <TabPanel value={value} index={1}>
+                <EGeneralObservation allData={allData} handleChangeAllData={handleChangeData} />
             </TabPanel>
         </MainCard>
     );
