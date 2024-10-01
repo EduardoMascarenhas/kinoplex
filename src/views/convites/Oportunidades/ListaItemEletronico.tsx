@@ -3,7 +3,6 @@ import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
@@ -14,27 +13,15 @@ import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import { ConviteItems } from 'types/convite';
 import { styled } from '@mui/material/styles';
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover
-    },
-    // hide last border
-    '&:last-of-type td, &:last-of-type th': {
-        border: 0,
-    },
+const StyledTableRow = styled(TableRow)(() => ({
     'td': {
         padding: '6px 16px'
     }
 }));
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "#e3f2fd",
-        color: '#383838',
-        fontSize: 16,
+        backgroundColor: "#f8fafc",
         padding: '8px 16px'
-    },
-    [`&.${tableCellClasses.body}`]: {
-        fontSize: 14
     },
 }));
 
@@ -59,7 +46,7 @@ const formatCurrency = (value: any) => {
 function ListaItemEletronico({ convitesData, deleteConviteHandler }: ConviteDataProps) {
 
     return (
-        <Table sx={{ minWidth: 320, border: '1px solid #697586' }} aria-label="customized table">
+        <Table sx={{ minWidth: 320 }}>
             <TableHead>
                 <TableRow>
                     <StyledTableCell>Convite Eletrônico</StyledTableCell>

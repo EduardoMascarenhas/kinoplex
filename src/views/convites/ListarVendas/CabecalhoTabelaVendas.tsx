@@ -17,24 +17,36 @@ import { ArrangementOrder, HeadCell, EnhancedTableToolbarProps } from 'types';
 // table header options
 const headCells: HeadCell[] = [
     {
-        id: 'date',
+        id: 'id',
         numeric: true,
-        label: 'Data da Criação'
+        label: 'ID'
     },
     {
-        id: 'name',
-        numeric: false,
-        label: 'Cliente'
+        id: 'nome',
+        numeric: true,
+        label: 'Cliente',
+        align: 'left'
     },
+    {
+        id: 'data',
+        numeric: false,
+        label: 'Data Venda'
+    },
+    {
+        id: 'cinema',
+        numeric: true,
+        label: 'Cinema'
+    },
+
     {
         id: 'quantidade',
-        numeric: false,
-        label: 'Quantidade Total'
+        numeric: true,
+        label: 'Quantidade',
     },
     {
-        id: 'amount',
+        id: 'valor',
         numeric: true,
-        label: 'Valor Total',
+        label: 'Valor',
     }
 ];
 
@@ -59,7 +71,7 @@ const EnhancedTableToolbar = ({ numSelected }: EnhancedTableToolbarProps) => (
 
 interface ListTableHeaderProps {
     selected: string[];
-    onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onSelectAllClick?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     order: ArrangementOrder;
     orderBy: string;
     numSelected: number;
@@ -67,14 +79,13 @@ interface ListTableHeaderProps {
     onRequestSort: (event: React.SyntheticEvent<Element, Event>, property: string) => void;
 }
 
-const CabecalhoTabelaOportunidades = ({ order, orderBy, numSelected, onRequestSort, selected }: ListTableHeaderProps) => {
+const CabecalhoTabelaVendas = ({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, selected }: ListTableHeaderProps) => {
     const createSortHandler = (property: string) => (event: React.SyntheticEvent<Element, Event>) => {
         onRequestSort(event, property);
     };
     return (
         <TableHead>
             <TableRow>
-               
                 {numSelected > 0 && (
                     <TableCell padding="none" colSpan={12}>
                         <EnhancedTableToolbar numSelected={selected.length} />
@@ -106,8 +117,13 @@ const CabecalhoTabelaOportunidades = ({ order, orderBy, numSelected, onRequestSo
                         );
                     })}
                 {numSelected <= 0 && (
-                    <TableCell sortDirection={false} align="center" sx={{ pr: 0 }}>
-                        Ação
+                    <TableCell sortDirection={false} align="center" sx={{ pr: 3 }}>
+                        Documentos
+                    </TableCell>
+                )}
+                {numSelected <= 0 && (
+                    <TableCell sortDirection={false} align="center" sx={{ pr: 3 }}>
+                        Ações
                     </TableCell>
                 )}
             </TableRow>
@@ -115,4 +131,4 @@ const CabecalhoTabelaOportunidades = ({ order, orderBy, numSelected, onRequestSo
     );
 };
 
-export default CabecalhoTabelaOportunidades;
+export default CabecalhoTabelaVendas;

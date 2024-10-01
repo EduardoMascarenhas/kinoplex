@@ -31,11 +31,7 @@ const TypographyConvite = styled(Typography)({
     padding: '0 12px'
 });
 
-const ButtonGroupKino = styled(ButtonGroup)({
-    border: '1px solid #ff7e00'
-});
-
-function SelectItemImpresso({ handleAddItem, setAddItemClicked }: Props) {
+function SelectItemImpresso({ handleAddItem }: Props) {
     const [convites, setConvites] = useState<ConviteImpresso[]>([]);
     const [selectedItem, setSelectedItem] = useState<ConviteEletronico & ConviteImpresso | null>(null);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
@@ -44,42 +40,73 @@ function SelectItemImpresso({ handleAddItem, setAddItemClicked }: Props) {
     const [errors, setErrors] = useState({ quantityError: '' });
     const [conviteType, setConviteType] = useState<'impresso' | null>(null);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-
-    const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
 
     const handleMenuItemClick = (type: 'impresso') => {
         setConviteType(type);
         setAnchorEl(null); // Fechar o menu
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     const convitesImpressos: ConviteImpresso[] = [
         {
-            id: 3,
+            id: 0,
             lote: '20/2023',
             serie: '01',
-            numeracao: '5121 a 5250',
-            descricao: 'Impresso ABCD',
-            disponibilidade: 300,
+            numeracao: '01 a 2000',
+            descricao: 'ABCD01',
+            disponibilidade: 500,
             preco_unitario: 18,
             tipo: 'impresso'
         },
         {
-            id: 4,
+            id: 1,
             lote: '35/2024',
+            serie: '02',
+            numeracao: '2001 a 4000',
+            descricao: 'FGHI02',
+            disponibilidade: 1800,
+            preco_unitario: 22,
+            tipo: 'impresso'
+        },
+        {
+            id: 2,
+            lote: '32/2022',
             serie: '03',
-            numeracao: '6001 a 6500',
-            descricao: 'Impresso FGHI',
-            disponibilidade: 900,
+            numeracao: '4001 a 6500',
+            descricao: 'JKLMN15',
+            disponibilidade: 1900,
             preco_unitario: 21,
             tipo: 'impresso'
-        }
+        },
+        {
+            id: 3,
+            lote: '40/2015',
+            serie: '06',
+            numeracao: '6501 a 8500',
+            descricao: 'OPQR41',
+            disponibilidade: 2000,
+            preco_unitario: 21,
+            tipo: 'impresso'
+        },
+        {
+            id: 4,
+            lote: '35/2028',
+            serie: '09',
+            numeracao: '8501 a 12000',
+            descricao: 'STUV40',
+            disponibilidade: 3500,
+            preco_unitario: 25,
+            tipo: 'impresso'
+        },
+        {
+            id: 5,
+            lote: '35/2027',
+            serie: '08',
+            numeracao: '12001 a 15000',
+            descricao: 'WYXZ70',
+            disponibilidade: 1000,
+            preco_unitario: 27,
+            tipo: 'impresso'
+        },
     ];
 
     useEffect(() => {
@@ -202,8 +229,8 @@ function SelectItemImpresso({ handleAddItem, setAddItemClicked }: Props) {
             ) : (
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12}>
-                        <Stack alignItems='center' justifyContent='center' sx={{ height: '75px', backgroundColor: '#f8fafc', border: '2px dashed #bdbdbd' }}>
-                            <InputLabel sx={{ color: 'grey.400', fontWeight: '700', fontSize: '1.6em', textTransform: 'uppercase', margin: '0' }}>Nenhum convite encontrado...</InputLabel>
+                        <Stack alignItems='center' justifyContent='center' sx={{ height: '75px', backgroundColor: '#f8fafc', border: '2px dashed #dddddd' }}>
+                            <InputLabel sx={{ color: 'grey.400', fontWeight: '600', fontSize: '1.4em', textTransform: 'uppercase', margin: '0' }}>Nenhum convite encontrado...</InputLabel>
                         </Stack>
                     </Grid>
                 </Grid>

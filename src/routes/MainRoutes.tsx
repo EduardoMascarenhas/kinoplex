@@ -7,7 +7,6 @@ import Loadable from 'ui-component/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 
 import { loader as productsLoader, productLoader } from 'api/products';
-import EventDetail from 'views/event';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -179,6 +178,7 @@ const Oportunidades = Loadable(lazy(() => import('views/convites/Oportunidades')
 const ListarOportunidades = Loadable(lazy(() => import('views/convites/ListarOportunidades')));
 const DetalheOportunidade = Loadable(lazy(() => import('views/convites/DetalheOportunidade')));
 const AdicionarCliente = Loadable(lazy(() => import('views/convites/Cliente/AdicionarCliente')));
+const ListarVendas = Loadable(lazy(() => import('views/convites/ListarVendas')));
 const ListarClientes = Loadable(lazy(() => import('views/convites/Cliente/ListarClientes')));
 const InvitationsInvites = Loadable(lazy(() => import('views/invitations/Invites')));
 const CreateInvitation = Loadable(lazy(() => import('views/invitations/Invites/create')));
@@ -749,13 +749,9 @@ const MainRoutes = {
             element: <ListarClientes />
         },
         {
-            path: '/convites/sales',
-            element: <DashboardAnalytics />
+            path: '/convites/listar-vendas',
+            element: <ListarVendas />
         },
-        {
-            path: '/convites/types',
-            element: <DashboardAnalytics />
-        }
     ]
 };
 

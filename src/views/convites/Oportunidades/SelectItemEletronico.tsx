@@ -31,11 +31,7 @@ const TypographyConvite = styled(Typography)({
     padding: '0 12px'
 });
 
-const ButtonGroupKino = styled(ButtonGroup)({
-    border: '1px solid #ff7e00'
-});
-
-function SelectItemEletronico({ handleAddItem, setAddItemClicked }: Props) {
+function SelectItemEletronico({ handleAddItem }: Props) {
     const [convites, setConvites] = useState<ConviteEletronico[]>([]);
     const [selectedItem, setSelectedItem] = useState<ConviteEletronico & ConviteImpresso | null>(null);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
@@ -43,25 +39,18 @@ function SelectItemEletronico({ handleAddItem, setAddItemClicked }: Props) {
     const [amount, setAmount] = useState<number>(0);
     const [errors, setErrors] = useState({ quantityError: '' });
     const [conviteType, setConviteType] = useState<'eletronico' | null>(null);
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-
-    const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
 
     const handleMenuItemClick = (type: 'eletronico') => {
         setConviteType(type);
-        setAnchorEl(null); // Fechar o menu
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
     };
 
     const convitesEletronicos: ConviteEletronico[] = [
-        { id: 1, descricao: 'Eletrônico A', preco_unitario: 100, tipo: 'eletronico' },
-        { id: 2, descricao: 'Eletrônico B', preco_unitario: 500, tipo: 'eletronico' }
+        { id: 1, descricao: 'CDA77', preco_unitario: 18, tipo: 'eletronico' },
+        { id: 2, descricao: 'B3021F', preco_unitario: 25, tipo: 'eletronico' },
+        { id: 3, descricao: 'ECOFA8', preco_unitario: 26, tipo: 'eletronico' },
+        { id: 4, descricao: '240319U', preco_unitario: 32, tipo: 'eletronico' },
+        { id: 5, descricao: 'JUSC20', preco_unitario: 30, tipo: 'eletronico' },
+        { id: 6, descricao: '11258P', preco_unitario: 24, tipo: 'eletronico' },
     ];
 
     useEffect(() => {
@@ -184,8 +173,8 @@ function SelectItemEletronico({ handleAddItem, setAddItemClicked }: Props) {
             ) : (
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12}>
-                        <Stack alignItems='center' justifyContent='center' sx={{ height: '75px', backgroundColor: '#f8fafc', border: '2px dashed #bdbdbd' }}>
-                            <InputLabel sx={{ color: 'grey.400', fontWeight: '700', fontSize: '1.6em', textTransform: 'uppercase', margin: '0' }}>Nenhum convite encontrado...</InputLabel>
+                        <Stack alignItems='center' justifyContent='center' sx={{ height: '75px', backgroundColor: '#f8fafc', border: '2px dashed #dddddd' }}>
+                            <InputLabel sx={{ color: 'grey.400', fontWeight: '600', fontSize: '1.4em', textTransform: 'uppercase', margin: '0' }}>Nenhum convite encontrado...</InputLabel>
                         </Stack>
                     </Grid>
                 </Grid>
@@ -212,8 +201,6 @@ function SelectItemEletronico({ handleAddItem, setAddItemClicked }: Props) {
                     </Grid>
                 </Grid>
             )}
-
-
         </>
     );
 }

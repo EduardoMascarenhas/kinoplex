@@ -19,7 +19,6 @@ import AddIcon from '@mui/icons-material/AddTwoTone';
 // types
 import { KeyedObject } from 'types';
 import { Invoice } from 'types/invoice';
-import Button from '@mui/material/Button';
 
 interface Props {
     rows: Invoice[];
@@ -28,7 +27,7 @@ interface Props {
 
 // ==============================|| INVOICE LIST - FILTER ||============================== //
 
-const FiltrarOportunidades = ({ rows, setRows }: Props) => {
+const FiltroVendas = ({ rows, setRows }: Props) => {
     const [search, setSearch] = React.useState<string>('');
 
     const handleSearch = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
@@ -60,10 +59,6 @@ const FiltrarOportunidades = ({ rows, setRows }: Props) => {
         }
     };
 
-    const handleCriarOportunidade = () => {
-        window.location.href = "/convites/criar-oportunidades";
-    }
-
     return (
         <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" spacing={2}>
             <TextField
@@ -75,20 +70,39 @@ const FiltrarOportunidades = ({ rows, setRows }: Props) => {
                     )
                 }}
                 onChange={handleSearch}
-                placeholder="Buscar oportunidade"
+                placeholder="Buscar venda"
                 value={search}
                 size="small"
                 sx={{ width: { xs: 1, sm: 'auto' } }}
             />
             <Stack direction="row" alignItems="center" spacing={1.25}>
-                <Tooltip title="Oportunidades">
-                    <Button variant="contained" onClick={() => handleCriarOportunidade()} size="small">
-                        <AddIcon fontSize="small" /> Oportunidade
-                    </Button>
+                <Tooltip title="Copy">
+                    <IconButton size="large">
+                        <FileCopyIcon />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="Print">
+                    <IconButton size="large">
+                        <PrintIcon />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip title="Filter">
+                    <IconButton size="large">
+                        <FilterListIcon />
+                    </IconButton>
+                </Tooltip>
+
+                {/* list add & dialog */}
+                <Tooltip title="Add Invoice">
+                    <Link to="/apps/invoice/create-invoice">
+                        <Fab color="primary" size="small" sx={{ boxShadow: 'none', width: 32, height: 32, minHeight: 32 }}>
+                            <AddIcon fontSize="small" />
+                        </Fab>
+                    </Link>
                 </Tooltip>
             </Stack>
         </Stack>
     );
 };
 
-export default FiltrarOportunidades;
+export default FiltroVendas;

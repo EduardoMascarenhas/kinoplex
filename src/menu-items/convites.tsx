@@ -54,30 +54,10 @@ const convites: NavItemType = {
             breadcrumbs: false
         },
         {
-            id: 'client',
-            title: <FormattedMessage id="client" />,
-            type: 'collapse',
-            icon: icons.IconBasket,
-            children: [
-                {
-                    id: 'add-client',
-                    title: <FormattedMessage id="add-client" />,
-                    type: 'item',
-                    url: '/convites/cliente/adicionar-cliente'
-                },
-                {
-                    id: 'client-list',
-                    title: <FormattedMessage id="client-list" />,
-                    type: 'item',
-                    url: '/convites/cliente/listar-clientes'
-                }
-            ]
-        },
-        {
-            id: 'types',
-            title: <FormattedMessage id="types" />,
+            id: 'sales-list',
+            title: <FormattedMessage id="sales-list" />,
             type: 'item',
-            url: '/convites/types',
+            url: '/convites/listar-vendas',
             icon: icons.IconDeviceAnalytics,
             breadcrumbs: false
         }

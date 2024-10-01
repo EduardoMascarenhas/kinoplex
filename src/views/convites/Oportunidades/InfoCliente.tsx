@@ -42,7 +42,7 @@ const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
                             options={client}
                             getOptionLabel={(option) => option.razao_social || 'Nome não disponível'}
                             onChange={(event, value) => handleOnSelectValue(value)}
-                            renderInput={(params) => <em><TextField {...params} label="Selecione o Cliente" /></em>}
+                            renderInput={(params) => <TextField {...params} label="Selecione o Cliente" />}
                         />
                     </FormControl>
                 </Stack>
