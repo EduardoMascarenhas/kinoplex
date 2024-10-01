@@ -9,7 +9,6 @@ import {
     Typography,
     IconButton,
     Box,
-    Divider,
     TextField,
     TableContainer,
     Tooltip
@@ -31,9 +30,10 @@ interface Item {
 
 interface ItemsTableProps {
     initialItems: Item[];
+    details: boolean;
 }
 
-const ItemsTable: React.FC<ItemsTableProps> = ({ initialItems }) => {
+const ItemsTable: React.FC<ItemsTableProps> = ({ initialItems, details }) => {
     const theme = useTheme();
 
     // Inicializando o pacote como um array vazio
@@ -100,119 +100,108 @@ const ItemsTable: React.FC<ItemsTableProps> = ({ initialItems }) => {
                                     <TableCell align="center">Quantidade</TableCell>
                                     <TableCell align="center">Valor Unitário</TableCell>
                                     <TableCell align="center">Valor Total</TableCell>
-                                    <TableCell align="right" sx={{ pr: 3 }} />
+                                    {details ? <></> : <TableCell align="right" sx={{ pr: 3 }} />}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {pacote.map((row, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell align="center">{row.id}</TableCell>
-                                        <TableCell align="left">
-                                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                                                <TextField
-                                                    value={row.tipo}
-                                                    onChange={(e) => handleEditItem(index, 'tipo', e.target.value)}
-                                                    label="Tipo"
-                                                    fullWidth
-                                                />
-                                                <TextField
-                                                    value={row.item}
-                                                    onChange={(e) => handleEditItem(index, 'item', e.target.value)}
-                                                    label="Item"
-                                                    fullWidth
-                                                />
-                                            </Box>
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            <TextField
-                                                type="number"
-                                                value={row.quantidade}
-                                                onChange={(e) => handleEditItem(index, 'quantidade', +e.target.value)}
-                                                label="Quantidade"
-                                            />
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            <TextField
-                                                type="number"
-                                                value={row.valorUnitario}
-                                                onChange={(e) => handleEditItem(index, 'valorUnitario', +e.target.value)}
-                                                label="Valor Unitário"
-                                            />
-                                        </TableCell>
-                                        <TableCell align="center">R${row.valorTotal.toFixed(2)}</TableCell>
-                                        <TableCell align="right">
-                                            <IconButton color="primary" size="large" onClick={() => removeItem(row.id)}>
-                                                <DeleteTwoToneIcon />
-                                            </IconButton>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
+                                {details ? (
+                                    <>
+                                        {pacote.map((row, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell align="center">{row.id}</TableCell>
+                                                <TableCell align="left">
+                                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                                        <Tooltip title={`${row.tipo} / ${row.item}`}>
+                                                            <Typography variant="body2">{`${row.tipo} / ${row.item}`}</Typography>
+                                                        </Tooltip>
+                                                    </Box>
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    <Tooltip title={`${row.quantidade}`}>
+                                                        <Typography variant="body2">{`${row.quantidade}`}</Typography>
+                                                    </Tooltip>
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    <Tooltip title={`${row.valorUnitario}`}>
+                                                        <Typography variant="body2">{`${row.valorUnitario}`}</Typography>
+                                                    </Tooltip>
+                                                </TableCell>
+                                                <TableCell align="center">R${row.valorTotal.toFixed(2)}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <>
+                                        {pacote.map((row, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell align="center">{row.id}</TableCell>
+                                                <TableCell align="left">
+                                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                                        <TextField
+                                                            value={row.tipo}
+                                                            onChange={(e) => handleEditItem(index, 'tipo', e.target.value)}
+                                                            label="Tipo"
+                                                            fullWidth
+                                                        />
+                                                        <TextField
+                                                            value={row.item}
+                                                            onChange={(e) => handleEditItem(index, 'item', e.target.value)}
+                                                            label="Item"
+                                                            fullWidth
+                                                        />
+                                                    </Box>
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    <TextField
+                                                        type="number"
+                                                        value={row.quantidade}
+                                                        onChange={(e) => handleEditItem(index, 'quantidade', +e.target.value)}
+                                                        label="Quantidade"
+                                                    />
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    <TextField
+                                                        type="number"
+                                                        value={row.valorUnitario}
+                                                        onChange={(e) => handleEditItem(index, 'valorUnitario', +e.target.value)}
+                                                        label="Valor Unitário"
+                                                    />
+                                                </TableCell>
+                                                <TableCell align="center">R${row.valorTotal.toFixed(2)}</TableCell>
+                                                <TableCell align="right">
+                                                    <IconButton color="primary" size="large" onClick={() => removeItem(row.id)}>
+                                                        <DeleteTwoToneIcon />
+                                                    </IconButton>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </>
+                                )}
                             </TableBody>
                         </Table>
                     </TableContainer>
                 </Grid>
 
                 {/* Botão para adicionar item */}
-                <Grid item xs={12}>
-                    <Grid container justifyContent="center">
-                        <Tooltip title={'Adicionar Item'}>
-                            <IconButton color="primary" size="large" onClick={addItem} disabled={!isLastItemValid()}>
-                                <AddCircleOutlineIcon fontSize="large" />
-                            </IconButton>
-                        </Tooltip>
+                {details ? (
+                    <></>
+                ) : (
+                    <Grid item xs={12}>
+                        <Grid container justifyContent="center">
+                            <Tooltip title={'Adicionar Item'}>
+                                <IconButton color="primary" size="large" onClick={addItem} disabled={!isLastItemValid()}>
+                                    <AddCircleOutlineIcon fontSize="large" />
+                                </IconButton>
+                            </Tooltip>
+                        </Grid>
                     </Grid>
-                </Grid>
+                )}
 
                 <Grid item xs={12}>
                     <SubCard sx={{ mx: 3, mb: 3, bgcolor: theme.palette.mode === ThemeMode.DARK ? 'dark.main' : 'primary.light' }}>
                         <Grid container justifyContent="flex-end" spacing={3}>
                             <Grid item sm={6} md={4}>
                                 <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                        <Grid container spacing={1}>
-                                            <Grid item xs={6}>
-                                                <Typography align="right" variant="subtitle1">
-                                                    Sub Total :
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs={6}>
-                                                <Typography align="right" variant="body2">
-                                                    R$ {subTotal.toFixed(2)}
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs={6}>
-                                                <Typography align="right" variant="subtitle1">
-                                                    Taxa (%):
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs={6}>
-                                                <TextField
-                                                    type="number"
-                                                    value={taxa}
-                                                    onChange={(e) => setTaxa(+e.target.value)}
-                                                    label="Taxa (%)"
-                                                    fullWidth
-                                                />
-                                            </Grid>
-                                            <Grid item xs={6}>
-                                                <Typography align="right" variant="subtitle1">
-                                                    Desconto (%):
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs={6}>
-                                                <TextField
-                                                    type="number"
-                                                    value={desconto}
-                                                    onChange={(e) => setDesconto(+e.target.value)}
-                                                    label="Desconto (%)"
-                                                    fullWidth
-                                                />
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Divider />
-                                    </Grid>
                                     <Grid item xs={6}>
                                         <Typography align="right" color="primary" variant="subtitle1">
                                             Total :

@@ -53,22 +53,20 @@ export interface EventDataType {
     ];
     observacoesGerais: [
         {
-            idObservacao: string;
-            dataObservacao: string;
+            id: string;
+            createdAt: string;
+            updatedAt: string;
             observacao: string;
+            titulo: string;
         }
     ];
-    historicoComentariosObservacoes: [
+    historicoComentarios: [
         {
             id: string;
+            createdAt: string;
+            updatedAt: string;
             comentario: string;
-            observacao: string;
-        }
-    ];
-    comentariosSobreOEvento: [
-        {
-            id: string;
-            comentario: string;
+            userName: string;
         }
     ];
 }

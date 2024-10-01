@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import useConfig from 'hooks/useConfig';
 
 // assets
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
@@ -93,7 +93,7 @@ const MainCardInvites = React.forwardRef(
                                     variant="contained"
                                     sx={{ mr: '15px' }}
                                     onClick={() => (window.location.href = '/convites/novo')}
-                                    startIcon={<AddIcon />}
+                                    startIcon={<AddCircleTwoToneIcon />}
                                 >
                                     Novo Convite
                                 </Button>
@@ -108,7 +108,7 @@ const MainCardInvites = React.forwardRef(
                                     color="secondary"
                                     sx={{ mr: '15px' }}
                                     onClick={() => (window.location.href = '/convites/novo')}
-                                    startIcon={<AddIcon />}
+                                    startIcon={<AddCircleTwoToneIcon />}
                                 >
                                     Novo Convite
                                 </Button>

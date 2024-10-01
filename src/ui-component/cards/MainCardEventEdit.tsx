@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import useConfig from 'hooks/useConfig';
 
 // assets
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
@@ -91,7 +91,7 @@ const MainCardEventEdit = React.forwardRef(
                                     variant="contained"
                                     sx={{ mr: '15px' }}
                                     onClick={() => (window.location.href = '/eventos')}
-                                    startIcon={<AddIcon />}
+                                    startIcon={<AddCircleTwoToneIcon />}
                                 >
                                     Novo Evento
                                 </Button>
@@ -106,7 +106,7 @@ const MainCardEventEdit = React.forwardRef(
                                     color="secondary"
                                     sx={{ mr: '15px' }}
                                     onClick={() => (window.location.href = '/eventos')}
-                                    startIcon={<AddIcon />}
+                                    startIcon={<AddCircleTwoToneIcon />}
                                 >
                                     Novo Evento
                                 </Button>

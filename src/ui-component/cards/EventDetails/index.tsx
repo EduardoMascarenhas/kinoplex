@@ -17,13 +17,15 @@ import MainCard from 'ui-component/cards/MainCard';
 // assets
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
 import ReceiptTwoToneIcon from '@mui/icons-material/ReceiptTwoTone';
-import { Summarize } from '@mui/icons-material';
+import SummarizeTwoTone from '@mui/icons-material/SummarizeTwoTone';
+import ChatTwoTone from '@mui/icons-material/ChatTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
 import { TabsProps } from 'types';
 import { EventDataType } from 'types/event';
 import events from 'api/events.json'; // Importando o JSON local
+import EGeneralObservation from './GeneralObservation';
 
 // tab content
 function TabPanel({ children, value, index, ...other }: TabsProps) {
@@ -102,22 +104,20 @@ const EventDetailsById = () => {
         ],
         observacoesGerais: [
             {
-                idObservacao: '',
-                dataObservacao: '',
-                observacao: ''
+                id: '',
+                createdAt: '',
+                updatedAt: '',
+                observacao: '',
+                titulo: ''
             }
         ],
-        historicoComentariosObservacoes: [
+        historicoComentarios: [
             {
                 id: '',
+                createdAt: '',
+                updatedAt: '',
                 comentario: '',
-                observacao: ''
-            }
-        ],
-        comentariosSobreOEvento: [
-            {
-                id: '',
-                comentario: ''
+                userName: ''
             }
         ]
     });
@@ -178,8 +178,9 @@ const EventDetailsById = () => {
                 }}
             >
                 <Tab icon={<DescriptionTwoToneIcon />} component={Link} to="#" label="Detalhes" {...a11yProps(0)} />
-                <Tab icon={<Summarize />} component={Link} to="#" label="Informações Administrativas" {...a11yProps(1)} />
-                <Tab icon={<ReceiptTwoToneIcon />} component={Link} to="#" label="Imprimir Resumo" {...a11yProps(2)} />
+                <Tab icon={<ChatTwoTone />} component={Link} to="#" label="Histórico" {...a11yProps(1)} />
+                <Tab icon={<SummarizeTwoTone />} component={Link} to="#" label="Observações Gerais" {...a11yProps(2)} />
+                <Tab icon={<ReceiptTwoToneIcon />} component={Link} to="#" label="Imprimir Resumo" {...a11yProps(3)} />
             </Tabs>
 
             {/* tab - details */}
@@ -192,8 +193,13 @@ const EventDetailsById = () => {
                 <Status allData={allData} handleChangeAllData={handleChangeData} />
             </TabPanel>
 
-            {/* tab - invoice */}
+            {/* tab - general observation */}
             <TabPanel value={value} index={2}>
+                <EGeneralObservation allData={allData} handleChangeAllData={handleChangeData} />
+            </TabPanel>
+
+            {/* tab - invoice */}
+            <TabPanel value={value} index={3}>
                 <Invoice allData={allData} handleChangeAllData={handleChangeData} />
             </TabPanel>
         </MainCard>

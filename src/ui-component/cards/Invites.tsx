@@ -6,9 +6,11 @@ import { DataGrid, GridColDef, GridRowsProp, GridValueGetterParams, GridToolbarQ
 import { ptBR } from '@mui/x-data-grid/locales';
 
 // icons
-import EditIcon from '@mui/icons-material/Edit';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import NotInterestedIcon from '@mui/icons-material/NotInterested';
+import DoNotDisturbOnTwoToneIcon from '@mui/icons-material/DoNotDisturbOnTwoTone';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
 
 // project import
 import MainCard from 'ui-component/cards/MainCard';
@@ -256,11 +258,15 @@ const MenuActions = (params: any) => {
             }}
         >
             <Tooltip title="Alterar">
-                <EditIcon className="actions-icon-alterar" onClick={() => console.log(`alterar ${params.id}`)} sx={{ cursor: 'pointer' }} />
+                <EditTwoToneIcon
+                    className="actions-icon-alterar"
+                    onClick={() => console.log(`alterar ${params.id}`)}
+                    sx={{ cursor: 'pointer' }}
+                />
             </Tooltip>
             {params.status === 'ATIVO' ? (
                 <Tooltip title="Inativar">
-                    <TaskAltIcon
+                    <CheckCircleTwoToneIcon
                         className="actions-icon-inativar"
                         onClick={() => console.log(`inativar ${params.id}`)}
                         sx={{ cursor: 'pointer' }}
@@ -271,7 +277,7 @@ const MenuActions = (params: any) => {
             )}
             {params.status === 'INATIVO' ? (
                 <Tooltip title="Ativar">
-                    <NotInterestedIcon
+                    <DoNotDisturbOnTwoToneIcon
                         className="actions-icon-ativar"
                         onClick={() => console.log(`ativar ${params.id}`)}
                         sx={{ cursor: 'pointer' }}

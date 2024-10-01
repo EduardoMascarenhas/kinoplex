@@ -178,7 +178,6 @@ const TabelaOportunidades = ({ rows }: { rows: Invoice[] }) => {
                                         key={index}
                                         selected={isItemSelected}
                                     >
-
                                         <TableCell>{row.date} - 10:50 00:53</TableCell>
                                         <TableCell>
                                             <Stack>
@@ -193,7 +192,7 @@ const TabelaOportunidades = ({ rows }: { rows: Invoice[] }) => {
                                         <TableCell>
                                             <Stack direction="row" alignItems="center" spacing={1} justifyContent="left">
                                                 <Tooltip title="1200 Eletrônicos + 1800 Impressos">
-                                                    <Typography variant='body1'>3000</Typography>
+                                                    <Typography variant="body1">3000</Typography>
                                                 </Tooltip>
                                             </Stack>
                                         </TableCell>
@@ -208,7 +207,10 @@ const TabelaOportunidades = ({ rows }: { rows: Invoice[] }) => {
                                                         size="small"
                                                         aria-label="Ver Detalhes"
                                                     >
-                                                        <VisibilityTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+                                                        <VisibilityTwoToneIcon
+                                                            sx={{ fontSize: '1.3rem' }}
+                                                            className="actions-icon-detalhes"
+                                                        />
                                                     </IconButton>
                                                 </Tooltip>
                                             </Stack>

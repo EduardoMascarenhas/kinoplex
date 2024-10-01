@@ -1,0 +1,64 @@
+{
+  "clientes": [
+    {
+      "id": "1",
+      "empresa": {
+        "tipo": "PF",
+        "nomeRazaoSocial": "Eduardo Mendes Souza Mascarenhas",
+        "documento": "13.023.115-06",
+        "apelido": "Dudu",
+        "inscricaoMunicipal": "123456789",
+        "inscricaoEstadual": "987654321",
+        "suframa": "amarfus",
+        "ramoAtividade": "Programador",
+        "siteWeb": "www.scale.com.br",
+        "numeroFuncionarios": 100
+      },
+      "endereco": {
+        "cep": "44034298",
+        "logradouro": "Caminho 16",
+        "numero": "12",
+        "complemento": "Feira VI",
+        "bairro": "Campo Limpo",
+        "cidade": "Feira de Santana",
+        "estado": "Bahia"
+      },
+      "contatos": {
+        "nome": "Eduardo Mendes Souza Mascarenhas",
+        "email": "eduardomsmascarenhas@gmail.com",
+        "cargo": "Programador",
+        "telefone": "(75) 9 9244-1809"
+      }
+    },
+    {
+      "id": "2",
+      "empresa": {
+        "tipo": "PJ",
+        "nomeRazaoSocial": "Eduardo PJ",
+        "documento": "00.493.916/0001-20",
+        "apelido": "DUDU Pj",
+        "inscricaoMunicipal": "987789456",
+        "inscricaoEstadual": "66666666",
+        "suframa": "asdfasdf",
+        "ramoAtividade": "Programador PJ",
+        "siteWeb": "www.scalepj.com.br",
+        "numeroFuncionarios": 10
+      },
+      "endereco": {
+        "cep": "6549879324",
+        "logradouro": "Rua x",
+        "numero": "10",
+        "complemento": "Complemento X",
+        "bairro": "Bairro X",
+        "cidade": "Cidade X",
+        "estado": "Estado X"
+      },
+      "contatos": {
+        "nome": "Eduardo Pessoa Juridica",
+        "email": "eduardomsmascarenhas@pj.com",
+        "cargo": "Programador PJ",
+        "telefone": "(66) 6 6666-6666"
+      }
+    }
+  ]
+}
