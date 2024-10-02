@@ -22,7 +22,7 @@ import { openSnackbar } from 'store/slices/snackbar';
 
 // types
 import { AddConvite, ConviteItems, ConviteQuantia } from 'types/convite';
-import { PerfilCliente } from 'types/perfil-cliente';
+import { Cliente } from 'types/cliente';
 import Stack from '@mui/material/Stack';
 import ListaItemImpresso from './ListaItemImpresso';
 import SelectItemEletronico from './SelectItemEletronico';
@@ -55,7 +55,7 @@ function Oportunidades() {
     const [convitesEletronicos, setConvitesEletronicos] = useState<ConviteItems[]>([]);
     const [convitesImpressos, setConvitesImpressos] = useState<ConviteItems[]>([]);
     const [addItemClicked, setAddItemClicked] = useState<boolean>(true);
-    const [fieldValue, setFieldValue] = useState<PerfilCliente>();
+    const [fieldValue, setFieldValue] = useState<Cliente>();
 
     // to delete row in order details
     const deleteConviteHandler = (id: number, tipo: 'eletronico' | 'impresso') => {
@@ -66,7 +66,7 @@ function Oportunidades() {
         }
     };
 
-    const handleOnSelectValue = (value: PerfilCliente) => {
+    const handleOnSelectValue = (value: Cliente) => {
         let id = Math.floor(Math.random() * 100000) as any;
         setFieldValue({ ...value, id });
     };
@@ -85,9 +85,9 @@ function Oportunidades() {
             cidade: fieldValue ? fieldValue?.cidade : '',
             estado: fieldValue ? fieldValue?.estado : '',
             pais: fieldValue ? fieldValue?.pais : '',
-            nome: fieldValue ? fieldValue?.contato?.nome : '',
-            telefone: fieldValue ? fieldValue?.contato?.telefone : '',
-            email: fieldValue ? fieldValue?.contato?.email : '',
+            nome: fieldValue ? fieldValue?.contato[0]?.nome: '',
+            telefone: fieldValue ? fieldValue?.contato[0]?.telefone : '',
+            email: fieldValue ? fieldValue?.contato[0]?.email : '',
         },
 
         validationSchema,

@@ -1,61 +1,48 @@
 // material-ui
-import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-
-// project imports
-import { gridSpacing } from 'store/constant';
+import Typography from '@mui/material/Typography';
 
 // ==============================|| PERSONAL INFORMATION ||============================== //
 
 const DadosCliente = () => (
-    <Grid container spacing={gridSpacing}>
+    <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Business Name</InputLabel>
-                <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Business Name" value={1}>
-                    <MenuItem value={1}>Select One</MenuItem>
-                    <MenuItem value={2}>Select Two</MenuItem>
-                    <MenuItem value={3}>Select Three</MenuItem>
-                </Select>
+                <Typography variant="subtitle1">Razão Social:</Typography>
+                <TextField fullWidth placeholder="Razão Social" />
             </FormControl>
         </Grid>
         <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Industry</InputLabel>
-                <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Industry" value={1}>
-                    <MenuItem value={1}>company.com</MenuItem>
-                    <MenuItem value={2}>company.com</MenuItem>
-                    <MenuItem value={3}>company.com</MenuItem>
-                </Select>
+                <Typography variant="subtitle1">Nome Fantasia:</Typography>
+                <TextField fullWidth placeholder="Nome Fantasia" />
             </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Phone no." defaultValue="000-00-00000" />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Email ID" defaultValue="demo@company.com" />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-            <TextField fullWidth label="Website" defaultValue="company.ltd" />
         </Grid>
         <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Currency</InputLabel>
-                <Select labelId="demo-simple-select-label" id="demo-simple-select" label="Currency" value={1}>
-                    <MenuItem value={1}>Indian(Rs)</MenuItem>
-                    <MenuItem value={2}>company.com</MenuItem>
-                    <MenuItem value={3}>company.com</MenuItem>
-                </Select>
+                <Typography variant="subtitle1">CNPJ / CPF:</Typography>
+                <TextField fullWidth placeholder="CNPJ / CPF" />
             </FormControl>
         </Grid>
-        <Grid item xs={12}>
-            <FormControlLabel control={<Checkbox defaultChecked name="checkedA" color="primary" />} label="Same as billing address" />
+        <Grid item xs={12} sm={6}>
+            <FormControl fullWidth>
+                <Typography variant="subtitle1">Inscrição Estadual:</Typography>
+                <TextField fullWidth placeholder="Inscrição Estadual" />
+            </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+            <FormControl fullWidth>
+                <Typography variant="subtitle1">Inscrição Municipal:</Typography>
+                <TextField fullWidth placeholder="Inscrição Municipal" />
+            </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+            <FormControl fullWidth>
+                <Typography variant="subtitle1">Ramo de Atividade:</Typography>
+                <TextField fullWidth placeholder="Ramo de Atividade" />
+            </FormControl>
         </Grid>
     </Grid>
 );

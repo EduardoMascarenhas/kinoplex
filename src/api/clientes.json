@@ -13,13 +13,29 @@
         "cidade": "São Paulo",
         "estado": "SP",
         "pais": "Brasil",
-        "contato": {
-          "id": "1",
-          "nome": "João Silva",
-          "telefone": "(11) 98765-4321",
-          "email": "joao.silva@abc.com",
-          "cargo": "Gerente Comercial"
-        }
+        "contato": [
+          {
+            "id": "1",
+            "nome": "João Silva",
+            "telefone": "(11) 98765-4321",
+            "email": "uvxza@abc.com",
+            "cargo": "Peão"
+          },
+          {
+            "id": "2",
+            "nome": "Duda Sousa",
+            "telefone": "(11) 98765-4321",
+            "email": "yxz@abc.com",
+            "cargo": "Programador"
+          },
+          {
+            "id": "3",
+            "nome": "Antônio",
+            "telefone": "(11) 98765-4321",
+            "email": "joao.silva@abc.com",
+            "cargo": "Diretor"
+          }
+        ]
       },
       {
         "id": "2",
@@ -34,13 +50,29 @@
         "cidade": "Rio de Janeiro",
         "estado": "RJ",
         "pais": "Brasil",
-        "contato": {
-          "id": "2",
-          "nome": "Maria Fernandes",
-          "telefone": "(21) 99876-5432",
-          "email": "maria.fernandes@innovators.com",
-          "cargo": "Diretora de Operações"
-        }
+        "contato": [
+          {
+            "id": "1",
+            "nome": "João Silva",
+            "telefone": "(11) 98765-4321",
+            "email": "uvxza@abc.com",
+            "cargo": "Peão"
+          },
+          {
+            "id": "2",
+            "nome": "Duda Sousa",
+            "telefone": "(11) 98765-4321",
+            "email": "yxz@abc.com",
+            "cargo": "Programador"
+          },
+          {
+            "id": "3",
+            "nome": "Antônio",
+            "telefone": "(11) 98765-4321",
+            "email": "joao.silva@abc.com",
+            "cargo": "Diretor"
+          }
+        ]
       },
       {
         "id": "3",
@@ -55,13 +87,29 @@
         "cidade": "Curitiba",
         "estado": "PR",
         "pais": "Brasil",
-        "contato": {
-          "id": "3",
-          "nome": "Carlos Souza",
-          "telefone": "(41) 99887-6543",
-          "email": "carlos.souza@xyzcomercio.com",
-          "cargo": "Proprietário"
-        }
+        "contato": [
+          {
+            "id": "1",
+            "nome": "João Silva",
+            "telefone": "(11) 98765-4321",
+            "email": "uvxza@abc.com",
+            "cargo": "Peão"
+          },
+          {
+            "id": "2",
+            "nome": "Duda Sousa",
+            "telefone": "(11) 98765-4321",
+            "email": "yxz@abc.com",
+            "cargo": "Programador"
+          },
+          {
+            "id": "3",
+            "nome": "Antônio",
+            "telefone": "(11) 98765-4321",
+            "email": "joao.silva@abc.com",
+            "cargo": "Diretor"
+          }
+        ]
       },
       {
         "id": "4",
@@ -76,13 +124,29 @@
         "cidade": "Belo Horizonte",
         "estado": "MG",
         "pais": "Brasil",
-        "contato": {
-          "id": "4",
-          "nome": "Ana Paula Dias",
-          "telefone": "(31) 98765-4321",
-          "email": "ana.dias@digitalservicos.com",
-          "cargo": "Coordenadora de Projetos"
-        }
+        "contato": [
+          {
+            "id": "1",
+            "nome": "João Silva",
+            "telefone": "(11) 98765-4321",
+            "email": "uvxza@abc.com",
+            "cargo": "Peão"
+          },
+          {
+            "id": "1",
+            "nome": "Duda Sousa",
+            "telefone": "(11) 98765-4321",
+            "email": "yxz@abc.com",
+            "cargo": "Programador"
+          },
+          {
+            "id": "1",
+            "nome": "Antônio",
+            "telefone": "(11) 98765-4321",
+            "email": "joao.silva@abc.com",
+            "cargo": "Diretor"
+          }
+        ]
       }
     ]
   }

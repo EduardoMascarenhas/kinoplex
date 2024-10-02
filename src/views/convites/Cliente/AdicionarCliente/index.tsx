@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -16,14 +16,12 @@ import Typography from '@mui/material/Typography';
 import DadosCliente from './DadosCliente';
 import Contato from './Contato';
 import Endereco from './Endereco';
-import OtherDetail from './OtherDetail';
 import useConfig from 'hooks/useConfig';
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { gridSpacing } from 'store/constant';
 
 // assets
-import WorkTwoToneIcon from '@mui/icons-material/WorkTwoTone';
 import PersonAddTwoTone from '@mui/icons-material/PersonAddTwoTone';
 import PinDropTwoTone from '@mui/icons-material/PinDropTwoTone';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
@@ -31,6 +29,7 @@ import RecentActorsIcon from '@mui/icons-material/RecentActors';
 // types
 import { ThemeMode } from 'types/config';
 import { TabsProps } from 'types';
+import { ContatoCliente } from 'types/cliente';
 
 // tabs
 function TabPanel({ children, value, index, ...other }: TabsProps) {
@@ -51,46 +50,56 @@ function a11yProps(index: number) {
 // tabs option
 const tabsOption = [
     {
-        label: 'Personal information',
+        label: 'Empresa',
         icon: <PersonAddTwoTone />,
-        caption: 'Profile Settings'
+        caption: 'Dados cliente'
     },
     {
-        label: 'Contact detail',
-        icon: <RecentActorsIcon />,
-        caption: 'Contact Information'
-    },
-    {
-        label: 'Endereco detail',
+        label: 'Endereço',
         icon: <PinDropTwoTone />,
-        caption: 'Endereco detail'
+        caption: 'Detalhes endereço'
     },
     {
-        label: 'Other Detail',
-        icon: <WorkTwoToneIcon />,
-        caption: 'Update Profile Security'
-    }
+        label: 'Contato',
+        icon: <RecentActorsIcon />,
+        caption: 'Dados contato'
+    },
 ];
 
 interface Props {
     isOpen: boolean;
-    handleDialogToggler: () => void;
+    handleDialogToggler?: () => void;
+    handleDialogContato?: () => void;
+    tabContato?: number;
 }
 
 // ==============================|| ADD CLIENT ||============================== //
 
-const AdicionarCliente = ({ isOpen, handleDialogToggler }: Props) => {
+const AdicionarCliente = ({ isOpen, handleDialogToggler, handleDialogContato, tabContato = 0 }: Props) => {
     const { mode, borderRadius } = useConfig();
-    const [value, setValue] = React.useState<number>(0);
+    const [value, setValue] = useState<number>(tabContato);
+    const [contatosData, setContatosData] = useState<ContatoCliente[]>([]);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
+    const handleAddItem = (addingData: ContatoCliente) => {
+        setContatosData([
+            ...contatosData,
+            {
+                id: addingData.id,
+                nome: addingData.nome,
+                telefone: addingData.telefone,
+                email: addingData.email,
+            }
+        ]);
+    };
+
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
-                <MainCard title="Add New Client" content={false}>
+                <MainCard title="Adicionar novo cliente" content={false}>
                     <Grid container spacing={gridSpacing}>
                         <Grid item xs={12} lg={3}>
                             <CardContent sx={{ pr: 0 }}>
@@ -167,13 +176,12 @@ const AdicionarCliente = ({ isOpen, handleDialogToggler }: Props) => {
                                     <DadosCliente />
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
-                                    <Contato />
-                                </TabPanel>
-                                <TabPanel value={value} index={2}>
                                     <Endereco />
                                 </TabPanel>
-                                <TabPanel value={value} index={3}>
-                                    <OtherDetail />
+                                <TabPanel value={value} index={2}>
+                                    {contatosData.length >= 0 && (
+                                        <Contato {...{ handleAddItem }} />
+                                    )}
                                 </TabPanel>
                             </CardContent>
                         </Grid>
@@ -185,35 +193,40 @@ const AdicionarCliente = ({ isOpen, handleDialogToggler }: Props) => {
                                 {value > 0 && (
                                     <AnimateButton>
                                         <Button variant="outlined" size="large" onClick={(e) => handleChange(e, value - 1)}>
-                                            Back
+                                            Voltar
                                         </Button>
                                     </AnimateButton>
                                 )}
                             </Grid>
                             <Grid item>
-                                {value < 3 && (
+                                {value < 2 && (
                                     <Stack spacing={1.5} direction="row">
                                         <AnimateButton>
                                             <Button variant="outlined" size="large">
-                                                Save
+                                                Gravar
                                             </Button>
                                         </AnimateButton>
                                         <AnimateButton>
                                             <Button variant="contained" size="large" onClick={(e) => handleChange(e, 1 + value)}>
-                                                Continue
+                                                Continuar
                                             </Button>
                                         </AnimateButton>
                                     </Stack>
                                 )}
-                                {value === 3 && (
+                                {value === 2 && (
                                     <AnimateButton>
                                         <Button
                                             variant="contained"
                                             size="large"
                                             {...(!isOpen && { component: Link, to: '/apps/invoice/client/client-list' })}
-                                            {...(isOpen && { onClick: () => handleDialogToggler() })}
+                                            {...(isOpen && {
+                                                onClick: () => {
+                                                    handleDialogToggler?.(),
+                                                    handleDialogContato?.()
+                                                }
+                                            })}
                                         >
-                                            Save
+                                            Gravar
                                         </Button>
                                     </AnimateButton>
                                 )}
