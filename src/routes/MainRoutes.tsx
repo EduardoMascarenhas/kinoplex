@@ -183,18 +183,23 @@ const ListarClientes = Loadable(lazy(() => import('views/convites/Cliente/Listar
 const InvitationsInvites = Loadable(lazy(() => import('views/invitations/Invites')));
 const CreateInvitation = Loadable(lazy(() => import('views/invitations/Invites/create')));
 const EventList = Loadable(lazy(() => import('views/events')));
+const ClientList = Loadable(lazy(() => import('views/clients')));
+const ClientNew = Loadable(lazy(() => import('views/client-new')));
+const ClientEdit = Loadable(lazy(() => import('views/client-edit')));
+const ClientDetail = Loadable(lazy(() => import('views/client-detail')));
 const EventDetails = Loadable(lazy(() => import('views/event')));
 const EventEdit = Loadable(lazy(() => import('views/event-edit')));
 const EventNew = Loadable(lazy(() => import('views/event-new')));
 // ==============================|| MAIN ROUTING ||============================== //
 
+/*
+    <AuthGuard>
+        <MainLayout />
+    </AuthGuard>
+*/
 const MainRoutes = {
     path: '/',
-    element: (
-        <AuthGuard>
-            <MainLayout />
-        </AuthGuard>
-    ),
+    element: <MainLayout />,
     children: [
         {
             path: '/widget/statistics',
@@ -705,11 +710,11 @@ const MainRoutes = {
             element: <DashboardInvitations />
         },
         {
-            path: '/convites/criar-oportunidades',
+            path: '/oportunidade/novo',
             element: <Oportunidades />
         },
         {
-            path: '/convites/listar-oportunidades',
+            path: '/oportunidades',
             element: <ListarOportunidades />
         },
         {
@@ -727,6 +732,22 @@ const MainRoutes = {
         {
             path: '/convites/novo',
             element: <CreateInvitation />
+        },
+        {
+            path: '/clientes',
+            element: <ClientList />
+        },
+        {
+            path: '/cliente/novo',
+            element: <ClientNew />
+        },
+        {
+            path: '/cliente/detalhes/:id',
+            element: <ClientDetail />
+        },
+        {
+            path: '/cliente/editar/:id',
+            element: <ClientEdit />
         },
         {
             path: '/eventos',
@@ -751,7 +772,7 @@ const MainRoutes = {
         {
             path: '/convites/listar-vendas',
             element: <ListarVendas />
-        },
+        }
     ]
 };
 

@@ -2,24 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 // material-ui
-import {
-    Stack,
-    Grid,
-    Box,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Select,
-    MenuItem,
-    FormControl,
-    InputLabel,
-    Button,
-    InputAdornment
-} from '@mui/material';
-import { Draw } from '@mui/icons-material';
+import { Grid, Box, Accordion, AccordionSummary, AccordionDetails, Button } from '@mui/material';
+import DrawTwoToneIcon from '@mui/icons-material/DrawTwoTone';
 // project import
-import MainCard from 'ui-component/cards/MainCard';
-import { gridSpacing } from 'store/constant';
 import EventDetailsById from './EventDetails';
 
 export default function EventDetailsCard() {
@@ -30,7 +15,7 @@ export default function EventDetailsCard() {
             <Accordion expanded sx={{ flex: 100, mb: '15px', paddingX: '15px' }}>
                 <AccordionSummary aria-controls="panel1-content" id="panel1-header">
                     <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-                        <h3>(DETALHES) - Dados da Empresa Sediadora do Evento - {id}</h3>
+                        <h3>Dados da Empresa Sediadora do Evento - {id}</h3>
                         <Button
                             color="secondary"
                             size="large"
@@ -38,7 +23,7 @@ export default function EventDetailsCard() {
                             variant="contained"
                             sx={{ mr: '15px' }}
                             onClick={() => (window.location.href = `/evento/editar/${id}`)}
-                            startIcon={<Draw />}
+                            startIcon={<DrawTwoToneIcon />}
                         >
                             Editar
                         </Button>

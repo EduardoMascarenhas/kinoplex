@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -9,14 +9,10 @@ import Tabs from '@mui/material/Tabs';
 
 // project imports
 import Details from './Details';
-import Invoice from './Invoice';
-import Status from './Status';
 import MainCard from 'ui-component/cards/MainCard';
 
 // assets
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
-import ReceiptTwoToneIcon from '@mui/icons-material/ReceiptTwoTone';
-import { Summarize } from '@mui/icons-material';
 
 // types
 import { ThemeMode } from 'types/config';
@@ -98,9 +94,11 @@ const NewEvent = () => {
         ],
         observacoesGerais: [
             {
-                idObservacao: '',
-                dataObservacao: '',
-                observacao: ''
+                id: '',
+                createdAt: '',
+                updatedAt: '',
+                observacao: '',
+                titulo: ''
             }
         ],
         historicoComentariosObservacoes: [

@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "createdAt": "19/09/2024",
+        "createdAt": "27/09/2024",
         "empresa": {
             "cnpj": "33.497.660/0001-89",
             "nomeFantasia": "EMPRESA CINEMAS SÃO LUIZ S/A",
@@ -10,7 +10,7 @@
             "conta": "11132-5"
         },
         "dataELocalizacao": {
-            "dia": "19/09/2024 19/09/2024 das 09h00 às 13h00",
+            "dia": "27/09/2024 27/09/2024 das 09h00 às 13h00",
             "complexo": "(16) Kinoplex Sao Luiz",
             "convidados": 12
         },
@@ -70,22 +70,34 @@
         ],
         "observacoesGerais": [
             {
-                "idObservacao": "1",
-                "dataObservacao": "19/09/2024",
-                "observacao": "Evento Já Realizado!"
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
+            },
+            {
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:25:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:25:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento em Andamento!",
+                "titulo": "Titulo observação 2"
             }
         ],
-        "historicoComentariosObservacoes": [
+        "historicoComentarios": [
             {
                 "id": "1",
-                "comentario": "Muito bom!",
-                "observacao": "Sem comentários..."
-            }
-        ],
-        "comentariosSobreOEvento": [
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento iniciado!",
+                "userName": "UserTeste"
+            },
             {
-                "id": "1",
-                "comentario": "Comentario sobre o evento teste... testando alou alou!"
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
             }
         ]
     },
@@ -144,22 +156,34 @@
         ],
         "observacoesGerais": [
             {
-                "idObservacao": "1",
-                "dataObservacao": "19/09/2024",
-                "observacao": "Evento Já Realizado!"
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
             }
         ],
-        "historicoComentariosObservacoes": [
+        "historicoComentarios": [
             {
                 "id": "1",
-                "comentario": "Muito bom!",
-                "observacao": "Sem comentários..."
-            }
-        ],
-        "comentariosSobreOEvento": [
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento iniciado!",
+                "userName": "UserTeste"
+            },
             {
-                "id": "1",
-                "comentario": "Comentario sobre o evento teste... testando alou alou!"
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "3",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
             }
         ]
     },
@@ -174,7 +198,7 @@
             "conta": "11132-5"
         },
         "dataELocalizacao": {
-            "dia": "19/09/2024 19/09/2024 das 09h00 às 13h00",
+            "dia": "27/09/2024 27/09/2024 das 09h00 às 13h00",
             "complexo": "(16) Kinoplex Sao Luiz",
             "convidados": 12
         },
@@ -209,22 +233,34 @@
         ],
         "observacoesGerais": [
             {
-                "idObservacao": "1",
-                "dataObservacao": "19/09/2024",
-                "observacao": "Evento Já Realizado!"
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
             }
         ],
-        "historicoComentariosObservacoes": [
+        "historicoComentarios": [
             {
                 "id": "1",
-                "comentario": "Muito bom!",
-                "observacao": "Sem comentários..."
-            }
-        ],
-        "comentariosSobreOEvento": [
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento iniciado normalmente, sem nenhum contratempo.",
+                "titulo": "Evento iniciado!"
+            },
             {
-                "id": "1",
-                "comentario": "Comentario sobre o evento teste... testando alou alou!"
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento, porém uma pessoa nao conseguiu entrar por que apresentou convite expirado e precisou gerar um novo convite.",
+                "titulo": "Evento Em Andamento"
+            },
+            {
+                "id": "3",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento finalizado com sucesso!",
+                "titulo": "Evento Finalizado!"
             }
         ]
     },
@@ -239,7 +275,7 @@
             "conta": "11132-5"
         },
         "dataELocalizacao": {
-            "dia": "19/09/2024 19/09/2024 das 09h00 às 13h00",
+            "dia": "27/09/2024 27/09/2024 das 09h00 às 13h00",
             "complexo": "(16) Kinoplex Sao Luiz",
             "convidados": 12
         },
@@ -299,24 +335,14 @@
         ],
         "observacoesGerais": [
             {
-                "idObservacao": "1",
-                "dataObservacao": "19/09/2024",
-                "observacao": "Evento Já Realizado!"
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
             }
         ],
-        "historicoComentariosObservacoes": [
-            {
-                "id": "1",
-                "comentario": "Muito bom!",
-                "observacao": "Sem comentários..."
-            }
-        ],
-        "comentariosSobreOEvento": [
-            {
-                "id": "1",
-                "comentario": "Comentario sobre o evento teste... testando alou alou!"
-            }
-        ]
+        "historicoComentarios": []
     },
     {
         "id": "5",
@@ -329,7 +355,7 @@
             "conta": "11132-5"
         },
         "dataELocalizacao": {
-            "dia": "19/09/2024 19/09/2024 das 09h00 às 13h00",
+            "dia": "27/09/2024 27/09/2024 das 09h00 às 13h00",
             "complexo": "(16) Kinoplex Sao Luiz",
             "convidados": 12
         },
@@ -389,22 +415,55 @@
         ],
         "observacoesGerais": [
             {
-                "idObservacao": "1",
-                "dataObservacao": "19/09/2024",
-                "observacao": "Evento Já Realizado!"
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
             }
         ],
-        "historicoComentariosObservacoes": [
+        "historicoComentarios": [
             {
                 "id": "1",
-                "comentario": "Muito bom!",
-                "observacao": "Sem comentários..."
-            }
-        ],
-        "comentariosSobreOEvento": [
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento iniciado!",
+                "userName": "UserTeste"
+            },
             {
-                "id": "1",
-                "comentario": "Comentario sobre o evento teste... testando alou alou!"
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "3",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "4",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "5",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "6",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento Finalizado!",
+                "userName": "UserTeste"
             }
         ]
     }

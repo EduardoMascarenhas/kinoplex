@@ -403,7 +403,7 @@ const EEditDetails = ({
                 </SubCard>
             </Grid>
             <Grid item xs={12}>
-                <ItemsTable initialItems={allData?.pacote && allData?.pacote?.length ? allData.pacote : []} />
+                <ItemsTable initialItems={allData?.pacote && allData?.pacote?.length ? allData.pacote : []} details={false} />
             </Grid>
         </Grid>
     );

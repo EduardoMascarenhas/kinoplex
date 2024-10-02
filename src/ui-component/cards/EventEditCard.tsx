@@ -2,24 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 // material-ui
-import {
-    Stack,
-    Grid,
-    Box,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Select,
-    MenuItem,
-    FormControl,
-    InputLabel,
-    Button,
-    InputAdornment
-} from '@mui/material';
-import { Visibility } from '@mui/icons-material';
+import { Grid, Box, Accordion, AccordionSummary, AccordionDetails, Button } from '@mui/material';
+import BackspaceTwoToneIcon from '@mui/icons-material/BackspaceTwoTone';
 // project import
-import MainCard from 'ui-component/cards/MainCard';
-import { gridSpacing } from 'store/constant';
 import EditEventById from './EditEvent';
 
 export default function EventEditCard() {
@@ -30,17 +15,17 @@ export default function EventEditCard() {
             <Accordion expanded sx={{ flex: 100, mb: '15px', paddingX: '15px' }}>
                 <AccordionSummary aria-controls="panel1-content" id="panel1-header">
                     <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
-                        <h3>(EDITAR) - Dados da Empresa Sediadora do Evento - {id}</h3>
+                        <h3>Dados da Empresa Sediadora do Evento - {id}</h3>
                         <Button
                             color="secondary"
                             size="large"
                             type="submit"
                             variant="contained"
                             sx={{ mr: '15px' }}
-                            onClick={() => (window.location.href = `/evento/detalhes/${id}`)}
-                            startIcon={<Visibility />}
+                            onClick={() => (window.location.href = `/eventos`)}
+                            startIcon={<BackspaceTwoToneIcon />}
                         >
-                            Ver Detalhes
+                            Voltar
                         </Button>
                     </Box>
                 </AccordionSummary>

@@ -22,7 +22,7 @@ const ThemeModeLayout = () => {
 
     return (
         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2.5} sx={{ p: 2, width: '100%' }}>
-            <Typography variant="h5">THEME MODE</Typography>
+            <Typography variant="h5">TEMA</Typography>
             <RadioGroup
                 row
                 aria-label="layout"

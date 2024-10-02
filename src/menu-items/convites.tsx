@@ -2,15 +2,14 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconDashboard, IconDeviceAnalytics, IconBasket, } from '@tabler/icons-react';
+import { IconDashboard, IconTicket } from '@tabler/icons-react';
 
 // type
 import { NavItemType } from 'types';
 
 const icons = {
     IconDashboard: IconDashboard,
-    IconDeviceAnalytics: IconDeviceAnalytics,
-    IconBasket: IconBasket
+    IconTicket: IconTicket
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
@@ -22,43 +21,11 @@ const convites: NavItemType = {
     type: 'group',
     children: [
         {
-            id: 'dashboard',
-            title: <FormattedMessage id="dashboard" />,
+            id: 'convites-list',
+            title: <FormattedMessage id="invite-list" />,
             type: 'item',
-            url: '/convites/dashboard',
-            icon: icons.IconDashboard,
-            breadcrumbs: false
-        },
-        {
-            id: 'create-opportunities',
-            title: <FormattedMessage id="create-opportunities" />,
-            type: 'item',
-            url: '/convites/criar-oportunidades',
-            icon: icons.IconDashboard,
-            breadcrumbs: false
-        },
-        {
-            id: 'opportunities-list',
-            title: <FormattedMessage id="opportunities-list" />,
-            type: 'item',
-            url: '/convites/listar-oportunidades',
-            icon: icons.IconDeviceAnalytics,
-            breadcrumbs: false
-        },
-        {
-            id: 'opportunitie-detail',
-            title: <FormattedMessage id="opportunitie-detail" />,
-            type: 'item',
-            url: '/convites/detalhe-oportunidade',
-            icon: icons.IconDeviceAnalytics,
-            breadcrumbs: false
-        },
-        {
-            id: 'sales-list',
-            title: <FormattedMessage id="sales-list" />,
-            type: 'item',
-            url: '/convites/listar-vendas',
-            icon: icons.IconDeviceAnalytics,
+            url: '/convites',
+            icon: icons.IconTicket,
             breadcrumbs: false
         }
     ]

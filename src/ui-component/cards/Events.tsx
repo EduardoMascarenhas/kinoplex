@@ -12,7 +12,9 @@ import 'dayjs/locale/pt-br';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 // icons
-import { IconSettings } from '@tabler/icons-react';
+import VisibilityTwoTone from '@mui/icons-material/VisibilityTwoTone';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
+
 // project import
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
@@ -271,31 +273,24 @@ const MenuActions = (params: any) => {
                     display: 'flex',
                     width: '100%',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    gap: '15px'
                 }}
             >
-                <IconSettings
-                    id={`icon-${params.id}`}
-                    className="actions-icon teste"
-                    fontSize="small"
-                    aria-controls={open ? `menu-${params.id}` : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClickAcao}
-                    color={cogColor}
-                />
-                <Menu
-                    id={`menu-${params.id}`}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleCloseAcao}
-                    MenuListProps={{
-                        'aria-labelledby': `${params.id}`
-                    }}
-                >
-                    <MenuItem onClick={() => (window.location.href = `/evento/detalhes/${params.id}`)}>Detalhes</MenuItem>
-                    <MenuItem onClick={() => (window.location.href = `/evento/editar/${params.id}`)}>Editar</MenuItem>
-                </Menu>
+                <Tooltip title="Detalhes">
+                    <VisibilityTwoTone
+                        className="actions-icon-detalhes"
+                        onClick={() => (window.location.href = `/evento/detalhes/${params.id}`)}
+                        sx={{ cursor: 'pointer' }}
+                    />
+                </Tooltip>
+                <Tooltip title="Editar">
+                    <EditTwoToneIcon
+                        className="actions-icon-editar"
+                        onClick={() => (window.location.href = `/evento/editar/${params.id}`)}
+                        sx={{ cursor: 'pointer' }}
+                    />
+                </Tooltip>
             </Box>
         </>
     );
