@@ -2,6 +2,7 @@
     "name": "berry-material-react-ts",
     "version": "3.9.0",
     "private": true,
+    "homepage": "https://kinoplex.vercel.app",
     "dependencies": {
         "@auth0/auth0-spa-js": "^2.1.3",
         "@emotion/babel-plugin": "^11.11.0",
