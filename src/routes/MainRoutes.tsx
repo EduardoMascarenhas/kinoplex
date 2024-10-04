@@ -7,6 +7,8 @@ import Loadable from 'ui-component/Loadable';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 
 import { loader as productsLoader, productLoader } from 'api/products';
+import Oportunidades from 'views/convites/Oportunidades';
+import CriarOportunidades from 'views/convites/CriarOportunidades';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -174,8 +176,6 @@ const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 // Convites
 const DashboardInvitations = Loadable(lazy(() => import('views/convites/Dashboard')));
-const Oportunidades = Loadable(lazy(() => import('views/convites/Oportunidades')));
-const ListarOportunidades = Loadable(lazy(() => import('views/convites/ListarOportunidades')));
 const DetalheOportunidade = Loadable(lazy(() => import('views/convites/DetalheOportunidade')));
 const AdicionarCliente = Loadable(lazy(() => import('views/convites/Cliente/AdicionarCliente')));
 const ListarVendas = Loadable(lazy(() => import('views/convites/ListarVendas')));
@@ -706,11 +706,11 @@ const MainRoutes = {
         },
         {
             path: '/convites/criar-oportunidades',
-            element: <Oportunidades />
+            element: <CriarOportunidades />
         },
         {
-            path: '/convites/listar-oportunidades',
-            element: <ListarOportunidades />
+            path: '/convites/oportunidades',
+            element: <Oportunidades />
         },
         {
             path: '/convites/detalhe-oportunidade',

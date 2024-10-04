@@ -182,11 +182,10 @@ const TabelaOportunidades = ({ rows }: { rows: Invoice[] }) => {
                                         <TableCell>{row.date} - 10:50 00:53</TableCell>
                                         <TableCell>
                                             <Stack>
-                                                <Tooltip title="46043998000102, LABORATORIO DE ANALISES CLINICAS DR. ROBERTO FRANCO DO AMARAL LTDA">
-                                                    <TextoLimitado
-                                                        texto="46043998000102, LABORATORIO DE ANALISES CLINICAS DR. ROBERTO FRANCO DO AMARAL LTDA"
-                                                        limite={50} // Defina o limite de caracteres desejado
-                                                    />
+                                                <Tooltip title="LABORATORIO DE ANALISES CLINICAS DR. ROBERTO FRANCO DO AMARAL LTDA">
+                                                    <span>
+                                                        <TextoLimitado texto="LABORATORIO DE ANALISES CLINICAS DR. ROBERTO FRANCO DO AMARAL LTDA" limite={50} />
+                                                    </span>
                                                 </Tooltip>
                                             </Stack>
                                         </TableCell>

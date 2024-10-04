@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles';
-import Chip from '@mui/material/Chip';
 import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,29 +14,42 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
-// third-party
-import { random } from 'lodash-es';
-
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 
 // assets
 import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
-import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
-import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import BlockIcon from '@mui/icons-material/Block';
 import LockIcon from '@mui/icons-material/Lock';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import DownloadIcon from '@mui/icons-material/Download';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+
+// Reserva
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import EventBusyIcon from '@mui/icons-material/EventBusy';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+
+// Pagamento
+import PaidIcon from '@mui/icons-material/Paid';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import MoneyOffIcon from '@mui/icons-material/MoneyOff';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+
+// Separação
+import Inventory2Icon from '@mui/icons-material/Inventory2';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+
+// Entrega
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 // types
-import { ThemeMode } from 'types/config';
 import { ArrangementOrder, KeyedObject, GetComparator } from 'types';
 import { Invoice } from 'types/invoice';
 import CabecalhoTabelaVendas from './CabecalhoTabelaVendas';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -65,7 +77,80 @@ function stableSort(array: Invoice[], comparator: (a: Invoice, b: Invoice) => nu
     return stabilizedThis.map((el) => el[0]);
 }
 
-// ==============================|| INVOICE LIST - TABLE ||============================== //
+// ==============================|| Sell LIST - TABLE ||============================== //
+interface TextoLimitadoProps {
+    texto: string;
+    limite: number;
+}
+export const TextoLimitado: React.FC<TextoLimitadoProps> = ({ texto, limite }) => {
+    const textoLimitado = texto.length > limite ? `${texto.substring(0, limite)}...` : texto;
+
+    return (
+        <Typography variant="body1">
+            {textoLimitado}
+        </Typography>
+    );
+};
+
+const getStatusReserva = (status: string) => {
+    switch (status) {
+        case 'Confirmado':
+            return <EventAvailableIcon color="success" />;
+        case 'Pendente':
+            return <CalendarMonthIcon color="warning" />;
+        case 'Cancelado':
+            return <EventBusyIcon color="error" />;
+        case 'Não confirmado':
+            return <CalendarTodayIcon color="disabled" />;
+        default:
+            return <CalendarTodayIcon color="disabled" />;
+    }
+};
+
+const getStatusPagamento = (status: string) => {
+    switch (status) {
+        case 'Confirmado':
+            return <PaidIcon color="success" />;
+        case 'Pendente':
+            return <CurrencyExchangeIcon color="warning" />;
+        case 'Cancelado':
+            return <MoneyOffIcon color="error" />;
+        case 'Não confirmado':
+            return <AttachMoneyIcon color="disabled" />;
+        default:
+            return <AttachMoneyIcon color="disabled" />;
+    }
+};
+
+const getStatusSeparacao = (status: string) => {
+    switch (status) {
+        case 'Confirmado':
+            return <Inventory2Icon color="success" />;
+        case 'Pendente':
+            return <Inventory2Icon color="warning" />;
+        case 'Cancelado':
+            return <DoDisturbIcon color="error" />;
+        case 'Não confirmado':
+            return <Inventory2Icon color="disabled" />;
+        default:
+            return <Inventory2Icon color="disabled" />;
+    }
+};
+
+const getStatusEntrega = (status: string) => {
+    switch (status) {
+        case 'Confirmado':
+            return <LocalShippingIcon color="success" />;
+        case 'Pendente':
+            return <LocalShippingIcon color="warning" />;
+        case 'Cancelado':
+            return <DoDisturbIcon color="error" />;
+        case 'Não confirmado':
+            return <LocalShippingIcon color="disabled" />;
+        default:
+            return <LocalShippingIcon color="disabled" />;
+    }
+};
 
 const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
     const theme = useTheme();
@@ -188,13 +273,48 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
                                     >
 
                                         <TableCell>{row.invoice_id}</TableCell>
-                                        <TableCell>{row.customer_name}</TableCell>
+                                        <TableCell>
+                                            <Tooltip title={row.customer_name}>
+                                                <span>
+                                                    <TextoLimitado texto={row.customer_name} limite={20} />
+                                                </span>
+                                            </Tooltip>
+                                        </TableCell>
                                         <TableCell>{row.date}</TableCell>
 
                                         <TableCell>{row.due_date}</TableCell>
-                                        <TableCell >{row.quantity}</TableCell>
+                                        <TableCell >
 
-                                        <TableCell >R$ {random(1000, 9999)}</TableCell>
+                                            <Tooltip title={`${row.impresso} impressos + ${row.eletronico} eletrônicos`}>
+                                                <span>{row.quantity}</span>
+                                            </Tooltip>
+                                        </TableCell>
+                                        <TableCell >R$ {row.price_total}</TableCell>
+
+                                        <TableCell align="center">
+                                            <Tooltip title={`Reserva ${row.reserva}`}>
+                                                <span>{getStatusReserva(row.reserva)}</span>
+                                            </Tooltip>
+                                        </TableCell>
+
+                                        <TableCell align="center">
+                                            <Tooltip title={`Pagamento ${row.pagamento}`}>
+                                                <span>{getStatusPagamento(row.pagamento)}</span>
+                                            </Tooltip>
+                                        </TableCell>
+
+                                        <TableCell align="center">
+                                            <Tooltip title={`Separação ${row.separacao}`}>
+                                                <span>{getStatusSeparacao(row.separacao)}</span>
+                                            </Tooltip>
+                                        </TableCell>
+
+                                        <TableCell align="center">
+                                            <Tooltip title={`Entrega ${row.entrega}`}>
+                                                <span>{getStatusEntrega(row.entrega)}</span>
+                                            </Tooltip>
+                                        </TableCell>
+
                                         <TableCell align="center" sx={{ pr: 3 }}>
                                             <Stack direction="row" alignItems="center" spacing={1} justifyContent="center">
                                                 <Tooltip title="Nota de Débito">
@@ -298,8 +418,8 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
                                                         <CheckCircleIcon sx={{ fontSize: '1.3rem' }} />
                                                     </IconButton>
                                                 </Tooltip>
-                                                
-                                                
+
+
                                             </Stack>
                                         </TableCell>
                                     </TableRow>

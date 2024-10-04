@@ -30,19 +30,11 @@ const convites: NavItemType = {
             breadcrumbs: false
         },
         {
-            id: 'create-opportunities',
-            title: <FormattedMessage id="create-opportunities" />,
+            id: 'opportunities',
+            title: <FormattedMessage id="opportunities" />,
             type: 'item',
-            url: '/convites/criar-oportunidades',
+            url: '/convites/oportunidades',
             icon: icons.IconDashboard,
-            breadcrumbs: false
-        },
-        {
-            id: 'opportunities-list',
-            title: <FormattedMessage id="opportunities-list" />,
-            type: 'item',
-            url: '/convites/listar-oportunidades',
-            icon: icons.IconDeviceAnalytics,
             breadcrumbs: false
         },
         {

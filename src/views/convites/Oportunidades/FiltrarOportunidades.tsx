@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 // material-ui
-import Fab from '@mui/material/Fab';
-import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -11,9 +8,6 @@ import Tooltip from '@mui/material/Tooltip';
 
 // assets
 import SearchIcon from '@mui/icons-material/Search';
-import FilterListIcon from '@mui/icons-material/FilterListTwoTone';
-import PrintIcon from '@mui/icons-material/PrintTwoTone';
-import FileCopyIcon from '@mui/icons-material/FileCopyTwoTone';
 import AddIcon from '@mui/icons-material/AddTwoTone';
 
 // types

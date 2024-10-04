@@ -6,6 +6,13 @@ export interface Invoice {
     email: string;
     invoice_id: number;
     quantity: number;
+    impresso: number;
+    eletronico: number;
+    price_total: string;
+    reserva: string;
+    pagamento: string;
+    separacao: string;
+    entrega: string;
     status: string;
     discount: number;
 }
