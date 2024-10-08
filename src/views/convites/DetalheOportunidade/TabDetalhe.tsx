@@ -26,7 +26,7 @@ import PhoneAndroidTwoToneIcon from '@mui/icons-material/PhoneAndroidTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
-import { TextoLimitado } from '../ListarOportunidades/TabelaOportunidades';
+import { TextoLimitado } from '../Oportunidades/TabelaOportunidades';
 import Tooltip from '@mui/material/Tooltip';
 
 const detailsIconSX = {
@@ -99,6 +99,10 @@ const TabDetalhe = () => {
                                                 Boleto Bancário
                                             </Typography>
                                             <Stack direction="row" spacing={1}>
+                                                <Typography variant="subtitle1">Vencimento:</Typography>
+                                                <Typography variant="body2">01/10/2024</Typography>
+                                            </Stack>
+                                            <Stack direction="row" spacing={1}>
                                                 <Typography variant="subtitle1">Valor Total:</Typography>
                                                 <Typography variant="body2">R$ 25.000,00</Typography>
                                             </Stack>
@@ -165,11 +169,6 @@ const TabDetalhe = () => {
                                                 <TableCell align="right">{row.quantity}</TableCell>
                                                 <TableCell align="right">{row.amount}</TableCell>
                                                 <TableCell align="right">{row.total}</TableCell>
-                                                <TableCell sx={{ pr: 3 }} align="right">
-                                                    <IconButton color="error" size="large" aria-label="item-Delete">
-                                                        <DeleteTwoToneIcon />
-                                                    </IconButton>
-                                                </TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>

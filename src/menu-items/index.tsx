@@ -1,10 +1,13 @@
 import { NavItemType } from 'types';
-import rotasSemCategoria from './rotasSemCategoria';
+import oportunidades from './oportunidades';
+import convites from './convites';
+import eventos from './eventos';
+import clientes from './clientes';
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems: { items: NavItemType[] } = {
-    items: [rotasSemCategoria]
+    items: [oportunidades, convites, eventos, clientes]
 };
 
 export default menuItems;

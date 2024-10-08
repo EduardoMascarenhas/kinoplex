@@ -27,13 +27,10 @@ const ListarVendas = () => {
         dispatch(getInvoice());
     }, []);
 
-    // useEffect(() => {
-    //     setRows(invoices);
-    // }, [invoices]);
-
     // Simulando o carregamento de dados do JSON
     useEffect(() => {
-        setRows(vendas.vendas);
+        const fetchedVendas = vendas.vendas as unknown as Invoice[]; // Assegurando que o tipo está correto
+        setRows(fetchedVendas);
     }, []);
 
     return (
