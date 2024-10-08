@@ -4,7 +4,6 @@ import { lazy } from 'react';
 import MainLayout from 'layout/MainLayout';
 import ErrorBoundary from './ErrorBoundary';
 import Loadable from 'ui-component/Loadable';
-import AuthGuard from 'utils/route-guard/AuthGuard';
 
 import { loader as productsLoader, productLoader } from 'api/products';
 import Oportunidades from 'views/convites/Oportunidades';
@@ -713,11 +712,11 @@ const MainRoutes = {
         },
         {
             path: '/oportunidade/novo',
-            element: <Oportunidades />
+            element: <CriarOportunidades />
         },
         {
             path: '/oportunidades',
-            element: <ListarOportunidades />
+            element: <Oportunidades />
         },
         {
             path: '/convites/detalhe-oportunidade',
