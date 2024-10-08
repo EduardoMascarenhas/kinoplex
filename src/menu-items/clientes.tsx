@@ -23,30 +23,30 @@ const icons = {
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
 
-const eventos: NavItemType = {
-    id: 'eventos',
-    title: <FormattedMessage id="Evento" />,
+const clientes: NavItemType = {
+    id: 'clientes',
+    title: <FormattedMessage id="Cliente" />,
     icon: icons.IconDashboard,
     type: 'group',
     children: [
         {
-            id: 'event-list',
-            title: <FormattedMessage id="Eventos" />,
+            id: 'client-list',
+            title: <FormattedMessage id="Clientes" />,
             type: 'collapse',
-            icon: icons.StadiumTwoToneIcon,
+            icon: icons.PeopleAltTwoToneIcon,
             breadcrumbs: false,
             children: [
                 {
-                    id: 'event-list',
+                    id: 'client-list',
                     title: <FormattedMessage id="Lista" />,
                     type: 'item',
-                    url: '/eventos',
-                    icon: icons.ListTwoToneIcon,
-                    breadcrumbs: false
+                    url: '/clientes',
+                    breadcrumbs: false,
+                    icon: icons.ListTwoToneIcon
                 }
             ]
         }
     ]
 };
 
-export default eventos;
+export default clientes;
