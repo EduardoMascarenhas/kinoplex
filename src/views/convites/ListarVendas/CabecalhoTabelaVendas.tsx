@@ -51,21 +51,25 @@ const headCells: HeadCell[] = [
         id: 'reserva',
         numeric: true,
         label: 'Reserva',
+        align: 'center'
     },
     {
         id: 'pagamento',
         numeric: true,
         label: 'Pagamento',
+        align: 'center'
     },
     {
         id: 'separacao',
         numeric: true,
         label: 'Separação',
+        align: 'center'
     },
     {
         id: 'entrega',
         numeric: true,
         label: 'Entrega',
+        align: 'center'
     },
 ];
 
@@ -98,7 +102,7 @@ interface ListTableHeaderProps {
     onRequestSort: (event: React.SyntheticEvent<Element, Event>, property: string) => void;
 }
 
-const CabecalhoTabelaVendas = ({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, selected }: ListTableHeaderProps) => {
+const CabecalhoListarVendas = ({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, selected }: ListTableHeaderProps) => {
     const createSortHandler = (property: string) => (event: React.SyntheticEvent<Element, Event>) => {
         onRequestSort(event, property);
     };
@@ -137,11 +141,6 @@ const CabecalhoTabelaVendas = ({ onSelectAllClick, order, orderBy, numSelected, 
                     })}
                 {numSelected <= 0 && (
                     <TableCell sortDirection={false} align="center" sx={{ pr: 3 }}>
-                        Documentos
-                    </TableCell>
-                )}
-                {numSelected <= 0 && (
-                    <TableCell sortDirection={false} align="center" sx={{ pr: 3 }}>
                         Ações
                     </TableCell>
                 )}
@@ -150,4 +149,4 @@ const CabecalhoTabelaVendas = ({ onSelectAllClick, order, orderBy, numSelected, 
     );
 };
 
-export default CabecalhoTabelaVendas;
+export default CabecalhoListarVendas;

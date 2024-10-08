@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -19,13 +18,10 @@ import MainCard from 'ui-component/cards/MainCard';
 
 // assets
 import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
-import EventNoteIcon from '@mui/icons-material/EventNote';
-import BlockIcon from '@mui/icons-material/Block';
-import LockIcon from '@mui/icons-material/Lock';
-import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import CommitIcon from '@mui/icons-material/Commit';
 import DownloadIcon from '@mui/icons-material/Download';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import UnpublishedIcon from '@mui/icons-material/Unpublished';
+import EditIcon from '@mui/icons-material/Edit';
 
 // Reserva
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
@@ -48,10 +44,17 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 // types
 import { ArrangementOrder, KeyedObject, GetComparator } from 'types';
-import { Invoice } from 'types/invoice';
+import { Venda } from 'types/invoice';
 import CabecalhoTabelaVendas from './CabecalhoTabelaVendas';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Dialog from '@mui/material/Dialog';
+import { ChangeEvent, SyntheticEvent, useState, FC } from 'react';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
+import DialogContentText from '@mui/material/DialogContentText';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Divider from '@mui/material/Divider';
 
 // table sort
 function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
@@ -67,10 +70,10 @@ function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
 const getComparator: GetComparator = (order, orderBy) =>
     order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
 
-function stableSort(array: Invoice[], comparator: (a: Invoice, b: Invoice) => number) {
-    const stabilizedThis = array.map((el: Invoice, index: number) => [el, index]);
+function stableSort(array: Venda[], comparator: (a: Venda, b: Venda) => number) {
+    const stabilizedThis = array.map((el: Venda, index: number) => [el, index]);
     stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0] as Invoice, b[0] as Invoice);
+        const order = comparator(a[0] as Venda, b[0] as Venda);
         if (order !== 0) return order;
         return (a[1] as number) - (b[1] as number);
     });
@@ -78,19 +81,18 @@ function stableSort(array: Invoice[], comparator: (a: Invoice, b: Invoice) => nu
 }
 
 // ==============================|| Sell LIST - TABLE ||============================== //
-interface TextoLimitadoProps {
-    texto: string;
-    limite: number;
-}
-export const TextoLimitado: React.FC<TextoLimitadoProps> = ({ texto, limite }) => {
-    const textoLimitado = texto.length > limite ? `${texto.substring(0, limite)}...` : texto;
 
-    return (
-        <Typography variant="body1">
-            {textoLimitado}
-        </Typography>
-    );
+const TextoLimitado = ({ texto, limite }: { texto: string | undefined; limite: number }) => {
+    if (!texto || texto.length === 0) {
+        return null; // ou outro fallback que faça sentido
+    }
+
+    const textoFormatado = texto.length > limite ? texto.substring(0, limite) + '...' : texto;
+    
+    return <span>{textoFormatado}</span>;
 };
+
+
 
 const getStatusReserva = (status: string) => {
     switch (status) {
@@ -152,69 +154,51 @@ const getStatusEntrega = (status: string) => {
     }
 };
 
-const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
+const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
     const theme = useTheme();
 
-    const [order, setOrder] = React.useState<ArrangementOrder>('asc');
-    const [orderBy, setOrderBy] = React.useState<string>('calories');
-    const [selected, setSelected] = React.useState<string[]>([]);
-    const [page, setPage] = React.useState<number>(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
+    const [order, setOrder] = useState<ArrangementOrder>('asc');
+    const [orderBy, setOrderBy] = useState<string>('calories');
+    const [selected, setSelected] = useState<string[]>([]);
+    const [page, setPage] = useState<number>(0);
+    const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+    const [open, setOpen] = useState(false);
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const [selectedRow, setSelectedRow] = useState<Venda | null>(null);
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+    const handleDialogToggler = (row: Venda) => {
+        setSelectedRow(row);
+        setOpen(!open);
     };
-    const handleClose = () => {
-        setAnchorEl(null);
+
+    // Funções para manuseio do envio e download
+    const handleEmailSend = () => {
+        if (selectedRow) {
+            // Lógica para enviar email
+            console.log(`Enviando email para ${selectedRow.customer_name}...`);
+            handleClose();
+        }
     };
 
-    let label: string;
-    let color;
-    let chipcolor;
+    const handleDownload = () => {
+        if (selectedRow) {
+            // Lógica para download
+            console.log(`Baixando fatura de ${selectedRow.customer_name}...`);
+            handleClose();
+        }
+    };
 
-    const handleRequestSort = (event: React.SyntheticEvent<Element, Event>, property: string) => {
+    const handleRequestSort = (event: SyntheticEvent<Element, Event>, property: string) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
-    };
-
-    const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.checked) {
-            if (selected.length > 0) {
-                setSelected([]);
-            } else {
-                const newSelectedId = rows.map((n) => n.customer_name);
-                setSelected(newSelectedId);
-            }
-            return;
-        }
-        setSelected([]);
-    };
-
-    const handleCheckBox = (event: React.MouseEvent<HTMLTableCellElement, MouseEvent>, name: string) => {
-        const selectedIndex = selected.indexOf(name);
-        let newSelected: string[] = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
-        }
-
-        setSelected(newSelected);
     };
 
     const handleChangePage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+    const handleChangeRowsPerPage = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
         event?.target.value && setRowsPerPage(parseInt(event?.target.value, 10));
         setPage(0);
     };
@@ -222,12 +206,15 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
     const isSelected = (name: string) => selected.indexOf(name) !== -1;
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <MainCard content={false}>
             {/* table */}
             <TableContainer>
                 <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
-                    <CabecalhoTabelaVendas
+                <CabecalhoTabelaVendas
                         numSelected={selected.length}
                         order={order}
                         orderBy={orderBy}
@@ -244,25 +231,6 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
 
                                 const isItemSelected = isSelected(row.customer_name);
 
-                                switch (row.status.toString()) {
-                                    case 'Paid':
-                                        label = 'Paid';
-                                        color = 'success.dark';
-                                        chipcolor = alpha(theme.palette.success.light, 0.6);
-                                        break;
-                                    case 'Cancelled':
-                                        label = 'Cancelled';
-                                        color = 'orange.dark';
-                                        chipcolor = alpha(theme.palette.orange.light, 0.8);
-                                        break;
-                                    case 'Unpaid':
-                                    default:
-                                        label = 'Unpaid';
-                                        color = 'warning.dark';
-                                        chipcolor = 'warning.light';
-                                        break;
-                                }
-
                                 return (
                                     <TableRow
                                         hover
@@ -273,43 +241,49 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
                                     >
 
                                         <TableCell>{row.invoice_id}</TableCell>
-                                        <TableCell>
+                                        <TableCell sx={{ whiteSpace: 'nowrap' }}>
                                             <Tooltip title={row.customer_name}>
                                                 <span>
-                                                    <TextoLimitado texto={row.customer_name} limite={20} />
+                                                    <TextoLimitado texto={row.customer_name} limite={15} />
                                                 </span>
                                             </Tooltip>
                                         </TableCell>
-                                        <TableCell>{row.date}</TableCell>
+                                        <TableCell sx={{ whiteSpace: 'nowrap' }}>{row.date}</TableCell>
 
-                                        <TableCell>{row.due_date}</TableCell>
+                                        <TableCell sx={{ whiteSpace: 'nowrap' }}>
+                                            <Tooltip title={row.cinema}>
+                                                <span>
+                                                    <TextoLimitado texto={row.cinema} limite={15} />
+                                                </span>
+                                            </Tooltip>
+                                        </TableCell>
+
                                         <TableCell >
-
                                             <Tooltip title={`${row.impresso} impressos + ${row.eletronico} eletrônicos`}>
                                                 <span>{row.quantity}</span>
                                             </Tooltip>
                                         </TableCell>
-                                        <TableCell >R$ {row.price_total}</TableCell>
+                                        <TableCell sx={{ whiteSpace: 'nowrap' }}>R$ {row.price_total}</TableCell>
 
-                                        <TableCell align="center">
+                                        <TableCell align="left">
                                             <Tooltip title={`Reserva ${row.reserva}`}>
                                                 <span>{getStatusReserva(row.reserva)}</span>
                                             </Tooltip>
                                         </TableCell>
 
-                                        <TableCell align="center">
+                                        <TableCell align="left">
                                             <Tooltip title={`Pagamento ${row.pagamento}`}>
                                                 <span>{getStatusPagamento(row.pagamento)}</span>
                                             </Tooltip>
                                         </TableCell>
 
-                                        <TableCell align="center">
+                                        <TableCell align="left">
                                             <Tooltip title={`Separação ${row.separacao}`}>
                                                 <span>{getStatusSeparacao(row.separacao)}</span>
                                             </Tooltip>
                                         </TableCell>
 
-                                        <TableCell align="center">
+                                        <TableCell align="left">
                                             <Tooltip title={`Entrega ${row.entrega}`}>
                                                 <span>{getStatusEntrega(row.entrega)}</span>
                                             </Tooltip>
@@ -317,108 +291,59 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
 
                                         <TableCell align="center" sx={{ pr: 3 }}>
                                             <Stack direction="row" alignItems="center" spacing={1} justifyContent="center">
-                                                <Tooltip title="Nota de Débito">
-                                                    <IconButton
-                                                        color="primary"
-                                                        component={Link}
-                                                        to={'#'}
-                                                        size="small"
-                                                        aria-label="Nota de Débito"
-                                                    >
-                                                        <EventNoteIcon sx={{ fontSize: '1.3rem' }} />
-                                                    </IconButton>
-                                                </Tooltip>
                                                 <Tooltip title="Bloqueio de Convite">
                                                     <IconButton
-                                                        color="error"
+                                                        color="primary"
                                                         component={Link}
                                                         to={`#`}
                                                         size="small"
                                                         aria-label="Bloqueio de Convite"
                                                     >
-                                                        <BlockIcon sx={{ fontSize: '1.3rem' }} />
+                                                        <UnpublishedIcon sx={{ fontSize: '1.3rem' }} />
                                                     </IconButton>
                                                 </Tooltip>
-                                                <Tooltip title="">
-                                                    <>
-                                                        <IconButton
-                                                            id="demo-positioned-button"
-                                                            size="small"
-                                                            color='warning'
-                                                            aria-label=""
-                                                            aria-controls={open ? 'demo-positioned-menu' : undefined}
-                                                            aria-haspopup="true"
-                                                            aria-expanded={open ? 'true' : undefined}
-                                                            onClick={handleClick}
-                                                        >
-                                                            <LockIcon sx={{ fontSize: '1.3rem' }} />
-                                                        </IconButton>
-                                                        <Menu
-                                                            id="demo-positioned-menu"
-                                                            aria-labelledby="demo-positioned-button"
-                                                            anchorEl={anchorEl}
-                                                            open={open}
-                                                            onClose={handleClose}
-                                                            anchorOrigin={{
-                                                                vertical: 'top',
-                                                                horizontal: 'left',
-                                                            }}
-                                                            transformOrigin={{
-                                                                vertical: 'top',
-                                                                horizontal: 'left',
-                                                            }}
-                                                        >
-                                                            <MenuItem onClick={handleClose}>Imprimir código de desbloqueio</MenuItem>
-                                                            <MenuItem onClick={handleClose}>Desbloquear a venda</MenuItem>
-                                                        </Menu>
-                                                    </>
-                                                </Tooltip>
-                                            </Stack>
-                                        </TableCell>
-                                        <TableCell align="center" sx={{ pr: 3 }}>
-                                            <Stack direction="row" alignItems="center" spacing={1} justifyContent="center">
-                                                <Tooltip title="Detalhamento da Venda">
+
+                                                <Tooltip title="Vincular lote">
                                                     <IconButton
                                                         color="primary"
                                                         component={Link}
                                                         to={'#'}
                                                         size="small"
-                                                        aria-label="Detalhamento da Venda"
+                                                        aria-label="Vincular lote"
+                                                    >
+                                                        <CommitIcon sx={{ fontSize: '1.5rem' }} />
+                                                    </IconButton>
+                                                </Tooltip>
+
+                                                <Tooltip title="Clique se deseja enviar por email ou efetuar o download">
+                                                    <IconButton onClick={() => handleDialogToggler(row)} size="small" aria-label="deseja enviar por email ou efetuar o download">
+                                                        <DownloadIcon sx={{ fontSize: '1.3rem' }} />
+                                                    </IconButton>
+                                                </Tooltip>
+
+                                                <Tooltip title="Detalhe da Venda">
+                                                    <IconButton
+                                                        color="primary"
+                                                        component={Link}
+                                                        to={'#'}
+                                                        size="small"
+                                                        aria-label="Detalhe da Venda"
                                                     >
                                                         <VisibilityTwoToneIcon sx={{ fontSize: '1.3rem' }} />
                                                     </IconButton>
                                                 </Tooltip>
 
-                                                <Tooltip title="Alterar Validade">
+                                                <Tooltip title="Editar venda">
                                                     <IconButton
-                                                        color="primary"
-                                                        component={Link}
-                                                        to={`/apps/invoice/edit-invoice`}
-                                                        size="small"
-                                                        aria-label="Alterar Validade"
-                                                    >
-                                                        <EditCalendarIcon sx={{ fontSize: '1.3rem' }} />
-                                                    </IconButton>
-                                                </Tooltip>
-
-                                                <Tooltip title="Aprovar download">
-                                                    <IconButton size="small" aria-label="Aprovar download">
-                                                        <DownloadIcon sx={{ fontSize: '1.3rem' }} />
-                                                    </IconButton>
-                                                </Tooltip>
-
-                                                <Tooltip title="Edit">
-                                                    <IconButton
-                                                        color='success'
+                                                        color='primary'
                                                         component={Link}
                                                         to={`#`}
                                                         size="small"
                                                         aria-label="Edit"
                                                     >
-                                                        <CheckCircleIcon sx={{ fontSize: '1.3rem' }} />
+                                                        <EditIcon sx={{ fontSize: '1.3rem' }} />
                                                     </IconButton>
                                                 </Tooltip>
-
 
                                             </Stack>
                                         </TableCell>
@@ -444,6 +369,39 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
+
+            <Dialog
+                fullScreen={fullScreen}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="responsive-dialog-title"
+            >
+                <DialogTitle id="responsive-dialog-title">
+                    {"Deseja enviar por e-mail ou efetuar o Download?"}
+                </DialogTitle>
+                <Divider />
+                <DialogContent>
+                    <DialogContentText>
+                        {selectedRow?.email}
+                        <Button  sx={{ml: '8px', mr: '8px'}} onClick={handleEmailSend} variant='outlined' color="primary">
+                            Enviar
+                        </Button>
+                        ou
+                        <Button sx={{ml: '8px', mr: '8px'}}  onClick={handleDownload} variant='outlined' color="primary">
+                            Fazer Download
+                        </Button>
+                    </DialogContentText>
+
+
+
+                </DialogContent>
+                <Divider />
+                <DialogActions>
+                    <Button onClick={handleClose} autoFocus>
+                        Fechar
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </MainCard>
     );
 };
