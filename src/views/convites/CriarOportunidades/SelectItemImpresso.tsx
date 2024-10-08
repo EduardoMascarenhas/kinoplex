@@ -250,7 +250,7 @@ function SelectItemImpresso({ handleAddItem }: Props) {
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} display="flex" direction="row" alignItems="center" justifyContent="flex-start">
                         <Stack direction="row" sx={{ marginTop: '15px' }}>
-                            <Button disabled={!selectedItem?.id || !selectedQuantity} variant="contained" onClick={handleOnAddItem} startIcon={<AddIcon />}>
+                            <Button disabled={!selectedItem?.id || !selectedQuantity} variant="outlined" onClick={handleOnAddItem} startIcon={<AddIcon />}>
                                 Adicionar Convite
                             </Button>
                         </Stack>

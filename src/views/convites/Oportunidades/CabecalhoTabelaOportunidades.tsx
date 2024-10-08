@@ -3,7 +3,6 @@ import * as React from 'react';
 // material-ui
 import { visuallyHidden } from '@mui/utils';
 import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';

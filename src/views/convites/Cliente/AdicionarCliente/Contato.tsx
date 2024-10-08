@@ -108,7 +108,7 @@ function Contato({ handleAddItem }: Props) {
                         onClick={handleOnAddItem}
                         startIcon={<AddIcon />}
                     >
-                        + Novo contato
+                        Salvar contato
                     </Button>
                 </Stack>
             </Grid>
