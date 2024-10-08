@@ -7,9 +7,8 @@ import { ptBR } from '@mui/x-data-grid/locales';
 
 // icons
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
-import NotInterestedIcon from '@mui/icons-material/NotInterested';
+import AutoAwesomeMotionTwoToneIcon from '@mui/icons-material/AutoAwesomeMotionTwoTone';
 import DoNotDisturbOnTwoToneIcon from '@mui/icons-material/DoNotDisturbOnTwoTone';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
 
 // project import
@@ -260,7 +259,14 @@ const MenuActions = (params: any) => {
             <Tooltip title="Alterar">
                 <EditTwoToneIcon
                     className="actions-icon-alterar"
-                    onClick={() => console.log(`alterar ${params.id}`)}
+                    onClick={() => (window.location.href = '/convites/detalhes')}
+                    sx={{ cursor: 'pointer' }}
+                />
+            </Tooltip>
+            <Tooltip title="Separar">
+                <AutoAwesomeMotionTwoToneIcon
+                    className="actions-icon-detalhes"
+                    onClick={() => (window.location.href = `/convite/separacao/${params.id}`)}
                     sx={{ cursor: 'pointer' }}
                 />
             </Tooltip>

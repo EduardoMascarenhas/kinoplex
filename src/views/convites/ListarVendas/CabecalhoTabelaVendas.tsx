@@ -3,7 +3,6 @@ import * as React from 'react';
 // material-ui
 import { visuallyHidden } from '@mui/utils';
 import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -47,7 +46,31 @@ const headCells: HeadCell[] = [
         id: 'valor',
         numeric: true,
         label: 'Valor',
-    }
+    },
+    {
+        id: 'reserva',
+        numeric: true,
+        label: 'Reserva',
+        align: 'center'
+    },
+    {
+        id: 'pagamento',
+        numeric: true,
+        label: 'Pagamento',
+        align: 'center'
+    },
+    {
+        id: 'separacao',
+        numeric: true,
+        label: 'Separação',
+        align: 'center'
+    },
+    {
+        id: 'entrega',
+        numeric: true,
+        label: 'Entrega',
+        align: 'center'
+    },
 ];
 
 // ==============================|| INVOICE LIST - TOOLBAR ||============================== //
@@ -79,7 +102,7 @@ interface ListTableHeaderProps {
     onRequestSort: (event: React.SyntheticEvent<Element, Event>, property: string) => void;
 }
 
-const CabecalhoTabelaVendas = ({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, selected }: ListTableHeaderProps) => {
+const CabecalhoListarVendas = ({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, selected }: ListTableHeaderProps) => {
     const createSortHandler = (property: string) => (event: React.SyntheticEvent<Element, Event>) => {
         onRequestSort(event, property);
     };
@@ -118,11 +141,6 @@ const CabecalhoTabelaVendas = ({ onSelectAllClick, order, orderBy, numSelected, 
                     })}
                 {numSelected <= 0 && (
                     <TableCell sortDirection={false} align="center" sx={{ pr: 3 }}>
-                        Documentos
-                    </TableCell>
-                )}
-                {numSelected <= 0 && (
-                    <TableCell sortDirection={false} align="center" sx={{ pr: 3 }}>
                         Ações
                     </TableCell>
                 )}
@@ -131,4 +149,4 @@ const CabecalhoTabelaVendas = ({ onSelectAllClick, order, orderBy, numSelected, 
     );
 };
 
-export default CabecalhoTabelaVendas;
+export default CabecalhoListarVendas;

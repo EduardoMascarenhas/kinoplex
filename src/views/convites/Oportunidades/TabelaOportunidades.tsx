@@ -56,11 +56,7 @@ interface TextoLimitadoProps {
 export const TextoLimitado: React.FC<TextoLimitadoProps> = ({ texto, limite }) => {
     const textoLimitado = texto.length > limite ? `${texto.substring(0, limite)}...` : texto;
 
-    return (
-        <Typography variant="body1">
-            {textoLimitado}
-        </Typography>
-    );
+    return <Typography variant="body1">{textoLimitado}</Typography>;
 };
 
 // ==============================|| INVOICE LIST - TABLE ||============================== //
@@ -181,11 +177,13 @@ const TabelaOportunidades = ({ rows }: { rows: Invoice[] }) => {
                                         <TableCell>{row.date} - 10:50 00:53</TableCell>
                                         <TableCell>
                                             <Stack>
-                                                <Tooltip title="46043998000102, LABORATORIO DE ANALISES CLINICAS DR. ROBERTO FRANCO DO AMARAL LTDA">
-                                                    <TextoLimitado
-                                                        texto="46043998000102, LABORATORIO DE ANALISES CLINICAS DR. ROBERTO FRANCO DO AMARAL LTDA"
-                                                        limite={50} // Defina o limite de caracteres desejado
-                                                    />
+                                                <Tooltip title="LABORATORIO DE ANALISES CLINICAS DR. ROBERTO FRANCO DO AMARAL LTDA">
+                                                    <span>
+                                                        <TextoLimitado
+                                                            texto="LABORATORIO DE ANALISES CLINICAS DR. ROBERTO FRANCO DO AMARAL LTDA"
+                                                            limite={50}
+                                                        />
+                                                    </span>
                                                 </Tooltip>
                                             </Stack>
                                         </TableCell>
@@ -203,7 +201,7 @@ const TabelaOportunidades = ({ rows }: { rows: Invoice[] }) => {
                                                     <IconButton
                                                         color="primary"
                                                         component={Link}
-                                                        to={'/convites/detalhe-oportunidade'}
+                                                        to={'/oportunidade/detalhes'}
                                                         size="small"
                                                         aria-label="Ver Detalhes"
                                                     >

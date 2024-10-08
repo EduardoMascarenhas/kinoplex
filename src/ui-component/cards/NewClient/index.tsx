@@ -16,7 +16,6 @@ import Typography from '@mui/material/Typography';
 import Details from './Details';
 import Endereco from './Endereco';
 import Empresa from './Empresa';
-import Contato from './Contato';
 import MainCard from 'ui-component/cards/MainCard';
 
 // assets

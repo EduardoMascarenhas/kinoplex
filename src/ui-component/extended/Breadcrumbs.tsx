@@ -16,7 +16,6 @@ import navigation from 'menu-items';
 // assets
 import { IconChevronRight, IconTallymark1 } from '@tabler/icons-react';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
-import HomeIcon from '@mui/icons-material/Home';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 
 // types
@@ -188,7 +187,7 @@ const Breadcrumbs = ({
                             >
                                 <Typography component={Link} to="/" color="textSecondary" variant="subtitle1" sx={linkSX}>
                                     {icons && <HomeTwoToneIcon style={iconSX} />}
-                                    {icon && !icons && <HomeIcon style={{ ...iconSX, marginRight: 0 }} />}
+                                    {icon && !icons && <HomeTwoToneIcon style={{ ...iconSX, marginRight: 0 }} />}
                                     {(!icon || icons) && 'Dashboard'}
                                 </Typography>
                                 {mainContent}
@@ -223,7 +222,7 @@ const Breadcrumbs = ({
             >
                 <Typography component={Link} to="/" color="textSecondary" variant="subtitle1" sx={linkSX}>
                     {icons && <HomeTwoToneIcon style={iconSX} />}
-                    {icon && !icons && <HomeIcon style={{ ...iconSX, marginRight: 0 }} />}
+                    {icon && !icons && <HomeTwoToneIcon style={{ ...iconSX, marginRight: 0 }} />}
                     {(!icon || icons) && 'Dashboard'}
                 </Typography>
                 {mainContent}

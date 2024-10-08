@@ -16,7 +16,8 @@ const initialState: DefaultRootStateProps['customer'] = {
     orders: [],
     products: [],
     productreviews: [],
-    invoices: []
+    invoices: [],
+    sells: [],
 };
 
 const slice = createSlice({
@@ -51,6 +52,10 @@ const slice = createSlice({
         // GET INVOICE DATA
         getInvoiceSuccess(state, action) {
             state.invoices = action.payload;
+        },
+        // GET VENDA DATA
+        getVendaSuccess(state, action) {
+            state.sells = action.payload;
         }
     }
 });
@@ -87,6 +92,33 @@ export function getInvoice() {
         try {
             const response = await axios.get('/api/invoice/list');
             dispatch(slice.actions.getInvoiceSuccess(response.data.invoice));
+        } catch (error) {
+            dispatch(slice.actions.hasError(error));
+        }
+    };
+}
+
+// export function getVenda() {
+//     return async () => {
+//         try {
+//             const response = await axios.get('/api/invoice/list');
+//             dispatch(slice.actions.getVendaSuccess(response.data.venda));
+//         } catch (error) {
+//             dispatch(slice.actions.hasError(error));
+//         }
+//     };
+// }
+
+export function getVenda() {
+    return async () => {
+        try {
+            // Alterado para usar fetch em vez de axios
+            const response = await fetch('/src/api/vendas.json');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            dispatch(slice.actions.getVendaSuccess(data.venda));
         } catch (error) {
             dispatch(slice.actions.hasError(error));
         }
