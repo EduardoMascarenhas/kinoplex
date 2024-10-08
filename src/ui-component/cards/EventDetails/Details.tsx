@@ -9,7 +9,7 @@ import { gridSpacing } from 'store/constant';
 
 // types
 import { EventDataType } from 'types/event';
-import ItemsTable from 'ui-component/itemsTable';
+import ItemsTable from 'ui-component/cards/EditEvent/itemsTable';
 import SubCardCustom from 'ui-component/custom/SubCardCustom';
 
 const EDetails = ({

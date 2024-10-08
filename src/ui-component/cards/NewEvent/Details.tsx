@@ -11,7 +11,7 @@ import Chip from 'ui-component/extended/Chip';
 import { gridSpacing } from 'store/constant';
 // types
 import { EventDataType } from 'types/event';
-import ItemsTable from 'ui-component/itemsTable';
+import ItemsTable from 'ui-component/cards/EditEvent/itemsTable';
 
 import events from 'api/events.json'; // Importando o JSON local
 

@@ -5,15 +5,19 @@ import {
     Button,
     Grid,
     TextField,
-    Tabs,
-    Tab,
-    Box,
     Dialog,
     DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle
+    DialogTitle,
+    TableRow,
+    TableContainer,
+    TableHead,
+    Paper,
+    Table,
+    TableBody
 } from '@mui/material';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 
@@ -22,29 +26,40 @@ import { gridSpacing } from 'store/constant';
 
 // types
 import SubCard from '../SubCard';
+import { styled } from '@mui/material/styles';
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
+// styles
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14
+    }
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0
+    }
+}));
+
+function createData(codigo: string, status: string, mensagem: string) {
+    return { codigo, status, mensagem };
 }
 
-function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div role="tabpanel" hidden={value !== index} id={`simple-tabpanel-${index}`} aria-labelledby={`simple-tab-${index}`} {...other}>
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-        </div>
-    );
-}
-
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`
-    };
-}
+const rows = [
+    createData('asdfe', 'PROCESSANDO', 'Processando código asdfe'),
+    createData('asdfe', 'BLOQUEADO', 'Código asdfe bloqueado com sucesso!'),
+    createData('1234', 'PROCESSANDO', 'Processando código 1234'),
+    createData('1234', 'BLOQUEADO', 'Código 1234 bloqueado com sucesso!')
+];
+// table data
 
 const IBlockingDetails = () => {
     const [openBlock, setOpenBlock] = React.useState(false);
@@ -66,11 +81,6 @@ const IBlockingDetails = () => {
         setOpenUnblock(false);
     };
 
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
@@ -117,24 +127,28 @@ const IBlockingDetails = () => {
                 <SubCard>
                     <Grid container spacing={gridSpacing}>
                         <Grid item xs={12}>
-                            <Box sx={{ width: '100%' }}>
-                                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                                        <Tab label="CÓDIGO" {...a11yProps(0)} />
-                                        <Tab label="STATUS" {...a11yProps(1)} />
-                                        <Tab label="MENSAGEM" {...a11yProps(2)} />
-                                    </Tabs>
-                                </Box>
-                                <CustomTabPanel value={value} index={0}>
-                                    CÓDIGO
-                                </CustomTabPanel>
-                                <CustomTabPanel value={value} index={1}>
-                                    STATUS
-                                </CustomTabPanel>
-                                <CustomTabPanel value={value} index={2}>
-                                    MENSAGEM
-                                </CustomTabPanel>
-                            </Box>
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell>CÓDIGO</StyledTableCell>
+                                            <StyledTableCell align="left">STATUS</StyledTableCell>
+                                            <StyledTableCell align="left">MENSAGEM</StyledTableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {rows.map((row) => (
+                                            <StyledTableRow key={row.codigo}>
+                                                <StyledTableCell component="th" scope="row">
+                                                    {row.codigo}
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">{row.status}</StyledTableCell>
+                                                <StyledTableCell align="left">{row.mensagem}</StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
                         </Grid>
                     </Grid>
                 </SubCard>
