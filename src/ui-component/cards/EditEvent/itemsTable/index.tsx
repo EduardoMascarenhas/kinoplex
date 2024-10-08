@@ -11,10 +11,14 @@ import {
     Box,
     TextField,
     TableContainer,
-    Tooltip
+    Tooltip,
+    Button,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem
 } from '@mui/material';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SubCard from 'ui-component/cards/SubCard';
 import { ThemeMode } from 'types/config';
 import { useTheme } from '@mui/material/styles';
@@ -45,9 +49,6 @@ const ItemsTable: React.FC<ItemsTableProps> = ({ initialItems, details }) => {
             setPacote(initialItems); // Atualiza pacote quando initialItems mudar
         }
     }, [initialItems]);
-
-    const [taxa, setTaxa] = useState(5);
-    const [desconto, setDesconto] = useState(5);
 
     const addItem = () => {
         const newItem: Item = {
@@ -83,9 +84,7 @@ const ItemsTable: React.FC<ItemsTableProps> = ({ initialItems, details }) => {
     };
 
     const subTotal = calcularSubtotal();
-    const valorTaxa = subTotal * (taxa / 100);
-    const valorDesconto = subTotal * (desconto / 100);
-    const total = subTotal + valorTaxa - valorDesconto;
+    const total = subTotal;
 
     return (
         <SubCard title="Pacote" content={false}>
@@ -136,19 +135,35 @@ const ItemsTable: React.FC<ItemsTableProps> = ({ initialItems, details }) => {
                                             <TableRow key={index}>
                                                 <TableCell align="center">{row.id}</TableCell>
                                                 <TableCell align="left">
-                                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                                                        <TextField
-                                                            value={row.tipo}
-                                                            onChange={(e) => handleEditItem(index, 'tipo', e.target.value)}
-                                                            label="Tipo"
-                                                            fullWidth
-                                                        />
-                                                        <TextField
-                                                            value={row.item}
-                                                            onChange={(e) => handleEditItem(index, 'item', e.target.value)}
-                                                            label="Item"
-                                                            fullWidth
-                                                        />
+                                                    <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10px' }}>
+                                                        <FormControl fullWidth>
+                                                            <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
+                                                            <Select
+                                                                labelId="demo-simple-select-label"
+                                                                id="demo-simple-select"
+                                                                label="Tipo"
+                                                                value={row.tipo}
+                                                                onChange={(e) => handleEditItem(index, 'tipo', e.target.value)}
+                                                            >
+                                                                <MenuItem value={'Tipo_1'}>Tipo 1</MenuItem>
+                                                                <MenuItem value={'Tipo_2'}>Tipo 2</MenuItem>
+                                                                <MenuItem value={'Tipo_3'}>Tipo 3</MenuItem>
+                                                            </Select>
+                                                        </FormControl>
+                                                        <FormControl fullWidth>
+                                                            <InputLabel id="demo-simple-select-label">Item</InputLabel>
+                                                            <Select
+                                                                labelId="demo-simple-select-label"
+                                                                id="demo-simple-select"
+                                                                label="Item"
+                                                                value={row.item}
+                                                                onChange={(e) => handleEditItem(index, 'item', e.target.value)}
+                                                            >
+                                                                <MenuItem value={'Item_1'}>Item 1</MenuItem>
+                                                                <MenuItem value={'Item_2'}>Item 2</MenuItem>
+                                                                <MenuItem value={'Item_3'}>Item 3</MenuItem>
+                                                            </Select>
+                                                        </FormControl>
                                                     </Box>
                                                 </TableCell>
                                                 <TableCell align="center">
@@ -188,11 +203,9 @@ const ItemsTable: React.FC<ItemsTableProps> = ({ initialItems, details }) => {
                 ) : (
                     <Grid item xs={12}>
                         <Grid container justifyContent="center">
-                            <Tooltip title={'Adicionar Item'}>
-                                <IconButton color="primary" size="large" onClick={addItem} disabled={!isLastItemValid()}>
-                                    <AddCircleOutlineIcon fontSize="large" />
-                                </IconButton>
-                            </Tooltip>
+                            <Button color="primary" size="large" onClick={addItem} disabled={!isLastItemValid()}>
+                                Adicionar Item
+                            </Button>
                         </Grid>
                     </Grid>
                 )}

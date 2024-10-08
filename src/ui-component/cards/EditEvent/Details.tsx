@@ -1,23 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import {
-    Divider,
-    Grid,
-    IconButton,
-    Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
-    Box,
-    TextField,
-    Button
-} from '@mui/material';
+import { Divider, Grid, Stack, Typography, Box, TextField } from '@mui/material';
 // input mask
 import InputMask from 'react-input-mask';
 
@@ -27,26 +11,10 @@ import Chip from 'ui-component/extended/Chip';
 import { gridSpacing } from 'store/constant';
 
 // assets
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import CalendarTodayTwoToneIcon from '@mui/icons-material/CalendarTodayTwoTone';
-import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
-import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
-import PhoneAndroidTwoToneIcon from '@mui/icons-material/PhoneAndroidTwoTone';
-import EditIcon from '@mui/icons-material/Edit';
-import SaveIcon from '@mui/icons-material/Save';
 
 // types
-import { ThemeMode } from 'types/config';
 import { EventDataType } from 'types/event';
-import ItemsTable from 'ui-component/itemsTable';
-
-const detailsIconSX = {
-    width: 15,
-    height: 15,
-    verticalAlign: 'text-top',
-    mr: 0.5,
-    mt: 0.25
-};
+import ItemsTable from './itemsTable';
 
 const EEditDetails = ({
     allData,
@@ -55,22 +23,6 @@ const EEditDetails = ({
     allData: EventDataType;
     handleChangeAllData: (event: any, name: string, category: string) => void;
 }) => {
-    const theme = useTheme();
-    // Calcular o total dos valores do pacote
-    const totalSum = allData?.pacote?.reduce((acc, row) => acc + row.valorTotal, 0) || 0;
-
-    const [editableField, setEditableField] = useState<string | null>(null);
-
-    const toggleEditableField = (field: string) => {
-        setEditableField(editableField === field ? null : field);
-    };
-
-    const handleSaveClick = () => {
-        // Salva os dados e desativa os campos
-        setEditableField(null);
-        console.log('allData: ', allData);
-    };
-
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>

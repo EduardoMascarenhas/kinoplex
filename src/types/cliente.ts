@@ -1,4 +1,4 @@
-export type PerfilCliente = {
+export type Cliente = {
     id?: string;
     razao_social?: string;
     nome_fantasia?: string;
@@ -11,10 +11,10 @@ export type PerfilCliente = {
     cidade?: string;
     estado?: string;
     pais?: string;
-    contato?: ContatoCliente; 
+    contato?: ContatoCliente[]; 
 };
 export type ContatoCliente = {
-    id: string;
+    id?: number;
     nome?: string;
     telefone?: string;
     email?: string;

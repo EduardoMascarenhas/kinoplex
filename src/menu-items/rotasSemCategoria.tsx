@@ -23,7 +23,7 @@ const icons = {
 
 const rotasSemCategoria: NavItemType = {
     id: 'rotasSemCategoria',
-    title: <FormattedMessage id="Menu" />,
+    title: <FormattedMessage id="Cineticket" />,
     icon: icons.IconDashboard,
     type: 'group',
     children: [

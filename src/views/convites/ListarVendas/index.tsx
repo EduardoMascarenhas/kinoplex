@@ -14,7 +14,7 @@ import { getInvoice } from 'store/slices/customer';
 import { Invoice } from 'types/invoice';
 import MainCardInvitations from 'ui-component/cards/MainCardInvitations';
 
-import vendas from 'api/vendas.json';  // Importando o JSON local
+import vendas from 'api/vendas.json'; // Importando o JSON local
 
 // ==============================|| INVOICE LIST ||============================== //
 
@@ -39,7 +39,7 @@ const ListarVendas = () => {
     return (
         <MainCardInvitations title="Lista de Vendas">
             {/* filter section */}
-            <CardContent sx={{paddingTop: 0}}>
+            <CardContent sx={{ paddingTop: 0 }}>
                 <FiltroVendas {...{ rows: invoices, setRows }} />
             </CardContent>
 

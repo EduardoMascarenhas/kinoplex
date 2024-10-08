@@ -8,21 +8,42 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import Autocomplete from '@mui/material/Autocomplete';
-import { PerfilCliente } from 'types/perfil-cliente';
+import { Cliente } from 'types/cliente';
 import clientes from 'api/clientes.json';  // Importando o JSON local
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import Dialog from '@mui/material/Dialog';
+import InputAdornment from '@mui/material/InputAdornment';
+import AdicionarCliente from '../Cliente/AdicionarCliente';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import Fab from '@mui/material/Fab';
 
 interface ClienteInfoProps {
     formik: any;
-    handleOnSelectValue: (value: PerfilCliente) => void;
+    handleOnSelectValue: (value: Cliente) => void;
 }
 
 const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
-    const [client, setClient] = useState<PerfilCliente[]>([]);
-    
+    const [client, setClient] = useState<Cliente[]>([]);
+    const [selectedContact, setSelectedContact] = useState<any | null>(null); // Para armazenar o contato selecionado
+    const [open, setOpen] = useState<boolean>(false);
+    const [indexContato, setIndexContato] = useState(0);
+
+    const handleDialogToggler = () => {
+        setOpen(!open);
+    };
+
+    const handleDialogContato = () => {
+        setIndexContato(2)
+        setOpen(!open);
+    }
+
     // Simulando o carregamento de dados do JSON
     useEffect(() => {
-        setClient(clientes.clientes); // 'clientes.clientes' refere-se ao array dentro do JSON
+        const fetchedClients = clientes.clientes as unknown as Cliente[]; // Assegurando que o tipo está correto
+        setClient(fetchedClients);
     }, []);
+
 
     const theme = useTheme();
     const sxDivider = {
@@ -38,13 +59,41 @@ const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
                     </InputLabel>
                     <FormControl>
                         <Autocomplete
+                            sx={{ width: '100%' }}
                             disableClearable
                             options={client}
                             getOptionLabel={(option) => option.razao_social || 'Nome não disponível'}
-                            onChange={(event, value) => handleOnSelectValue(value)}
-                            renderInput={(params) => <TextField {...params} label="Selecione o Cliente" />}
+                            onChange={(event, value) => {
+                                if (value) {
+                                    handleOnSelectValue(value);
+                                }
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Selecione o Cliente"
+                                    InputProps={{
+                                        ...params.InputProps,
+                                        endAdornment: (
+                                            <>
+                                                {params.InputProps.endAdornment}
+                                                <InputAdornment position="end">
+                                                    <Button
+                                                        onClick={handleDialogToggler}
+                                                        variant='outlined'
+                                                        sx={{ ml: 1 }} // Espaçamento entre o input e o botão
+                                                    >
+                                                        <AddIcon fontSize="inherit" /> Novo cliente
+                                                    </Button>
+                                                </InputAdornment>
+                                            </>
+                                        ),
+                                    }}
+                                />
+                            )}
                         />
                     </FormControl>
+
                 </Stack>
             </Grid>
 
@@ -82,16 +131,16 @@ const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
                             <Stack spacing={0}>
                                 <Stack direction="column" spacing={0}>
                                     <Typography variant="body2">
-                                    <strong>Endereco Fiscal: </strong>{formik.values.endereco_fiscal || 'Endereco Fiscal não disponível'}, {formik.values.numero || 'Número não disponível'}
+                                        <strong>Endereco Fiscal: </strong>{formik.values.endereco_fiscal || 'Endereco Fiscal não disponível'}, {formik.values.numero || 'Número não disponível'}
                                     </Typography>
                                     <Typography variant="body2">
-                                    <strong>CEP: </strong>{formik.values.cep || 'CEP não disponível'}
+                                        <strong>CEP: </strong>{formik.values.cep || 'CEP não disponível'}
                                     </Typography>
                                     <Typography variant="body2">
-                                    <strong>Cidade: </strong>{formik.values.cidade || 'Cidade não disponível'} - {formik.values.estado || 'Estado não disponível'}
+                                        <strong>Cidade: </strong>{formik.values.cidade || 'Cidade não disponível'} - {formik.values.estado || 'Estado não disponível'}
                                     </Typography>
                                     <Typography variant="body2">
-                                    <strong>País: </strong>{formik.values.pais || 'País não disponível'}
+                                        <strong>País: </strong>{formik.values.pais || 'País não disponível'}
                                     </Typography>
                                 </Stack>
                             </Stack>
@@ -100,24 +149,77 @@ const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
 
                     <Grid item xs={12} sm={6} md={4}>
                         <Stack spacing={1}>
-                            <Typography variant="h4">Dados de Contato:</Typography>
-                            <Stack spacing={0}>
-                                <Stack direction="column" spacing={0}>
-                                    <Typography variant="body2">
-                                    <strong>Nome: </strong> {formik.values.nome || 'Nome não disponível'}
-                                    </Typography>
-                                    <Typography variant="body2">
-                                    <strong>Telefone: </strong>{formik.values.telefone || 'Telefone não disponível'}
-                                    </Typography>
-                                    <Typography variant="body2">
-                                    <strong>E-mail: </strong>{formik.values.email || 'E-mail não disponível'}
-                                    </Typography>
+                            <FormControl fullWidth>
+                                <Stack display='flex' flexDirection='row' alignItems='flex-start'>
+                                    <Typography variant="h4" mr={1}>Contato:</Typography>
+                                    <Autocomplete
+                                        size='small'
+                                        sx={{ marginTop: '-8px' }}
+                                        fullWidth
+                                        options={client[0]?.contato || []}
+                                        getOptionLabel={(option) => option.nome || 'Nome não disponível'}
+                                        onChange={(event, value) => {
+                                            if (value) {
+                                                setSelectedContact(value);
+                                                formik.setFieldValue('nome', value.nome); // Atualiza o valor no formik
+                                                formik.setFieldValue('telefone', value.telefone); // Atualiza o telefone no formik
+                                                formik.setFieldValue('email', value.email); // Atualiza o email no formik
+                                            } else {
+                                                setSelectedContact(null);
+                                            }
+                                        }}
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                                label="Selecione um Contato"
+                                                InputProps={{
+                                                    ...params.InputProps,
+                                                    endAdornment: (
+                                                        <>
+                                                            {params.InputProps.endAdornment}
+                                                            <InputAdornment position="end">
+                                                                <Fab onClick={handleDialogContato} style={{ width: '36px', height: '30px' }} variant='circular' color="primary" aria-label="new">
+                                                                    <AddRoundedIcon fontSize="small" />
+                                                                </Fab>
+                                                            </InputAdornment>
+                                                        </>
+                                                    ),
+                                                }}
+                                            />
+                                        )}
+                                    />
                                 </Stack>
+                            </FormControl>
+                            <Stack spacing={0}>
+                                {selectedContact && (
+                                    <Stack direction="column" spacing={0}>
+                                        <Typography variant="body2">
+                                            <strong>Nome: </strong> {selectedContact.nome || 'Nome não disponível'}
+                                        </Typography>
+                                        <Typography variant="body2">
+                                            <strong>Telefone: </strong>{selectedContact.telefone || 'Telefone não disponível'}
+                                        </Typography>
+                                        <Typography variant="body2">
+                                            <strong>E-mail: </strong>{selectedContact.email || 'E-mail não disponível'}
+                                        </Typography>
+                                    </Stack>
+                                )}
                             </Stack>
                         </Stack>
                     </Grid>
                 </>
             )}
+
+            {indexContato === 2? (
+                <Dialog open={open} onClose={handleDialogContato} sx={{ '& .MuiDialog-paper': { maxWidth: '100%', width: 980 } }}>
+                    {open && <AdicionarCliente isOpen handleDialogContato={handleDialogContato} tabContato={indexContato} />}
+                </Dialog>
+            ) : (
+                <Dialog open={open} onClose={handleDialogToggler} sx={{ '& .MuiDialog-paper': { maxWidth: '100%', width: 980 } }}>
+                    {open && <AdicionarCliente isOpen handleDialogToggler={handleDialogToggler} />}
+                </Dialog>
+            )}
+
         </>
     );
 };
