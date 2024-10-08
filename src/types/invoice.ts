@@ -1,8 +1,8 @@
 export interface Invoice {
     avatar: number;
     customer_name: string;
-    date: number;
-    due_date: number;
+    date: string;
+    due_date: string;
     email: string;
     invoice_id: number;
     quantity: number;

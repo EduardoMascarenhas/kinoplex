@@ -1,4 +1,4 @@
-import React, { Ref, useState } from 'react';
+import React, { Ref } from 'react';
 
 // material-ui
 import Card, { CardProps } from '@mui/material/Card';
@@ -18,8 +18,6 @@ import { ThemeMode } from 'types/config';
 import { KeyedObject } from 'types';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import AddClient from 'views/invitations/Client/AddClient';
 import Box from '@mui/material/Box';
 
 // constant

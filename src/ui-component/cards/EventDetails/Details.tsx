@@ -9,7 +9,7 @@ import { gridSpacing } from 'store/constant';
 
 // types
 import { EventDataType } from 'types/event';
-import ItemsTable from 'ui-component/itemsTable';
+import ItemsTable from 'ui-component/cards/EditEvent/itemsTable';
 import SubCardCustom from 'ui-component/custom/SubCardCustom';
 
 const EDetails = ({
@@ -39,7 +39,7 @@ const EDetails = ({
                                 </Grid>
                                 <Grid item>
                                     <Box sx={{ display: 'flex', alignItems: 'left', flexDirection: 'column' }}>
-                                        <Typography variant="subtitle1">Nome do Contato :</Typography>
+                                        <Typography variant="subtitle1">Telefone do Contato :</Typography>
 
                                         <Typography variant="body2">{`${
                                             allData?.dadosDoEvento?.telefoneDoContato
@@ -50,7 +50,7 @@ const EDetails = ({
                                 </Grid>
                                 <Grid item>
                                     <Box sx={{ display: 'flex', alignItems: 'left', flexDirection: 'column' }}>
-                                        <Typography variant="subtitle1">Nome do Contato :</Typography>
+                                        <Typography variant="subtitle1">Email do Contato :</Typography>
 
                                         <Typography variant="body2">{`${
                                             allData?.dadosDoEvento?.emailDoContato

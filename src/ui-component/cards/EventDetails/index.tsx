@@ -123,7 +123,7 @@ const EventDetailsById = () => {
     });
 
     const handleChangeData = (event: any, name: string, category: string) => {
-        setAllData((prevData) => ({
+        setAllData((prevData: any) => ({
             ...prevData,
             [category]: {
                 ...prevData[category],
@@ -139,7 +139,7 @@ const EventDetailsById = () => {
 
     // Simulando o carregamento de dados do JSON
     useEffect(() => {
-        const event: any = events.find((e) => e.id === `${id}`);
+        const event: any = events.find((e) => `${e.id}` === `${id}`);
         if (event !== undefined) {
             setAllData(event);
         }

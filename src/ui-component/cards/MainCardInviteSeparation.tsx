@@ -10,8 +10,6 @@ import Typography from '@mui/material/Typography';
 // project-import
 import useConfig from 'hooks/useConfig';
 
-// assets
-
 // types
 import { ThemeMode } from 'types/config';
 import { KeyedObject } from 'types';
@@ -24,7 +22,7 @@ const headerSX = {
 
 // ==============================|| CUSTOM MAIN CARD ||============================== //
 
-export interface MainCardInviteCreate extends KeyedObject {
+export interface MainCardInviteSeparation extends KeyedObject {
     border?: boolean;
     boxShadow?: boolean;
     children: React.ReactNode | string;
@@ -41,7 +39,7 @@ export interface MainCardInviteCreate extends KeyedObject {
     title?: React.ReactNode | string;
 }
 
-const MainCardInviteCreate = React.forwardRef(
+const MainCardInviteSeparation = React.forwardRef(
     (
         {
             border = false,
@@ -56,7 +54,7 @@ const MainCardInviteCreate = React.forwardRef(
             sx = {},
             title,
             ...others
-        }: MainCardInviteCreate,
+        }: MainCardInviteSeparation,
         ref: Ref<HTMLDivElement>
     ) => {
         const { mode } = useConfig();
@@ -97,4 +95,4 @@ const MainCardInviteCreate = React.forwardRef(
     }
 );
 
-export default MainCardInviteCreate;
+export default MainCardInviteSeparation;

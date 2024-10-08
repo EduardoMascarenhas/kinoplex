@@ -17,7 +17,6 @@ import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
 // types
 import { ThemeMode } from 'types/config';
 import { TabsProps } from 'types';
-import { EventDataType } from 'types/event';
 
 // tab content
 function TabPanel({ children, value, index, ...other }: TabsProps) {
@@ -39,92 +38,6 @@ function a11yProps(index: number) {
 
 const NewEvent = () => {
     const theme = useTheme();
-    const [allData, setAllData] = useState<EventDataType>({
-        id: '',
-        createdAt: '',
-        empresa: {
-            cnpj: '',
-            nomeFantasia: '',
-            banco: '',
-            agencia: '',
-            conta: ''
-        },
-        dataELocalizacao: {
-            dia: '',
-            complexo: '',
-            convidados: +0
-        },
-        dadosDoEvento: {
-            nEvento: '',
-            status: '',
-            tipoEvento: '',
-            nomeEvento: '',
-            cliente: '',
-            nomeDoContato: '',
-            emailDoContato: '',
-            telefoneDoContato: '',
-            responsavel: '',
-            descricaoEvento: ''
-        },
-        pacote: [
-            {
-                id: +0,
-                tipo: '',
-                item: '',
-                quantidade: +0,
-                valorUnitario: +0,
-                valorTotal: +0
-            }
-        ],
-        infoAdministrativas: {
-            dataVencimento: '',
-            dataPagamento: '',
-            formaDePagamento: '',
-            informacoes: '',
-            observacaoNoBoleto: ''
-        },
-        boletos: [
-            {
-                nBoleto: '',
-                pagador: '',
-                beneficiario: '',
-                valorPago: +0,
-                status: ''
-            }
-        ],
-        observacoesGerais: [
-            {
-                id: '',
-                createdAt: '',
-                updatedAt: '',
-                observacao: '',
-                titulo: ''
-            }
-        ],
-        historicoComentariosObservacoes: [
-            {
-                id: '',
-                comentario: '',
-                observacao: ''
-            }
-        ],
-        comentariosSobreOEvento: [
-            {
-                id: '',
-                comentario: ''
-            }
-        ]
-    });
-
-    const handleChangeData = (event: any, name: string, category: string) => {
-        setAllData((prevData) => ({
-            ...prevData,
-            [category]: {
-                ...prevData[category],
-                [name]: event.target.value
-            }
-        }));
-    };
     // set selected tab
     const [value, setValue] = useState<number>(0);
     const handleChange = (event: React.SyntheticEvent<Element, Event>, newValue: number) => {
@@ -168,7 +81,7 @@ const NewEvent = () => {
 
             {/* tab - details */}
             <TabPanel value={value} index={0}>
-                <Details allData={allData} handleChangeAllData={handleChangeData} />
+                <Details />
             </TabPanel>
         </MainCard>
     );
