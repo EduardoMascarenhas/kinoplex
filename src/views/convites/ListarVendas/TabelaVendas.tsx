@@ -44,7 +44,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 // types
 import { ArrangementOrder, KeyedObject, GetComparator } from 'types';
-import { Venda } from 'types/invoice';
+import { Invoice } from 'types/invoice';
 import CabecalhoTabelaVendas from './CabecalhoTabelaVendas';
 import Dialog from '@mui/material/Dialog';
 import { ChangeEvent, SyntheticEvent, useState, FC } from 'react';
@@ -70,10 +70,10 @@ function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
 const getComparator: GetComparator = (order, orderBy) =>
     order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
 
-function stableSort(array: Venda[], comparator: (a: Venda, b: Venda) => number) {
-    const stabilizedThis = array.map((el: Venda, index: number) => [el, index]);
+function stableSort(array: Invoice[], comparator: (a: Invoice, b: Invoice) => number) {
+    const stabilizedThis = array.map((el: Invoice, index: number) => [el, index]);
     stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0] as Venda, b[0] as Venda);
+        const order = comparator(a[0] as Invoice, b[0] as Invoice);
         if (order !== 0) return order;
         return (a[1] as number) - (b[1] as number);
     });
@@ -154,7 +154,7 @@ const getStatusEntrega = (status: string) => {
     }
 };
 
-const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
+const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
     const theme = useTheme();
 
     const [order, setOrder] = useState<ArrangementOrder>('asc');
@@ -164,9 +164,9 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
     const [rowsPerPage, setRowsPerPage] = useState<number>(5);
     const [open, setOpen] = useState(false);
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const [selectedRow, setSelectedRow] = useState<Venda | null>(null);
+    const [selectedRow, setSelectedRow] = useState<Invoice | null>(null);
 
-    const handleDialogToggler = (row: Venda) => {
+    const handleDialogToggler = (row: Invoice) => {
         setSelectedRow(row);
         setOpen(!open);
     };
