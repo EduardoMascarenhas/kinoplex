@@ -14,74 +14,22 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { ChangeEvent, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { addDays, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { styled } from '@mui/material/styles';
-import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
-import { TreeItem, treeItemClasses, TreeItemProps } from '@mui/x-tree-view/TreeItem';
-import Checkbox from '@mui/material/Checkbox';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
-import Menu from '@mui/material/Menu';
-import { IconButton } from '@mui/material';
-import FilterListTwoToneIcon from '@mui/icons-material/FilterListTwoTone';
+
 // ==============================|| INVOICE LIST - FILTER ||============================== //
+
 
 interface Props {
     rows: Invoice[];
     setRows: (rows: Invoice[]) => void;
 }
 
-const CustomTreeItem: React.FC<TreeItemProps> = styled(TreeItem)(({ }) => ({
-    [`& .${treeItemClasses.iconContainer}`]: {
-        '& .close': {
-            opacity: 0.3,
-        },
-    },
-    '&.styleTree': {
-        backgroundColor: '#ebebeb',
-        margin: '2px',
-        '& .MuiTreeItem-label': {
-            margin: 0,
-            '& .MuiTypography-root': {
-                fontSize: '0.975em',
-                fontWeight: 500,
-            },
-        },
-        '& .MuiCollapse-root': {
-            margin: 0,
-            '& .MuiTypography-root': {
-                fontSize: '0.8em',
-                fontWeight: 'normal',
-            },
-        },
-    },
-
-    '& .MuiTreeItem-label': {
-
-        '& .MuiTypography-root': {
-            fontSize: '0.85em'
-        },
-        '& .MuiCheckbox-root': {
-            padding: '0 4px'
-        }
-    },
-}));
-
-const IconButtonCheckbox = styled(IconButton)(() => ({
-    backgroundColor: '#f8fafc',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    fontSize: '0.875rem',
-    borderRadius: '8px',
-    padding: '6px',
-    border: '1px solid #2196f3'
-}));
 // Lista de locais de entrega
 const locaisEntrega = [
     { label: '-- Todos --', value: '' },
@@ -155,6 +103,7 @@ const listaClientes = [
 ];
 
 const convitesData = [
+    { label: 'CONVITES IMPRESSOS', value: '-1', type: 'impresso' },
     { label: 'CINETICKET', value: '4', type: 'impresso' },
     { label: 'CINETICKET 3D', value: '2', type: 'impresso' },
     { label: 'CINETICKET COMBO', value: '5', type: 'impresso' },
@@ -164,15 +113,7 @@ const convitesData = [
     { label: 'Vale Ingresso Azul', value: '57', type: 'impresso' },
     { label: 'Vale Ingresso Lilas', value: '56', type: 'impresso' },
     { label: 'Vale Ingresso Vermelho', value: '55', type: 'impresso' },
-    { label: 'CINETICKET PLATINUM', value: '322', type: 'impresso' },
-    { label: 'CINETICKETONLINE2D', value: '661', type: 'impresso' },
-    { label: 'Vale Ingresso Platinum', value: '509', type: 'impresso' },
-    { label: 'Vale Ingresso Azul', value: '570', type: 'impresso' },
-    { label: 'Vale Ingresso Lilas', value: '560', type: 'impresso' },
-    { label: 'Vale Ingresso Vermelho', value: '555', type: 'impresso' },
-    { label: 'Vale Ingresso Azul', value: '5701', type: 'impresso' },
-    { label: 'Vale Ingresso Lilas', value: '5601', type: 'impresso' },
-    { label: 'Vale Ingresso Vermelho', value: '5155', type: 'impresso' },
+    { label: 'CONVITES ELETRÔNICOS', value: '-2', type: 'eletronico' },
     { label: 'AZUL3D', value: '122', type: 'eletronico' },
     { label: 'BFRIDAY21', value: '82', type: 'eletronico' },
     { label: 'CLASSE ECOMONICA', value: '88', type: 'eletronico' },
@@ -182,15 +123,6 @@ const convitesData = [
     { label: 'CTBR2016', value: '49', type: 'eletronico' },
     { label: 'CTBR2017', value: '9', type: 'eletronico' },
     { label: 'CTBR2D', value: '23', type: 'eletronico' },
-    { label: 'AZUL3D', value: '123', type: 'eletronico' },
-    { label: 'BFRIDAY21', value: '83', type: 'eletronico' },
-    { label: 'CLASSE ECOMONICA', value: '188', type: 'eletronico' },
-    { label: 'CORTEDOTZ', value: '41', type: 'eletronico' },
-    { label: 'CT2D', value: '54', type: 'eletronico' },
-    { label: 'CT99', value: '38', type: 'eletronico' },
-    { label: 'CTBR2016', value: '50', type: 'eletronico' },
-    { label: 'CTBR2017', value: '10', type: 'eletronico' },
-    { label: 'CTBR2D', value: '24', type: 'eletronico' },
 ];
 
 const listaOperadores = [
@@ -203,61 +135,16 @@ const listaOperadores = [
 ];
 
 const FiltroVendas = ({ rows, setRows }: Props) => {
-    const [searchId, setSearchId] = useState<string>('');
-    const [searchClient, setSearchClient] = useState<string>('');
+    const [search, setSearch] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<string>('Todas');
     const [selectedLocal, setSelectedLocal] = useState<{ label: string; value: string } | null>(locaisEntrega[0]);
     const [selectedCliente, setSelectedCliente] = useState<{ label: string; value: string } | null>(listaClientes[0]);
     const [startDate, setStartDate] = useState<Date | null>(new Date());
     const [endDate, setEndDate] = useState<Date | null>(addDays(new Date(), -30));
+    const [selectedTipoConvite, setSelectedTipoConvite] = useState<{ label: string; value: string } | null>(convitesData[0]);
     const [selectedOperador, setSelectedOperador] = useState<{ label: string; value: string } | null>(listaOperadores[0]);
-    const [checkedItems, setCheckedItems] = useState<string[]>(
-        convitesData.map(item => item.value)
-    );
-    const [expandedItems, setExpandedItems] = useState<string[]>(['impresso', 'eletronico']);
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleSearchId = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-        const newString = event?.target.value;
-        setSearchId(newString || '');
-
-        if (newString) {
-            const newRows = rows?.filter((row: KeyedObject) => {
-                let matches = true;
-
-                const properties = ['id'];
-
-                let containsQuery = false;
-
-                properties.forEach((property) => {
-                    // Verifica se a propriedade existe antes de chamar toString
-                    const value = row[property];
-                    if (value && value.toString().toLowerCase().includes(newString.toLowerCase())) {
-                        containsQuery = true;
-                    }
-                });
-
-
-                if (!containsQuery) {
-                    matches = false;
-                }
-                return matches;
-            });
-            setRows(newRows);
-        } else {
-            setRows(rows);
-        }
-    };
-
-    const handleSearchClient = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+    const handleSearch = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
         const newString = event?.target.value;
         setSearchClient(newString || '');
 
@@ -289,6 +176,7 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
         }
     };
 
+    const handleStatusFilter = (event: ChangeEvent<HTMLInputElement>) => {
     const handleStatusFilter = (event: ChangeEvent<HTMLInputElement>) => {
         const status = event.target.value;
         setSelectedStatus(status);
@@ -356,82 +244,16 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
         setRows(filteredRows);
     };
 
-    // Função para verificar se todos os filhos estão selecionados
-    const areAllChildrenChecked = (children: string[]) => {
-        return children.every((child) => checkedItems.includes(child));
-    };
+    const handleTipoConviteChange = (event: any, newValue: { label: string; value: string } | null) => {
+        setSelectedTipoConvite(newValue);
 
-    // Função para lidar com a seleção de grupo ou item único
-    const handleToggle = (value: string, children: string[] = []) => {
-        const currentIndex = checkedItems.indexOf(value);
-        let newChecked = [...checkedItems];
-
-        // Se for item pai, tratar todos os filhos
-        if (children.length > 0) {
-            if (areAllChildrenChecked(children)) {
-                // Desmarcar todos os filhos
-                newChecked = newChecked.filter((item) => item !== value && !children.includes(item));
-            } else {
-                // Marcar todos os filhos
-                newChecked = [...newChecked, value, ...children.filter((child) => !newChecked.includes(child))];
-            }
-        } else {
-            // Tratamento para item individual
-            if (currentIndex === -1) {
-                newChecked.push(value);
-            } else {
-                newChecked.splice(currentIndex, 1);
-            }
-        }
-
-        setCheckedItems(newChecked);
-        setExpandedItems(newChecked)
-
-        // Filtrar linhas com base nos itens marcados
-        if (newChecked.length > 0) {
-            const filteredRows = rows.filter((row) => newChecked.includes(row.tipoConvite));
+        if (newValue && newValue.value) {
+            const filteredRows = rows.filter((row: KeyedObject) => row.tipoConvite === newValue.value);
             setRows(filteredRows);
         } else {
-            setRows(rows); // Exibir todas as linhas se nada estiver selecionado
+            setRows(rows);
         }
     };
-
-    const renderTreeItems = (type: string) => {
-        const filteredItems = convitesData.filter((item) => item.type === type);
-
-        // Dividir em grupos de 5 itens por coluna
-        const columns = [];
-        for (let i = 0; i < filteredItems.length; i += 8) {
-            columns.push(filteredItems.slice(i, i + 8));
-        }
-
-        return (
-            <Grid container spacing={2}>
-                {columns.map((column, columnIndex) => (
-                    <Grid item key={columnIndex} xs={4}> {/* xs={6} deixa 2 colunas na linha */}
-                        {column.map((item) => (
-                            <CustomTreeItem
-                                key={item.value}
-                                itemId={item.value}
-                                label={
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={checkedItems.includes(item.value)} // Verifica se o item filho está checado
-                                                onChange={() => handleToggle(item.value)}
-                                            />
-                                        }
-                                        label={item.label}
-                                    />
-                                }
-                            />
-                        ))}
-                    </Grid>
-                ))}
-            </Grid>
-        );
-    };
-
 
     const handleOperadorChange = (event: any, newValue: { label: string; value: string } | null) => {
         setSelectedOperador(newValue);
@@ -451,20 +273,20 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
 
                 <Grid item xs={12} md={6}>
                     <FormLabel sx={{ mb: '8px', fontWeight: 600 }} component="legend">Filtrar por Cliente:</FormLabel>
-                    <TextField
-                        onChange={handleSearchClient}
-                        placeholder="Digite o cliente"
-                        value={searchClient}
-                        size="small"
-                        fullWidth
+                    <Autocomplete
+                        options={listaClientes}
+                        getOptionLabel={(option) => option.label}
+                        value={selectedCliente}
+                        onChange={handleClienteChange}
+                        renderInput={(params) => <TextField {...params} placeholder="Selecione o Cliente" size="small" />}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <FormLabel sx={{ mb: '8px', fontWeight: 600 }} component="legend">Filtrar por ID:</FormLabel>
                     <TextField
-                        onChange={handleSearchId}
+                        onChange={handleSearch}
                         placeholder="Insira o ID"
-                        value={searchId}
+                        value={search}
                         size="small"
                         fullWidth
                     />
@@ -526,81 +348,13 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
 
                 <Grid item xs={12} md={6}>
                     <FormLabel sx={{ mb: '8px', fontWeight: 600 }} component="legend">Filtrar por Tipo de Convite:</FormLabel>
-                    <IconButtonCheckbox
-                        color="primary"
-                        size="small"
-                        disableRipple
-                        aria-label="live customize"
-                        onClick={handleClick}
-                    >
-                        Convites impressos e eletrônicos<FilterListTwoToneIcon />
-                    </IconButtonCheckbox>
-
-                    <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <SimpleTreeView
-                            sx={{ display: { md: 'flex', xs: 'block' } }}
-                            defaultExpandedItems={expandedItems}
-                            slots={{
-                                expandIcon: AddBoxIcon,
-                                collapseIcon: IndeterminateCheckBoxIcon,
-                            }}
-                        >
-                            <CustomTreeItem
-                                className="styleTree"
-                                itemId="impresso"
-                                label={
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={areAllChildrenChecked(
-                                                    convitesData.filter((item) => item.type === 'impresso').map((item) => item.value)
-                                                )}
-                                                onChange={() =>
-                                                    handleToggle(
-                                                        'impresso',
-                                                        convitesData.filter((item) => item.type === 'impresso').map((item) => item.value)
-                                                    )
-                                                }
-                                            />
-                                        }
-                                        label="Convites Impressos"
-                                    />
-                                }
-                            >
-                                {renderTreeItems('impresso')}
-                            </CustomTreeItem>
-                            <CustomTreeItem
-                                className="styleTree"
-                                itemId="eletronico"
-                                label={
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={areAllChildrenChecked(
-                                                    convitesData.filter((item) => item.type === 'eletronico').map((item) => item.value)
-                                                )}
-                                                onChange={() =>
-                                                    handleToggle(
-                                                        'eletronico',
-                                                        convitesData.filter((item) => item.type === 'eletronico').map((item) => item.value)
-                                                    )
-                                                }
-                                            />
-                                        }
-                                        label="Convites Eletrônicos"
-                                    />
-                                }
-                            >
-                                {renderTreeItems('eletronico')}
-                            </CustomTreeItem>
-                        </SimpleTreeView>
-                    </Menu>
+                    <Autocomplete
+                        options={convitesData}
+                        getOptionLabel={(option) => option.label}
+                        value={selectedTipoConvite}
+                        onChange={handleTipoConviteChange}
+                        renderInput={(params) => <TextField {...params} placeholder="Selecione o Tipo de Convite" size="small"/>}
+                    />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
@@ -627,8 +381,9 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
                         >
                             <FormControlLabel value="Todas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Todas" />
                             <FormControlLabel value="Confirmadas/Pagas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Confirmadas/Pagas" />
+                            <FormControlLabel value="Aguardando aprovação" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Aguardando aprovação" />
+                            <FormControlLabel value="Sem validação de e-mail" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Sem validação de e-mail" />
                             <FormControlLabel value="Sem confirmação de pagamento" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Sem confirmação de pagamento" />
-                            <FormControlLabel value="Canceladas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Canceladas" />
                         </RadioGroup>
                     </FormControl>
 
@@ -639,9 +394,10 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
                             value={selectedStatus}
                             onChange={handleStatusFilter}
                         >
+                            <FormControlLabel value="Canceladas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Canceladas" />
                             <FormControlLabel value="Separadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Separadas" />
                             <FormControlLabel value="Não Separadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Não Separadas" />
-                            <FormControlLabel value="Não confirmadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Não Entregues" />
+                            <FormControlLabel value="Não confirmadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Não confirmadas" />
                         </RadioGroup>
                     </FormControl>
                 </Stack>
