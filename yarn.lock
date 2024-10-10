@@ -3574,7 +3574,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^5.13.7, @mui/utils@npm:^5.14.14, @mui/utils@npm:^5.14.16, @mui/utils@npm:^5.15.11, @mui/utils@npm:^5.15.9":
+"@mui/utils@npm:^5.13.7, @mui/utils@npm:^5.14.16, @mui/utils@npm:^5.15.11, @mui/utils@npm:^5.15.9":
   version: 5.15.11
   resolution: "@mui/utils@npm:5.15.11"
   dependencies:
@@ -5475,7 +5475,7 @@ __metadata:
     "@mui/x-data-grid": "npm:^6.19.5"
     "@mui/x-data-grid-generator": "npm:^6.19.5"
     "@mui/x-date-pickers": "npm:^7.19.0"
-    "@mui/x-tree-view": "npm:^6.17.0"
+    "@mui/x-tree-view": "npm:^7.19.0"
     "@reduxjs/toolkit": "npm:^2.2.1"
     "@tabler/icons-react": "npm:^2.47.0"
     "@types/chance": "npm:^1.1.6"
