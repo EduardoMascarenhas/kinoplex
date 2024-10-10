@@ -48,12 +48,6 @@ const headCells: HeadCell[] = [
         label: 'Valor',
     },
     {
-        id: 'reserva',
-        numeric: true,
-        label: 'Reserva',
-        align: 'center'
-    },
-    {
         id: 'pagamento',
         numeric: true,
         label: 'Pagamento',
