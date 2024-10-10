@@ -88,7 +88,7 @@ const TextoLimitado = ({ texto, limite }: { texto: string | undefined; limite: n
     }
 
     const textoFormatado = texto.length > limite ? texto.substring(0, limite) + '...' : texto;
-    
+
     return <span>{textoFormatado}</span>;
 };
 
@@ -214,7 +214,7 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
             {/* table */}
             <TableContainer>
                 <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
-                <CabecalhoTabelaVendas
+                    <CabecalhoTabelaVendas
                         numSelected={selected.length}
                         order={order}
                         orderBy={orderBy}
@@ -266,12 +266,6 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
                                         <TableCell sx={{ whiteSpace: 'nowrap' }}>R$ {row.price_total}</TableCell>
 
                                         <TableCell align="left">
-                                            <Tooltip title={`Reserva ${row.reserva}`}>
-                                                <span>{getStatusReserva(row.reserva)}</span>
-                                            </Tooltip>
-                                        </TableCell>
-
-                                        <TableCell align="left">
                                             <Tooltip title={`Pagamento ${row.pagamento}`}>
                                                 <span>{getStatusPagamento(row.pagamento)}</span>
                                             </Tooltip>
@@ -291,6 +285,12 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
 
                                         <TableCell align="center" sx={{ pr: 3 }}>
                                             <Stack direction="row" alignItems="center" spacing={1} justifyContent="center">
+                                                <Tooltip title="Clique se deseja enviar por email ou efetuar o download">
+                                                    <IconButton onClick={() => handleDialogToggler(row)} size="small" aria-label="deseja enviar por email ou efetuar o download">
+                                                        <DownloadIcon sx={{ fontSize: '1.3rem' }} />
+                                                    </IconButton>
+                                                </Tooltip>
+
                                                 <Tooltip title="Bloqueio de Convite">
                                                     <IconButton
                                                         color="primary"
@@ -312,12 +312,6 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
                                                         aria-label="Vincular lote"
                                                     >
                                                         <CommitIcon sx={{ fontSize: '1.5rem' }} />
-                                                    </IconButton>
-                                                </Tooltip>
-
-                                                <Tooltip title="Clique se deseja enviar por email ou efetuar o download">
-                                                    <IconButton onClick={() => handleDialogToggler(row)} size="small" aria-label="deseja enviar por email ou efetuar o download">
-                                                        <DownloadIcon sx={{ fontSize: '1.3rem' }} />
                                                     </IconButton>
                                                 </Tooltip>
 
@@ -383,17 +377,14 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
                 <DialogContent>
                     <DialogContentText>
                         {selectedRow?.email}
-                        <Button  sx={{ml: '8px', mr: '8px'}} onClick={handleEmailSend} variant='outlined' color="primary">
+                        <Button sx={{ ml: '8px', mr: '8px' }} onClick={handleEmailSend} variant='outlined' color="primary">
                             Enviar
                         </Button>
                         ou
-                        <Button sx={{ml: '8px', mr: '8px'}}  onClick={handleDownload} variant='outlined' color="primary">
+                        <Button sx={{ ml: '8px', mr: '8px' }} onClick={handleDownload} variant='outlined' color="primary">
                             Fazer Download
                         </Button>
                     </DialogContentText>
-
-
-
                 </DialogContent>
                 <Divider />
                 <DialogActions>

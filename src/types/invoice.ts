@@ -14,6 +14,7 @@ export interface Invoice {
     pagamento: string;
     separacao: string;
     entrega: string;
+    tipoConvite: string;
     status: string;
     discount: number;
 }

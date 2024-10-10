@@ -3193,7 +3193,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/base@npm:^5.0.0-beta.20, @mui/base@npm:^5.0.0-beta.22":
+"@mui/base@npm:^5.0.0-beta.22":
   version: 5.0.0-beta.37
   resolution: "@mui/base@npm:5.0.0-beta.37"
   dependencies:
@@ -3457,7 +3457,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^5.13.7, @mui/utils@npm:^5.14.14, @mui/utils@npm:^5.14.16, @mui/utils@npm:^5.15.11, @mui/utils@npm:^5.15.9":
+"@mui/utils@npm:^5.13.7, @mui/utils@npm:^5.14.16, @mui/utils@npm:^5.15.11, @mui/utils@npm:^5.15.9":
   version: 5.15.11
   resolution: "@mui/utils@npm:5.15.11"
   dependencies:
@@ -3667,25 +3667,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/x-tree-view@npm:^6.17.0":
-  version: 6.17.0
-  resolution: "@mui/x-tree-view@npm:6.17.0"
+"@mui/x-tree-view@npm:^7.19.0":
+  version: 7.19.0
+  resolution: "@mui/x-tree-view@npm:7.19.0"
   dependencies:
-    "@babel/runtime": "npm:^7.23.2"
-    "@mui/base": "npm:^5.0.0-beta.20"
-    "@mui/utils": "npm:^5.14.14"
-    "@types/react-transition-group": "npm:^4.4.8"
-    clsx: "npm:^2.0.0"
+    "@babel/runtime": "npm:^7.25.6"
+    "@mui/utils": "npm:^5.16.6"
+    "@mui/x-internals": "npm:7.18.0"
+    "@types/react-transition-group": "npm:^4.4.11"
+    clsx: "npm:^2.1.1"
     prop-types: "npm:^15.8.1"
     react-transition-group: "npm:^4.4.5"
   peerDependencies:
     "@emotion/react": ^11.9.0
     "@emotion/styled": ^11.8.1
-    "@mui/material": ^5.8.6
-    "@mui/system": ^5.8.0
+    "@mui/material": ^5.15.14 || ^6.0.0
+    "@mui/system": ^5.15.14 || ^6.0.0
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
-  checksum: 10c0/53d883fed2b16c76dad1588cdfe0e36142705f9c9782a645a29de3739f14bcfe0e6515d32f77a8909279f9a97eec7cb8324e43361d89e85363440ebf365bc144
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+  checksum: 10c0/f2440d17e3e7a1c3f122d38752ea2054751c327e6c781b47926aa2a9428a100199ae2d12c9a69df74ea789df0ce34f6c312b1c510d6135ad1e32165bd06ac8e9
   languageName: node
   linkType: hard
 
@@ -4363,7 +4368,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-transition-group@npm:^4.4.10, @types/react-transition-group@npm:^4.4.8":
+"@types/react-transition-group@npm:^4.4.10":
   version: 4.4.10
   resolution: "@types/react-transition-group@npm:4.4.10"
   dependencies:
@@ -5271,7 +5276,7 @@ __metadata:
     "@mui/x-data-grid": "npm:^6.19.5"
     "@mui/x-data-grid-generator": "npm:^6.19.5"
     "@mui/x-date-pickers": "npm:^7.19.0"
-    "@mui/x-tree-view": "npm:^6.17.0"
+    "@mui/x-tree-view": "npm:^7.19.0"
     "@reduxjs/toolkit": "npm:^2.2.1"
     "@tabler/icons-react": "npm:^2.47.0"
     "@types/chance": "npm:^1.1.6"
