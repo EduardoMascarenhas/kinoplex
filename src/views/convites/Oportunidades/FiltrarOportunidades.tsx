@@ -13,8 +13,11 @@ import AddIcon from '@mui/icons-material/AddTwoTone';
 import { KeyedObject } from 'types';
 import Button from '@mui/material/Button';
 import { Oportunidade } from 'types/oportunidade';
+import { Oportunidade } from 'types/oportunidade';
 
 interface Props {
+    rows: Oportunidade[];
+    setRows: (rows: Oportunidade[]) => void;
     rows: Oportunidade[];
     setRows: (rows: Oportunidade[]) => void;
 }
@@ -73,6 +76,11 @@ const FiltrarOportunidades = ({ rows, setRows }: Props) => {
                 size="small"
                 sx={{ width: { xs: 1, sm: 'auto' } }}
             />
+            <Stack direction="row" alignItems="center" spacing={1.25}>
+                <Button sx={{ textTransform: 'initial' }} variant="contained" onClick={() => handleCriarOportunidade()} size="medium">
+                    <AddIcon fontSize="small" /> Venda de Convite ou Venda de Evento
+                </Button>
+            </Stack>
         </Stack>
     );
 };
