@@ -17,7 +17,7 @@ const initialState: DefaultRootStateProps['customer'] = {
     products: [],
     productreviews: [],
     invoices: [],
-    sells: [],
+    oportunidades: [],
 };
 
 const slice = createSlice({
@@ -54,8 +54,8 @@ const slice = createSlice({
             state.invoices = action.payload;
         },
         // GET VENDA DATA
-        getVendaSuccess(state, action) {
-            state.sells = action.payload;
+        getOportunidadeSuccess(state, action) {
+            state.oportunidades = action.payload;
         }
     }
 });

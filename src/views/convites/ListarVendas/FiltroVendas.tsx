@@ -174,7 +174,6 @@ const convitesData = [
     { label: 'Vale Ingresso Azul', value: '5701', type: 'impresso' },
     { label: 'Vale Ingresso Lilas', value: '5601', type: 'impresso' },
     { label: 'Vale Ingresso Vermelho', value: '5155', type: 'impresso' },
-
     { label: 'CONVITES ELETRÔNICOS', value: '-2', type: 'eletronico' },
     { label: 'AZUL3D', value: '122', type: 'eletronico' },
     { label: 'BFRIDAY21', value: '82', type: 'eletronico' },

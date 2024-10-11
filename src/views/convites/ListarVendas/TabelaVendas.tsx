@@ -92,23 +92,6 @@ const TextoLimitado = ({ texto, limite }: { texto: string | undefined; limite: n
     return <span>{textoFormatado}</span>;
 };
 
-
-
-const getStatusReserva = (status: string) => {
-    switch (status) {
-        case 'Confirmado':
-            return <EventAvailableIcon color="success" />;
-        case 'Pendente':
-            return <CalendarMonthIcon color="warning" />;
-        case 'Cancelado':
-            return <EventBusyIcon color="error" />;
-        case 'Não confirmado':
-            return <CalendarTodayIcon color="disabled" />;
-        default:
-            return <CalendarTodayIcon color="disabled" />;
-    }
-};
-
 const getStatusPagamento = (status: string) => {
     switch (status) {
         case 'Confirmado':
