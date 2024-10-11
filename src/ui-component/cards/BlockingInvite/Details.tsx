@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // material-ui
 import {
@@ -15,7 +15,11 @@ import {
     TableHead,
     Paper,
     Table,
-    TableBody
+    TableBody,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem
 } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
@@ -62,8 +66,13 @@ const rows = [
 // table data
 
 const IBlockingDetails = () => {
+    const [selectedType, setSelectedType] = useState('IMPRESSO');
     const [openBlock, setOpenBlock] = React.useState(false);
     const [openUnblock, setOpenUnblock] = React.useState(false);
+
+    const handleSelectedTypeChange = (event: any) => {
+        setSelectedType(event.target.value);
+    };
 
     const handleClickOpenBlock = () => {
         setOpenBlock(true);
@@ -83,6 +92,28 @@ const IBlockingDetails = () => {
 
     return (
         <Grid container spacing={gridSpacing}>
+            <Grid item xs={12}>
+                <SubCard>
+                    <Grid container spacing={gridSpacing}>
+                        <Grid item xs={12}>
+                            <FormControl sx={{ minWidth: 250 }}>
+                                <InputLabel id="status-filter-label">Tipo de Convite</InputLabel>
+                                <Select
+                                    labelId="status-filter-label"
+                                    id="status-filter"
+                                    value={selectedType}
+                                    label="Filtrar por tipo de Convite"
+                                    onChange={handleSelectedTypeChange}
+                                >
+                                    <MenuItem value="IMPRESSO">Impresso</MenuItem>
+                                    <MenuItem value="ELETRONICO">Eletrônico</MenuItem>
+                                    <MenuItem value="AMBOS">Ambos Impresso e Eletrônico</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+                </SubCard>
+            </Grid>
             <Grid item xs={12}>
                 <SubCard>
                     <Grid container spacing={gridSpacing}>
@@ -162,6 +193,11 @@ const IBlockingDetails = () => {
                 <DialogTitle id="alert-dialog-title">{'Deseja Realmente Bloquear os Convites?'}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
+                        Tipo de Convite selecionado:{' '}
+                        <b>{`${selectedType === 'IMPRESSO' ? 'Impresso' : selectedType === 'ELETRONICO' ? 'Eletrônico' : 'Ambos Impresso e Eletrônico'}`}</b>
+                    </DialogContentText>
+                    <br />
+                    <DialogContentText id="alert-dialog-description-2">
                         Ao clicar em "BLOQUEAR" o processo de bloqueio terá início.
                     </DialogContentText>
                 </DialogContent>
@@ -182,7 +218,12 @@ const IBlockingDetails = () => {
             >
                 <DialogTitle id="alert-dialog-title">{'Deseja Realmente Desbloquear os Convites?'}</DialogTitle>
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
+                    <DialogContentText id="alert-dialog-description-3">
+                        Tipo de Convite selecionado:{' '}
+                        <b>{`${selectedType === 'IMPRESSO' ? 'Impresso' : selectedType === 'ELETRONICO' ? 'Eletrônico' : 'Ambos Impresso e Eletrônico'}`}</b>
+                    </DialogContentText>
+                    <br />
+                    <DialogContentText id="alert-dialog-description-4">
                         Ao clicar em "DESBLOQUEAR" o processo de desbloqueio terá início.
                     </DialogContentText>
                 </DialogContent>

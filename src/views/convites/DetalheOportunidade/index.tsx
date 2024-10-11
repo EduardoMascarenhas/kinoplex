@@ -10,12 +10,10 @@ import Tabs from '@mui/material/Tabs';
 // project imports
 import TabDetalhe from './TabDetalhe';
 import TabOportunidade from './TabOportunidade';
-import TabStatus from './TabStatus';
 import MainCard from 'ui-component/cards/MainCard';
 
 // assets
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
-import LocalShippingTwoToneIcon from '@mui/icons-material/LocalShippingTwoTone';
 import ReceiptTwoToneIcon from '@mui/icons-material/ReceiptTwoTone';
 
 // types
@@ -77,7 +75,7 @@ const DetalheOportunidade = () => {
                 }}
             >
                 <Tab icon={<DescriptionTwoToneIcon />} component={Link} to="#" label="Detalhes" {...a11yProps(0)} />
-                <Tab icon={<ReceiptTwoToneIcon />} component={Link} to="#" label="Oportunidade" {...a11yProps(1)} />
+                <Tab icon={<ReceiptTwoToneIcon />} component={Link} to="#" label="Nota de Débito" {...a11yProps(1)} />
                 {/* <Tab icon={<LocalShippingTwoToneIcon />} component={Link} to="#" label="Status" {...a11yProps(2)} /> */}
             </Tabs>
 
