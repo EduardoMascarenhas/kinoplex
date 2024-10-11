@@ -155,7 +155,6 @@ const listaClientes = [
 ];
 
 const convitesData = [
-    { label: 'CONVITES IMPRESSOS', value: '-1', type: 'impresso' },
     { label: 'CINETICKET', value: '4', type: 'impresso' },
     { label: 'CINETICKET 3D', value: '2', type: 'impresso' },
     { label: 'CINETICKET COMBO', value: '5', type: 'impresso' },
@@ -174,7 +173,6 @@ const convitesData = [
     { label: 'Vale Ingresso Azul', value: '5701', type: 'impresso' },
     { label: 'Vale Ingresso Lilas', value: '5601', type: 'impresso' },
     { label: 'Vale Ingresso Vermelho', value: '5155', type: 'impresso' },
-    { label: 'CONVITES ELETRÔNICOS', value: '-2', type: 'eletronico' },
     { label: 'AZUL3D', value: '122', type: 'eletronico' },
     { label: 'BFRIDAY21', value: '82', type: 'eletronico' },
     { label: 'CLASSE ECOMONICA', value: '88', type: 'eletronico' },
@@ -205,7 +203,8 @@ const listaOperadores = [
 ];
 
 const FiltroVendas = ({ rows, setRows }: Props) => {
-    const [search, setSearch] = useState<string>('');
+    const [searchId, setSearchId] = useState<string>('');
+    const [searchClient, setSearchClient] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<string>('Todas');
     const [selectedLocal, setSelectedLocal] = useState<{ label: string; value: string } | null>(locaisEntrega[0]);
     const [selectedCliente, setSelectedCliente] = useState<{ label: string; value: string } | null>(listaClientes[0]);
@@ -226,23 +225,58 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
         setAnchorEl(null);
     };
 
-    const handleSearch = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+    const handleSearchId = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
         const newString = event?.target.value;
-        setSearch(newString || '');
+        setSearchId(newString || '');
 
         if (newString) {
             const newRows = rows?.filter((row: KeyedObject) => {
                 let matches = true;
 
-                const properties = ['customer_name', 'date', 'email', 'cinema', 'invoice_id', 'quantity', 'status'];
+                const properties = ['id'];
 
                 let containsQuery = false;
 
                 properties.forEach((property) => {
-                    if (row[property].toString().toLowerCase().includes(newString.toString().toLowerCase())) {
+                    // Verifica se a propriedade existe antes de chamar toString
+                    const value = row[property];
+                    if (value && value.toString().toLowerCase().includes(newString.toLowerCase())) {
                         containsQuery = true;
                     }
                 });
+
+
+                if (!containsQuery) {
+                    matches = false;
+                }
+                return matches;
+            });
+            setRows(newRows);
+        } else {
+            setRows(rows);
+        }
+    };
+
+    const handleSearchClient = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
+        const newString = event?.target.value;
+        setSearchClient(newString || '');
+
+        if (newString) {
+            const newRows = rows?.filter((row: KeyedObject) => {
+                let matches = true;
+
+                const properties = ['cliente'];
+
+                let containsQuery = false;
+
+                properties.forEach((property) => {
+                    // Verifica se a propriedade existe antes de chamar toString
+                    const value = row[property];
+                    if (value && value.toString().toLowerCase().includes(newString.toLowerCase())) {
+                        containsQuery = true;
+                    }
+                });
+
 
                 if (!containsQuery) {
                     matches = false;
@@ -417,20 +451,20 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
 
                 <Grid item xs={12} md={6}>
                     <FormLabel sx={{ mb: '8px', fontWeight: 600 }} component="legend">Filtrar por Cliente:</FormLabel>
-                    <Autocomplete
-                        options={listaClientes}
-                        getOptionLabel={(option) => option.label}
-                        value={selectedCliente}
-                        onChange={handleClienteChange}
-                        renderInput={(params) => <TextField {...params} placeholder="Selecione o Cliente" size="small" />}
+                    <TextField
+                        onChange={handleSearchClient}
+                        placeholder="Digite o cliente"
+                        value={searchClient}
+                        size="small"
+                        fullWidth
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <FormLabel sx={{ mb: '8px', fontWeight: 600 }} component="legend">Filtrar por ID:</FormLabel>
                     <TextField
-                        onChange={handleSearch}
+                        onChange={handleSearchId}
                         placeholder="Insira o ID"
-                        value={search}
+                        value={searchId}
                         size="small"
                         fullWidth
                     />

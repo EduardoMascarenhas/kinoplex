@@ -23,12 +23,6 @@ import DownloadIcon from '@mui/icons-material/Download';
 import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import EditIcon from '@mui/icons-material/Edit';
 
-// Reserva
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import EventBusyIcon from '@mui/icons-material/EventBusy';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-
 // Pagamento
 import PaidIcon from '@mui/icons-material/Paid';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -186,7 +180,6 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
         setPage(0);
     };
 
-    const isSelected = (name: string) => selected.indexOf(name) !== -1;
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
     const handleClose = () => {
@@ -212,17 +205,12 @@ const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
                                 /** Make sure no display bugs if row isn't an OrderData object */
                                 if (typeof row === 'number') return null;
 
-                                const isItemSelected = isSelected(row.customer_name);
-
                                 return (
                                     <TableRow
                                         hover
-                                        aria-checked={isItemSelected}
                                         tabIndex={-1}
                                         key={index}
-                                        selected={isItemSelected}
                                     >
-
                                         <TableCell>{row.invoice_id}</TableCell>
                                         <TableCell sx={{ whiteSpace: 'nowrap' }}>
                                             <Tooltip title={row.customer_name}>
