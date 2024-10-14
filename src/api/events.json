@@ -1,0 +1,470 @@
+[
+    {
+        "id": 1,
+        "createdAt": "27/09/2024",
+        "empresa": {
+            "cnpj": "33.497.660/0001-89",
+            "nomeFantasia": "EMPRESA CINEMAS SÃO LUIZ S/A",
+            "banco": "Bradesco",
+            "agencia": "3369-3",
+            "conta": "11132-5"
+        },
+        "dataELocalizacao": {
+            "dia": "27/09/2024 27/09/2024 das 09h00 às 13h00",
+            "complexo": "(16) Kinoplex Sao Luiz",
+            "convidados": 12
+        },
+        "dadosDoEvento": {
+            "nEvento": "1",
+            "status": "CONFIRMADO_AGUARDANDO_PAGAMENTO",
+            "tipoEvento": "Cabine",
+            "nomeEvento": "CABINE EXIBIDOR TUPO POR UM POP STAR 2_19-09",
+            "cliente": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+            "nomeDoContato": "Ingrid Cancino",
+            "emailDoContato": "ingrid.cancino@disney.com",
+            "telefoneDoContato": "(75) 9 9244-1809",
+            "responsavel": "fernanda.oliveira",
+            "descricaoEvento": ""
+        },
+        "pacote": [
+            {
+                "id": 1,
+                "tipo": "Bomboniere",
+                "item": "NESPRESSO LEGGERO",
+                "quantidade": 12,
+                "valorUnitario": 6.50,
+                "valorTotal": 78.00
+            },
+            {
+                "id": 2,
+                "tipo": "Bomboniere",
+                "item": "AO DE QUEIJO C/8",
+                "quantidade": 12,
+                "valorUnitario": 5.00,
+                "valorTotal": 60.00
+            },
+            {
+                "id": 3,
+                "tipo": "Bomboniere",
+                "item": "AGUA CRYSTAL S/GÁS VIP 350ML",
+                "quantidade": 12,
+                "valorUnitario": 5.50,
+                "valorTotal": 66.00
+            }
+        ],
+        "infoAdministrativas": {
+            "dataVencimento": "21/10/2024",
+            "dataPagamento": "",
+            "formaDePagamento": "Boleto",
+            "informacoes": "",
+            "observacaoNoBoleto": ""
+        },
+        "boletos": [
+            {
+                "nBoleto": "22024000716-1",
+                "pagador": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+                "beneficiario": "EMPRESA CINEMAS SÃO LUIZ S/A",
+                "valorPago": 204.00,
+                "status": "ATIVA"
+            }
+        ],
+        "observacoesGerais": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
+            },
+            {
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:25:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:25:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento em Andamento!",
+                "titulo": "Titulo observação 2"
+            }
+        ],
+        "historicoComentarios": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento iniciado!",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "createdAt": "05/09/2024",
+        "empresa": {
+            "cnpj": "2.222.222/0001-22 ",
+            "nomeFantasia": "EMPRESA 2",
+            "banco": "Banco do Brasil",
+            "agencia": "22222-2",
+            "conta": "2222-2"
+        },
+        "dataELocalizacao": {
+            "dia": "11/10/2024 11/10/2024 das 09h00 às 13h00",
+            "complexo": "(14) Kinoplex Sao Paulo",
+            "convidados": 200
+        },
+        "dadosDoEvento": {
+            "nEvento": "2",
+            "status": "CONFIRMADO",
+            "tipoEvento": "Show",
+            "nomeEvento": "CABINE EXIBIDOR TUPO POR UM POP STAR 2_19-09",
+            "cliente": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+            "nomeDoContato": "Ingrid Cancino",
+            "emailDoContato": "ingrid.cancino@disney.com",
+            "telefoneDoContato": "",
+            "responsavel": "fernanda.oliveira",
+            "descricaoEvento": ""
+        },
+        "pacote": [
+            {
+                "id": 1,
+                "tipo": "Bomboniere",
+                "item": "NESPRESSO LEGGERO",
+                "quantidade": 12,
+                "valorUnitario": 6.50,
+                "valorTotal": 78.00
+            }
+        ],
+        "infoAdministrativas": {
+            "dataVencimento": "21/10/2024",
+            "dataPagamento": "",
+            "formaDePagamento": "Boleto",
+            "informacoes": "",
+            "observacaoNoBoleto": ""
+        },
+        "boletos": [
+            {
+                "nBoleto": "22024000716-1",
+                "pagador": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+                "beneficiario": "EMPRESA CINEMAS SÃO LUIZ S/A",
+                "valorPago": 204.00,
+                "status": "ATIVA"
+            }
+        ],
+        "observacoesGerais": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
+            }
+        ],
+        "historicoComentarios": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento iniciado!",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "3",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "createdAt": "05/08/2024",
+        "empresa": {
+            "cnpj": "33.497.660/0001-89",
+            "nomeFantasia": "EMPRESA teste 3",
+            "banco": "Bradesco",
+            "agencia": "3369-3",
+            "conta": "11132-5"
+        },
+        "dataELocalizacao": {
+            "dia": "27/09/2024 27/09/2024 das 09h00 às 13h00",
+            "complexo": "(16) Kinoplex Sao Luiz",
+            "convidados": 12
+        },
+        "dadosDoEvento": {
+            "nEvento": "3",
+            "status": "CANCELADO",
+            "tipoEvento": "Cabine",
+            "nomeEvento": "CABINE EXIBIDOR TUPO POR UM POP STAR 2_19-09",
+            "cliente": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+            "nomeDoContato": "Ingrid Cancino",
+            "emailDoContato": "ingrid.cancino@disney.com",
+            "telefoneDoContato": "",
+            "responsavel": "fernanda.oliveira",
+            "descricaoEvento": ""
+        },
+        "pacote": [],
+        "infoAdministrativas": {
+            "dataVencimento": "21/10/2024",
+            "dataPagamento": "",
+            "formaDePagamento": "Boleto",
+            "informacoes": "",
+            "observacaoNoBoleto": ""
+        },
+        "boletos": [
+            {
+                "nBoleto": "22024000716-1",
+                "pagador": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+                "beneficiario": "EMPRESA CINEMAS SÃO LUIZ S/A",
+                "valorPago": 204.00,
+                "status": "ATIVA"
+            }
+        ],
+        "observacoesGerais": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
+            }
+        ],
+        "historicoComentarios": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento iniciado normalmente, sem nenhum contratempo.",
+                "titulo": "Evento iniciado!"
+            },
+            {
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento, porém uma pessoa nao conseguiu entrar por que apresentou convite expirado e precisou gerar um novo convite.",
+                "titulo": "Evento Em Andamento"
+            },
+            {
+                "id": "3",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento finalizado com sucesso!",
+                "titulo": "Evento Finalizado!"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "createdAt": "23/07/2024",
+        "empresa": {
+            "cnpj": "33.497.660/0001-89",
+            "nomeFantasia": "EMPRESA 4",
+            "banco": "Bradesco",
+            "agencia": "3369-3",
+            "conta": "11132-5"
+        },
+        "dataELocalizacao": {
+            "dia": "27/09/2024 27/09/2024 das 09h00 às 13h00",
+            "complexo": "(16) Kinoplex Sao Luiz",
+            "convidados": 12
+        },
+        "dadosDoEvento": {
+            "nEvento": "4",
+            "status": "PAGO",
+            "tipoEvento": "Cabine",
+            "nomeEvento": "CABINE EXIBIDOR TUPO POR UM POP STAR 2_19-09",
+            "cliente": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+            "nomeDoContato": "Ingrid Cancino",
+            "emailDoContato": "ingrid.cancino@disney.com",
+            "telefoneDoContato": "",
+            "responsavel": "fernanda.oliveira",
+            "descricaoEvento": ""
+        },
+        "pacote": [
+            {
+                "id": 1,
+                "tipo": "Bomboniere",
+                "item": "NESPRESSO LEGGERO",
+                "quantidade": 12,
+                "valorUnitario": 6.50,
+                "valorTotal": 78.00
+            },
+            {
+                "id": 2,
+                "tipo": "Bomboniere",
+                "item": "AO DE QUEIJO C/8",
+                "quantidade": 12,
+                "valorUnitario": 5.00,
+                "valorTotal": 60.00
+            },
+            {
+                "id": 3,
+                "tipo": "Bomboniere",
+                "item": "AGUA CRYSTAL S/GÁS VIP 350ML",
+                "quantidade": 12,
+                "valorUnitario": 5.50,
+                "valorTotal": 66.00
+            }
+        ],
+        "infoAdministrativas": {
+            "dataVencimento": "21/10/2024",
+            "dataPagamento": "",
+            "formaDePagamento": "Boleto",
+            "informacoes": "",
+            "observacaoNoBoleto": ""
+        },
+        "boletos": [
+            {
+                "nBoleto": "22024000716-1",
+                "pagador": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+                "beneficiario": "EMPRESA CINEMAS SÃO LUIZ S/A",
+                "valorPago": 204.00,
+                "status": "ATIVA"
+            }
+        ],
+        "observacoesGerais": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
+            }
+        ],
+        "historicoComentarios": []
+    },
+    {
+        "id": 5,
+        "createdAt": "11/06/2024",
+        "empresa": {
+            "cnpj": "33.497.660/0001-89",
+            "nomeFantasia": "EMPRESA 5",
+            "banco": "Bradesco",
+            "agencia": "3369-3",
+            "conta": "11132-5"
+        },
+        "dataELocalizacao": {
+            "dia": "27/09/2024 27/09/2024 das 09h00 às 13h00",
+            "complexo": "(16) Kinoplex Sao Luiz",
+            "convidados": 12
+        },
+        "dadosDoEvento": {
+            "nEvento": "5",
+            "status": "CONFIRMADO_AGUARDANDO_PAGAMENTO",
+            "tipoEvento": "Cabine",
+            "nomeEvento": "CABINE EXIBIDOR TUPO POR UM POP STAR 2_19-09",
+            "cliente": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+            "nomeDoContato": "Ingrid Cancino",
+            "emailDoContato": "ingrid.cancino@disney.com",
+            "telefoneDoContato": "",
+            "responsavel": "fernanda.oliveira",
+            "descricaoEvento": ""
+        },
+        "pacote": [
+            {
+                "id": 1,
+                "tipo": "Bomboniere",
+                "item": "NESPRESSO LEGGERO",
+                "quantidade": 12,
+                "valorUnitario": 6.50,
+                "valorTotal": 78.00
+            },
+            {
+                "id": 2,
+                "tipo": "Bomboniere",
+                "item": "AO DE QUEIJO C/8",
+                "quantidade": 12,
+                "valorUnitario": 5.00,
+                "valorTotal": 60.00
+            },
+            {
+                "id": 3,
+                "tipo": "Bomboniere",
+                "item": "AGUA CRYSTAL S/GÁS VIP 350ML",
+                "quantidade": 12,
+                "valorUnitario": 5.50,
+                "valorTotal": 66.00
+            }
+        ],
+        "infoAdministrativas": {
+            "dataVencimento": "21/10/2024",
+            "dataPagamento": "",
+            "formaDePagamento": "Boleto",
+            "informacoes": "",
+            "observacaoNoBoleto": ""
+        },
+        "boletos": [
+            {
+                "nBoleto": "22024000716-1",
+                "pagador": "THE WALT DISNEY COMPANY (BRASIL) LTDA",
+                "beneficiario": "EMPRESA CINEMAS SÃO LUIZ S/A",
+                "valorPago": 204.00,
+                "status": "ATIVA"
+            }
+        ],
+        "observacoesGerais": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "observacao": "Evento iniciado!",
+                "titulo": "Titulo observação 1"
+            }
+        ],
+        "historicoComentarios": [
+            {
+                "id": "1",
+                "createdAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:18:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento iniciado!",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "2",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "3",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "4",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "5",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento em andamento",
+                "userName": "UserTeste"
+            },
+            {
+                "id": "6",
+                "createdAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "updatedAt": "Thu Sep 26 2024 10:20:54 GMT-0300 (Horário Padrão de Brasília)",
+                "comentario": "Evento Finalizado!",
+                "userName": "UserTeste"
+            }
+        ]
+    }
+]

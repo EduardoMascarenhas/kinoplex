@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // material-ui
-import { Grid, FormControlLabel, Checkbox, TextField, Select, MenuItem, InputAdornment, Box } from '@mui/material';
-
+import { Grid, FormControlLabel, Checkbox, TextField, InputAdornment, Box, Stack } from '@mui/material';
 export interface AllDataType {
     erpIntegrate?: boolean;
     allowMultipleChanges?: boolean;
@@ -149,9 +148,9 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
         });
     }, [categoria]);
     return (
-        <Grid container sx={{ paddingY: '15px' }}>
+        <Grid container spacing={2}>
             {/*
-            <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+            <Grid item xs={12} >
                 CATEGORIA SELECIONADA: {categoria}
                 <br />
                 JSON:{' '}
@@ -176,52 +175,58 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
 
             {categoria === 'CINETICKET_ELETRONICO' ? (
                 <>
-                    <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={allData.allowMultipleChanges}
-                                    onChange={(e) => handleChangeData(e, 'allowMultipleChanges')}
-                                    color="primary"
-                                />
-                            }
-                            label="Permite múltiplas trocas"
-                        />
+                    <Grid item xs={12}>
+                        <Stack spacing={1}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={allData.allowMultipleChanges}
+                                        onChange={(e) => handleChangeData(e, 'allowMultipleChanges')}
+                                        color="primary"
+                                    />
+                                }
+                                label="Permite múltiplas trocas"
+                            />
+                        </Stack>
                     </Grid>
                     {allData.allowMultipleChanges ? (
                         <>
-                            <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
-                                <Box sx={{ display: 'flex' }}>
-                                    <h4>Quantidade Máxima de Trocas</h4>
-                                </Box>
-                                <TextField
-                                    id="minimum-stock"
-                                    label="Quantidade Máxima de Trocas"
-                                    variant="outlined"
-                                    sx={{ width: '100%' }}
-                                    onChange={(e) => handleChangeData(e, 'maximumNumberOfChanges')}
-                                    value={allData.maximumNumberOfChanges}
-                                    type="number"
-                                    inputProps={{
-                                        step: 1,
-                                        min: 1
-                                    }}
-                                />
+                            <Grid item xs={3}>
+                                <Stack spacing={1}>
+                                    <Box sx={{ display: 'flex' }}>
+                                        <h4>Quantidade Máxima de Trocas</h4>
+                                    </Box>
+                                    <TextField
+                                        id="minimum-stock"
+                                        label="Quantidade Máxima de Trocas"
+                                        variant="outlined"
+                                        sx={{ width: '100%' }}
+                                        onChange={(e) => handleChangeData(e, 'maximumNumberOfChanges')}
+                                        value={allData.maximumNumberOfChanges}
+                                        type="number"
+                                        inputProps={{
+                                            step: 1,
+                                            min: 1
+                                        }}
+                                    />
+                                </Stack>
                             </Grid>
-                            <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
-                                <Box sx={{ display: 'flex' }}>
-                                    <h4>Restringir trocas somente na mesma sessão</h4>
-                                </Box>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            checked={allData.changesOnlySameSession}
-                                            onChange={(e) => handleChangeData(e, 'changesOnlySameSession')}
-                                            color="primary"
-                                        />
-                                    }
-                                    label="Restringir"
-                                />
+                            <Grid item xs={3}>
+                                <Stack spacing={1}>
+                                    <Box sx={{ display: 'flex' }}>
+                                        <h4>Restringir trocas somente na mesma sessão</h4>
+                                    </Box>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={allData.changesOnlySameSession}
+                                                onChange={(e) => handleChangeData(e, 'changesOnlySameSession')}
+                                                color="primary"
+                                            />
+                                        }
+                                        label="Restringir"
+                                    />
+                                </Stack>
                             </Grid>
                         </>
                     ) : (
@@ -231,16 +236,22 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
             ) : (
                 <></>
             )}
-            <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
-                <FormControlLabel
-                    control={
-                        <Checkbox checked={allData.erpIntegrate} onChange={(e) => handleChangeData(e, 'erpIntegrate')} color="primary" />
-                    }
-                    label="Integrar com ERP somente após o resgate"
-                />
+            <Grid item xs={12}>
+                <Stack spacing={1}>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={allData.erpIntegrate}
+                                onChange={(e) => handleChangeData(e, 'erpIntegrate')}
+                                color="primary"
+                            />
+                        }
+                        label="Integrar com ERP somente após o resgate"
+                    />
+                </Stack>
             </Grid>
-            <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Nome / Descrição</h4>
                     </Box>
@@ -252,8 +263,10 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
                         onChange={(e) => handleChangeData(e, 'nameDescription')}
                         value={allData.nameDescription}
                     />
-                </Grid>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Abreviatura</h4>
                     </Box>
@@ -265,8 +278,10 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
                         onChange={(e) => handleChangeData(e, 'abbreviation')}
                         value={allData.abbreviation}
                     />
-                </Grid>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Número do Ingresso (ToTVS)</h4>
                     </Box>
@@ -278,13 +293,15 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
                         onChange={(e) => handleChangeData(e, 'ticketNumber')}
                         value={allData.ticketNumber}
                     />
-                </Grid>
-                {categoria === 'CINETICKET' ||
-                categoria === 'CINETICKET_COMBO' ||
-                categoria === 'CINETICKET_BOMBONIERE' ||
-                categoria === 'CONVITE_CORTESIA' ? (
-                    <>
-                        <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            {categoria === 'CINETICKET' ||
+            categoria === 'CINETICKET_COMBO' ||
+            categoria === 'CINETICKET_BOMBONIERE' ||
+            categoria === 'CONVITE_CORTESIA' ? (
+                <>
+                    <Grid item xs={3}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Estoque Mínimo</h4>
                             </Box>
@@ -301,18 +318,20 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
                                     min: 1
                                 }}
                             />
-                        </Grid>
-                    </>
-                ) : (
-                    <></>
-                )}
+                        </Stack>
+                    </Grid>
+                </>
+            ) : (
+                <></>
+            )}
 
-                {categoria === 'CINETICKET' ||
-                categoria === 'CINETICKET_COMBO' ||
-                categoria === 'CINETICKET_ELETRONICO' ||
-                categoria === 'CINETICKET_COMBO_ELETRONICO' ? (
-                    <>
-                        <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+            {categoria === 'CINETICKET' ||
+            categoria === 'CINETICKET_COMBO' ||
+            categoria === 'CINETICKET_ELETRONICO' ||
+            categoria === 'CINETICKET_COMBO_ELETRONICO' ? (
+                <>
+                    <Grid item xs={3}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Preço de Venda do Ingresso</h4>
                             </Box>
@@ -328,16 +347,18 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
                                 }}
                                 type="number"
                             />
-                        </Grid>
-                    </>
-                ) : (
-                    <></>
-                )}
-                {categoria === 'CINETICKET_ELETRONICO' ||
-                categoria === 'CINETICKET_COMBO_ELETRONICO' ||
-                categoria === 'CONVITE_CORTESIA_ELETRONICO' ? (
-                    <>
-                        <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                        </Stack>
+                    </Grid>
+                </>
+            ) : (
+                <></>
+            )}
+            {categoria === 'CINETICKET_ELETRONICO' ||
+            categoria === 'CINETICKET_COMBO_ELETRONICO' ||
+            categoria === 'CONVITE_CORTESIA_ELETRONICO' ? (
+                <>
+                    <Grid item xs={3}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Preço da Conveniência</h4>
                             </Box>
@@ -353,17 +374,19 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
                                 }}
                                 type="number"
                             />
-                        </Grid>
-                    </>
-                ) : (
-                    <></>
-                )}
-                {categoria === 'CINETICKET_COMBO' ||
-                categoria === 'CINETICKET_COMBO_ELETRONICO' ||
-                categoria === 'CINETICKET_BOMBONIERE' ||
-                categoria === 'CINETICKET_BOMBONIERE_ELETRONICO' ? (
-                    <>
-                        <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                        </Stack>
+                    </Grid>
+                </>
+            ) : (
+                <></>
+            )}
+            {categoria === 'CINETICKET_COMBO' ||
+            categoria === 'CINETICKET_COMBO_ELETRONICO' ||
+            categoria === 'CINETICKET_BOMBONIERE' ||
+            categoria === 'CINETICKET_BOMBONIERE_ELETRONICO' ? (
+                <>
+                    <Grid item xs={3}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Preço de Venda dos Produtos</h4>
                             </Box>
@@ -379,18 +402,20 @@ const DadosCineticket = ({ categoria }: { categoria: string }) => {
                                 }}
                                 type="number"
                             />
-                        </Grid>
-                    </>
-                ) : (
-                    <></>
-                )}
-            </Grid>
+                        </Stack>
+                    </Grid>
+                </>
+            ) : (
+                <></>
+            )}
 
-            <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
-                <FormControlLabel
-                    control={<Checkbox checked={allData.printValue} onChange={handleCheckboxPrintValue} color="primary" />}
-                    label="Imprimir o valor no cupom"
-                />
+            <Grid item xs={12}>
+                <Stack spacing={1}>
+                    <FormControlLabel
+                        control={<Checkbox checked={allData.printValue} onChange={handleCheckboxPrintValue} color="primary" />}
+                        label="Imprimir o valor no cupom"
+                    />
+                </Stack>
             </Grid>
         </Grid>
     );

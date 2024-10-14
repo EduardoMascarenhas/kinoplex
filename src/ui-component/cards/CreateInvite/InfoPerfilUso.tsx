@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // material-ui
-import { Grid, TextField, FormControlLabel, Checkbox, Box, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Grid, TextField, FormControlLabel, Checkbox, Box, Select, MenuItem, FormControl, InputLabel, Stack } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -8,7 +8,6 @@ import 'dayjs/locale/pt-br'; // Importando o idioma pt-BR
 import dayjs, { Dayjs } from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -342,9 +341,9 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
         }
     }, [selectedCinema, selectedChannel, selectedDays, selectedRoomType]);
     return (
-        <Grid container sx={{ paddingY: '15px' }}>
+        <Grid container spacing={2}>
             {/*
-            <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+            <Grid item xs={12} >
                 JSON:{' '}
                 {`{
                     printName: ${allData.printName},
@@ -373,8 +372,8 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
             </Grid>
             */}
 
-            <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Nome Impresso no Ingresso</h4>
                     </Box>
@@ -386,8 +385,10 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                         onChange={(e) => handleChangeData(e, 'printName')}
                         value={allData.printName}
                     />
-                </Grid>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Quantidade Máxima Pré-Aprovada</h4>
                     </Box>
@@ -399,34 +400,10 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                         onChange={(e) => handleChangeData(e, 'qtdMaxPreApproved')}
                         value={allData.qtdMaxPreApproved}
                     />
-                </Grid>
-                <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
-                    <Box sx={{ display: 'flex' }}>
-                        <h4>Canais</h4>
-                        <FormControlLabel
-                            control={<Checkbox checked={selectAllChannel} onChange={handleSelectAllChannel} />}
-                            label="TODOS"
-                            sx={{ ml: '15px' }}
-                        />
-                    </Box>
-                </Grid>
-                <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                    <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
-                        {canais.map((channel) => (
-                            <FormControlLabel
-                                key={channel}
-                                control={
-                                    <Checkbox
-                                        checked={selectedChannel.includes(channel)}
-                                        onChange={(e) => handleChangeChannel(e, channel)}
-                                    />
-                                }
-                                label={channel}
-                            />
-                        ))}
-                    </Grid>
-                </Grid>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Cidade</h4>
                     </Box>
@@ -438,38 +415,62 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                         onChange={(e) => handleChangeData(e, 'city')}
                         value={allData.city}
                     />
-                </Grid>
-                <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={12}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
-                        <h4>Cinema</h4>
+                        <h4>Canais</h4>
                         <FormControlLabel
-                            control={<Checkbox checked={selectAllCinema} onChange={handleSelectAllCinema} />}
-                            key={'ALL'}
-                            label={'TODOS'}
+                            control={<Checkbox checked={selectAllChannel} onChange={handleSelectAllChannel} />}
+                            label="TODOS"
                             sx={{ ml: '15px' }}
                         />
                     </Box>
+                </Stack>
+            </Grid>
+            <Grid item xs={12} sx={{ display: 'flex' }}>
+                {canais.map((channel) => (
+                    <FormControlLabel
+                        key={channel}
+                        control={<Checkbox checked={selectedChannel.includes(channel)} onChange={(e) => handleChangeChannel(e, channel)} />}
+                        label={channel}
+                    />
+                ))}
+            </Grid>
 
-                    <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                        {allCinemas.map((c) => {
-                            return (
-                                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }} key={c.id}>
-                                    <FormControlLabel
-                                        key={c.id}
-                                        label={c.name}
-                                        control={
-                                            <Checkbox
-                                                checked={selectedCinema.includes(c.name)}
-                                                onChange={(e) => handleCinemaChange(e, c.name)}
-                                            />
-                                        }
-                                    />
-                                </Grid>
-                            );
-                        })}
-                    </Grid>
+            <Grid item xs={12}>
+                <Box sx={{ display: 'flex' }}>
+                    <h4>Cinema</h4>
+                    <FormControlLabel
+                        control={<Checkbox checked={selectAllCinema} onChange={handleSelectAllCinema} />}
+                        key={'ALL'}
+                        label={'TODOS'}
+                        sx={{ ml: '15px' }}
+                    />
+                </Box>
+
+                <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                    {allCinemas.map((c) => {
+                        return (
+                            <Grid item xs={3} key={c.id}>
+                                <FormControlLabel
+                                    key={c.id}
+                                    label={c.name}
+                                    control={
+                                        <Checkbox
+                                            checked={selectedCinema.includes(c.name)}
+                                            onChange={(e) => handleCinemaChange(e, c.name)}
+                                        />
+                                    }
+                                />
+                            </Grid>
+                        );
+                    })}
                 </Grid>
-                <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+            </Grid>
+            <Grid item xs={12}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Tipos de Sala</h4>
                         <FormControlLabel
@@ -482,7 +483,7 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                     <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
                         {rTypes.map((rT) => {
                             return (
-                                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                                <Grid item xs={3}>
                                     <FormControlLabel
                                         control={
                                             <Checkbox
@@ -497,12 +498,14 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                             );
                         })}
                     </Grid>
-                </Grid>
-                {categoria === 'CINETICKET_BOMBONIERE' || categoria === 'CINETICKET_BOMBONIERE_ELETRONICO' ? (
-                    <></>
-                ) : (
-                    <>
-                        <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            {categoria === 'CINETICKET_BOMBONIERE' || categoria === 'CINETICKET_BOMBONIERE_ELETRONICO' ? (
+                <></>
+            ) : (
+                <>
+                    <Grid item xs={3}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Filme</h4>
                             </Box>
@@ -518,8 +521,10 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                                     </MenuItem>
                                 ))}
                             </Select>
-                        </Grid>
-                        <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Válido somente para</h4>
                             </Box>
@@ -535,8 +540,10 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                                     </MenuItem>
                                 ))}
                             </Select>
-                        </Grid>
-                        <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Horário da Sessão nos Dias de Semana </h4>
                             </Box>
@@ -599,8 +606,10 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                                     </Select>
                                 </FormControl>
                             </Box>
-                        </Grid>
-                        <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Horário da Sessão nos Finais de Semana </h4>
                             </Box>
@@ -663,12 +672,14 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                                     </Select>
                                 </FormControl>
                             </Box>
-                        </Grid>
-                        <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Filmes 3D</h4>
                             </Box>
-                            <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+                            <Grid item xs={12}>
                                 <FormControlLabel
                                     control={
                                         <Checkbox
@@ -683,12 +694,14 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                                     sx={{ ml: '15px' }}
                                 />
                             </Grid>
-                        </Grid>
-                        <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                        </Stack>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <Stack spacing={1}>
                             <Box sx={{ display: 'flex' }}>
                                 <h4>Salas VIP</h4>
                             </Box>
-                            <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+                            <Grid item xs={12}>
                                 <FormControlLabel
                                     control={
                                         <Checkbox
@@ -703,40 +716,40 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                                     sx={{ ml: '15px' }}
                                 />
                             </Grid>
-                        </Grid>
-                    </>
-                )}
+                        </Stack>
+                    </Grid>
+                </>
+            )}
 
-                <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+            <Grid item xs={12}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Período Válido (dd/mm/aaaa)</h4>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
                             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
-                                <DemoContainer components={['DatePicker']}>
-                                    <DatePicker
-                                        label="De"
-                                        defaultValue={allData.validFrom}
-                                        onChange={(newValue) => handleChangeValidFrom(newValue)}
-                                    />
-                                </DemoContainer>
+                                <DatePicker
+                                    label="De"
+                                    defaultValue={allData.validFrom}
+                                    onChange={(newValue) => handleChangeValidFrom(newValue)}
+                                />
                             </LocalizationProvider>
                         </FormControl>
                         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
                             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
-                                <DemoContainer components={['DatePicker']}>
-                                    <DatePicker
-                                        label="Até"
-                                        defaultValue={allData.validTo}
-                                        onChange={(newValue) => handleChangeValidTo(newValue)}
-                                    />
-                                </DemoContainer>
+                                <DatePicker
+                                    label="Até"
+                                    defaultValue={allData.validTo}
+                                    onChange={(newValue) => handleChangeValidTo(newValue)}
+                                />
                             </LocalizationProvider>
                         </FormControl>
                     </Box>
-                </Grid>
-                <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={12}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Dias da Semana</h4>
                         <FormControlLabel
@@ -746,7 +759,7 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                         />
                     </Box>
                     <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                        <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+                        <Grid item xs={12}>
                             {allDays.map((day) => (
                                 <FormControlLabel
                                     key={day}
@@ -756,7 +769,7 @@ const InfoPerfilUso = ({ categoria }: { categoria: string }) => {
                             ))}
                         </Grid>
                     </Grid>
-                </Grid>
+                </Stack>
             </Grid>
         </Grid>
     );

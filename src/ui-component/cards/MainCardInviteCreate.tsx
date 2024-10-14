@@ -1,8 +1,8 @@
-import React, { Ref, useState } from 'react';
+import React, { Ref } from 'react';
 
 // material-ui
 import Card, { CardProps } from '@mui/material/Card';
-import CardContent, { CardContentProps } from '@mui/material/CardContent';
+import { CardContentProps } from '@mui/material/CardContent';
 import CardHeader, { CardHeaderProps } from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -11,15 +11,10 @@ import Typography from '@mui/material/Typography';
 import useConfig from 'hooks/useConfig';
 
 // assets
-import AddIcon from '@mui/icons-material/Add';
 
 // types
 import { ThemeMode } from 'types/config';
 import { KeyedObject } from 'types';
-import InputAdornment from '@mui/material/InputAdornment';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import AddClient from 'views/invitations/Client/AddClient';
 import Box from '@mui/material/Box';
 
 // constant

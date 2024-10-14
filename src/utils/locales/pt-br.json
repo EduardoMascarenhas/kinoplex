@@ -1,18 +1,16 @@
 {
-    "invitations": "Convites",
+    "convites": "Convites",
     "opportunities": "Oportunidades",
+    "create-opportunities": "Oportunidades",
     "sales": "Vendas",
     "types": "Tipos",
-
     "dashboard": "Painel de Controle",
     "default": "Padrão",
     "analytics": "Análises",
-
     "widget": "Widget",
     "statistics": "Estatísticas",
     "data": "Dados",
     "chart": "Gráfico",
-
     "application": "Aplicativo",
     "users": "Usuários",
     "social-profile": "Perfil Social",
@@ -20,11 +18,18 @@
     "profile": "Perfil",
     "cards": "Cartões",
     "list": "Lista",
+    "opportunities-list": "Oportunidades",
+    "invite-list": "Convites",
+    "event-list": "Eventos",
+    "client-list": "Clientes",
+    "opportunitie-detail": "Detalhe da Oportonidades",
+    "sales-list": "Lista de Vendas",
     "create": "Criar",
     "order-details": "Detalhes do Pedido",
     "style": "Estilo",
     "customer": "Cliente",
     "customer-list": "Lista de Clientes",
+    "add-client": "Adicionar Cliente",
     "order-list": "Lista de Pedidos",
     "create-invoice": "Criar Fatura",
     "product": "Produto",
@@ -57,7 +62,6 @@
     "statement": "Extrato",
     "refund": "Reembolso",
     "earning": "Ganho",
-
     "forms": "Formulários",
     "components": "Componentes",
     "autocomplete": "Autocompletar",
@@ -102,7 +106,6 @@
     "multi-column-forms": "Formulários de Múltiplas Colunas",
     "action-bar": "Barra de Ações",
     "sticky-action-bar": "Barra de Ações Fixa",
-
     "ui-element": "Elemento UI",
     "basic": "Básico",
     "basic-caption": "8+ Componentes Básicos",
@@ -124,7 +127,6 @@
     "timeline": "Linha do Tempo",
     "toggle-button": "Botão Alternar",
     "treeview": "Visão em Árvore",
-
     "pages": "Páginas",
     "pages-caption": "Páginas Pré-construídas",
     "authentication": "Autenticação",
@@ -146,7 +148,6 @@
     "contact-us": "Fale Conosco",
     "faqs": "Perguntas Frequentes",
     "privacy-policy": "Política de Privacidade",
-
     "utilities": "Utilitários",
     "typography": "Tipografia",
     "color": "Cor",
@@ -156,7 +157,6 @@
     "material-icons": "Ícones Material",
     "animation": "Animação",
     "grid": "Grade",
-
     "others": "Outros",
     "menu-level": "Níveis de Menu",
     "level": "Nível",
@@ -170,18 +170,14 @@
     "coded": "Codificado",
     "c": "C",
     "outlined": "Contornado",
-
     "sample-page": "Página de Exemplo",
     "documentation": "Documentação",
     "roadmap": "Roteiro",
-
     "title": "Multi Idiomas",
     "home": "Início",
     "change": "Alterar Idioma",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-
     "account-settings": "Configurações da Conta",
     "logout": "Sair",
-
     "more-items": "Mais Itens"
 }

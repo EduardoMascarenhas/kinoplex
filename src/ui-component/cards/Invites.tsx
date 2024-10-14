@@ -1,17 +1,23 @@
 import { useState, useMemo } from 'react';
 
 // material-ui
-import { Box, Stack, Menu, MenuItem, Grid, Chip, Checkbox, FormControlLabel, RadioGroup, Radio } from '@mui/material';
+import { Box, Stack, Tooltip, Grid, Chip, Checkbox, FormControlLabel, RadioGroup, Radio } from '@mui/material';
 import { DataGrid, GridColDef, GridRowsProp, GridValueGetterParams, GridToolbarQuickFilter, GridLogicOperator } from '@mui/x-data-grid';
 import { ptBR } from '@mui/x-data-grid/locales';
 
 // icons
-import { IconSettings } from '@tabler/icons-react';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
+import AutoAwesomeMotionTwoToneIcon from '@mui/icons-material/AutoAwesomeMotionTwoTone';
+import DoNotDisturbOnTwoToneIcon from '@mui/icons-material/DoNotDisturbOnTwoTone';
+import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
 
 // project import
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
-import { CSVExport } from 'views/forms/tables/TableExports';
+import useConfig from 'hooks/useConfig';
+//import { CSVExport } from 'views/forms/tables/TableExports';
+// types
+import { ThemeMode } from 'types/config';
 
 // table columns
 const columns: GridColDef[] = [
@@ -228,6 +234,7 @@ function TableDataGrid({ Selected, fRows }: { Selected: any; fRows: GridRowsProp
 }
 
 const MenuActions = (params: any) => {
+    const { mode } = useConfig();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = anchorEl ? true : false;
     const handleClickAcao = (event: any) => {
@@ -237,42 +244,55 @@ const MenuActions = (params: any) => {
         setAnchorEl(null);
     };
 
-    return (
-        <>
-            <Box
-                sx={{
-                    display: 'flex',
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-            >
-                <IconSettings
-                    id={`icon-${params.id}`}
-                    className="actions-icon teste"
-                    fontSize="small"
-                    aria-controls={open ? `menu-${params.id}` : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClickAcao}
-                    color="#364152"
-                />
-                <Menu
-                    id={`menu-${params.id}`}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleCloseAcao}
-                    MenuListProps={{
-                        'aria-labelledby': `${params.id}`
-                    }}
-                >
-                    <MenuItem onClick={() => console.log(`alterar ${params.id}`)}>Alterar</MenuItem>
+    const cogColor = mode === ThemeMode.DARK ? '#fff' : '#364152';
 
-                    {params.status === 'ATIVO' ? <MenuItem onClick={() => console.log(`inativar ${params.id}`)}>Inativar</MenuItem> : <></>}
-                    {params.status === 'INATIVO' ? <MenuItem onClick={() => console.log(`ativar ${params.id}`)}>Ativar</MenuItem> : <></>}
-                </Menu>
-            </Box>
-        </>
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '15px'
+            }}
+        >
+            <Tooltip title="Alterar">
+                <EditTwoToneIcon
+                    className="actions-icon-alterar"
+                    onClick={() => (window.location.href = '/convites/detalhes')}
+                    sx={{ cursor: 'pointer' }}
+                />
+            </Tooltip>
+            <Tooltip title="Separar">
+                <AutoAwesomeMotionTwoToneIcon
+                    className="actions-icon-detalhes"
+                    onClick={() => (window.location.href = `/convite/separacao/${params.id}`)}
+                    sx={{ cursor: 'pointer' }}
+                />
+            </Tooltip>
+            {params.status === 'ATIVO' ? (
+                <Tooltip title="Inativar">
+                    <CheckCircleTwoToneIcon
+                        className="actions-icon-inativar"
+                        onClick={() => console.log(`inativar ${params.id}`)}
+                        sx={{ cursor: 'pointer' }}
+                    />
+                </Tooltip>
+            ) : (
+                <></>
+            )}
+            {params.status === 'INATIVO' ? (
+                <Tooltip title="Ativar">
+                    <DoNotDisturbOnTwoToneIcon
+                        className="actions-icon-ativar"
+                        onClick={() => console.log(`ativar ${params.id}`)}
+                        sx={{ cursor: 'pointer' }}
+                    />
+                </Tooltip>
+            ) : (
+                <></>
+            )}
+        </Box>
     );
 };
 

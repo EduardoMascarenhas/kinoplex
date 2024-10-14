@@ -1,0 +1,91 @@
+{
+    "opportunities": [
+        {
+            "id": 1,
+            "data_criacao": "05/01/2024 09:05",
+            "cliente": "Carlos Eduardo da Silva Pereira Oliveira dos Santos",
+            "tipo": {
+                "convite": ["Impresso", "Eletrônico"]
+            },
+            "quantidade": {
+                "impresso": 1000,
+                "eletronico": 600
+            },
+            "preco_total": "5.000,00"
+        },
+        {
+            "id": 2,
+            "data_criacao": "30/02/2024 09:55",
+            "cliente": "Maria Gabriela de Souza Martins Almeida Andrade de Lima",
+            "tipo": "Evento",
+            "preco_total": "5.000,00"
+        },
+        {
+            "id": 3,
+            "data_criacao": "31/03/2024 19:08",
+            "cliente": "João Pereira",
+            "tipo": "Evento",
+            "preco_total": "50.000,00"
+        },
+        {
+            "id": 4,
+            "data_criacao": "20/04/2024 11:35",
+            "cliente": "Ana Souza",
+            "tipo": {
+                "convite": ["Eletrônico"]
+            },
+            "quantidade": {
+                "eletronico": 1000
+            },
+            "preco_total": "17.000,00"
+        },
+        {
+            "id": 5,
+            "data_criacao": "05/04/2024 09:05",
+            "cliente": "Bruno Henrique da Costa Carvalho Almeida Moreira",
+            "tipo": {
+                "convite": ["Impresso"]
+            },
+            "quantidade": {
+                "impresso": 1000
+            },
+            "preco_total": "5.000,00"
+        },
+        {
+            "id": 6,
+            "data_criacao": "05/01/2024 09:05",
+            "cliente": "Fernanda Lima",
+            "tipo": {
+                "convite": ["Impresso"]
+            },
+            "quantidade": {
+                "impresso": 1050
+            },
+            "preco_total": "5.000,00"
+        },
+        {
+            "id": 7,
+            "data_criacao": "05/01/2024 09:05",
+            "cliente": "Lucas Nascimento",
+            "tipo": {
+                "convite": ["Impresso"]
+            },
+            "quantidade": {
+                "impresso": 1000
+            },
+            "preco_total": "5.000,00"
+        },
+        {
+            "id": 8,
+            "data_criacao": "05/01/2024 09:05",
+            "cliente": "Paula Andrade",
+            "tipo": {
+                "convite": ["Impresso"]
+            },
+            "quantidade": {
+                "impresso": 1000
+            },
+            "preco_total": "5.000,00"
+        }
+    ]
+}

@@ -1,20 +1,13 @@
-import dashboard from './dashboard';
-import application from './application';
-import forms from './forms';
-import elements from './elements';
-import samplePage from './sample-page';
-import pages from './pages';
-import utilities from './utilities';
-import support from './support';
-import other from './other';
 import { NavItemType } from 'types';
-import invitations from './invitations';
-
+import oportunidades from './oportunidades';
+import convites from './convites';
+import eventos from './eventos';
+import clientes from './clientes';
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems: { items: NavItemType[] } = {
-    items: [invitations, dashboard, application, forms, elements, samplePage, pages, utilities, support, other]
+    items: [oportunidades, convites, eventos, clientes]
 };
 
 export default menuItems;

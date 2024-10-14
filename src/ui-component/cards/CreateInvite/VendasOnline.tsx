@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // material-ui
-import { Grid, TextField, FormControlLabel, Checkbox, Box } from '@mui/material';
+import { Grid, TextField, FormControlLabel, Checkbox, Box, Stack } from '@mui/material';
 
 export interface AllDataType {
     storeDescription?: string;
@@ -49,9 +49,9 @@ const VendasOnline = ({ categoria }: { categoria: string }) => {
         }
     };
     return (
-        <Grid container sx={{ paddingY: '15px' }}>
+        <Grid container spacing={2}>
             {/*
-            <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+            <Grid item xs={12} >
                 JSON:{' '}
                 {`{
                 storeDescription: ${allData.storeDescription},
@@ -64,8 +64,8 @@ const VendasOnline = ({ categoria }: { categoria: string }) => {
             </Grid>
             */}
 
-            <Grid xs={12} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Descrição na Loja</h4>
                     </Box>
@@ -77,8 +77,10 @@ const VendasOnline = ({ categoria }: { categoria: string }) => {
                         onChange={(e) => handleChangeData(e, 'storeDescription')}
                         value={allData.storeDescription}
                     />
-                </Grid>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Estoque Mínimo</h4>
                     </Box>
@@ -95,8 +97,10 @@ const VendasOnline = ({ categoria }: { categoria: string }) => {
                             min: 1
                         }}
                     />
-                </Grid>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Múltiplos de Quantidade</h4>
                     </Box>
@@ -113,8 +117,10 @@ const VendasOnline = ({ categoria }: { categoria: string }) => {
                             min: 1
                         }}
                     />
-                </Grid>
-                <Grid item xs={4} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>URL da imagem</h4>
                     </Box>
@@ -126,8 +132,10 @@ const VendasOnline = ({ categoria }: { categoria: string }) => {
                         onChange={(e) => handleChangeData(e, 'imageUrl')}
                         value={allData.imageUrl}
                     />
-                </Grid>
-                <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
+                </Stack>
+            </Grid>
+            <Grid item xs={12}>
+                <Stack spacing={1}>
                     <Box sx={{ display: 'flex' }}>
                         <h4>Termos / Condições de Uso</h4>
                     </Box>
@@ -142,14 +150,16 @@ const VendasOnline = ({ categoria }: { categoria: string }) => {
                         multiline
                         rows={5}
                     />
-                </Grid>
+                </Stack>
             </Grid>
 
-            <Grid item xs={12} sx={{ mb: '15px', paddingX: '15px' }}>
-                <FormControlLabel
-                    control={<Checkbox checked={allData.featuredOnStore} onChange={handleCheckboxFeaturedOnStore} color="primary" />}
-                    label="Esse convite é DESTAQUE na Loja"
-                />
+            <Grid item xs={12}>
+                <Stack spacing={1}>
+                    <FormControlLabel
+                        control={<Checkbox checked={allData.featuredOnStore} onChange={handleCheckboxFeaturedOnStore} color="primary" />}
+                        label="Esse convite é DESTAQUE na Loja"
+                    />
+                </Stack>
             </Grid>
         </Grid>
     );

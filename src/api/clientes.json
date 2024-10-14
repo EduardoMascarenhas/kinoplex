@@ -1,0 +1,153 @@
+{
+    "clientes": [
+      {
+        "id": "1",
+        "razao_social": "Empresa ABC Ltda",
+        "nome_fantasia": "ABC Soluções",
+        "cnpj": "12.345.678/0001-90",
+        "inscricao_estadual": "1234567890",
+        "endereco_fiscal": "Rua das Flores",
+        "cep": "12345-678",
+        "numero": "123",
+        "complemento": "Sala 101",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "pais": "Brasil",
+        "contato": [
+          {
+            "id": "1",
+            "nome": "João Silva",
+            "telefone": "(11) 98765-4321",
+            "email": "uvxza@abc.com",
+            "cargo": "Peão"
+          },
+          {
+            "id": "2",
+            "nome": "Duda Sousa",
+            "telefone": "(11) 98765-4321",
+            "email": "yxz@abc.com",
+            "cargo": "Programador"
+          },
+          {
+            "id": "3",
+            "nome": "Antônio",
+            "telefone": "(11) 98765-4321",
+            "email": "joao.silva@abc.com",
+            "cargo": "Diretor"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "razao_social": "Tech Innovators SA",
+        "nome_fantasia": "Innovators",
+        "cnpj": "98.765.432/0001-09",
+        "inscricao_estadual": "0987654321",
+        "endereco_fiscal": "Avenida das Nações",
+        "cep": "98765-432",
+        "numero": "500",
+        "complemento": "Torre A",
+        "cidade": "Rio de Janeiro",
+        "estado": "RJ",
+        "pais": "Brasil",
+        "contato": [
+          {
+            "id": "1",
+            "nome": "João Silva",
+            "telefone": "(11) 98765-4321",
+            "email": "uvxza@abc.com",
+            "cargo": "Peão"
+          },
+          {
+            "id": "2",
+            "nome": "Duda Sousa",
+            "telefone": "(11) 98765-4321",
+            "email": "yxz@abc.com",
+            "cargo": "Programador"
+          },
+          {
+            "id": "3",
+            "nome": "Antônio",
+            "telefone": "(11) 98765-4321",
+            "email": "joao.silva@abc.com",
+            "cargo": "Diretor"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "razao_social": "Comércio XYZ EIRELI",
+        "nome_fantasia": "XYZ Comércio",
+        "cnpj": "11.222.333/0001-44",
+        "inscricao_estadual": "1122233344",
+        "endereco_fiscal": "Rua das Oliveiras",
+        "cep": "11122-333",
+        "numero": "88",
+        "complemento": "Loja 2",
+        "cidade": "Curitiba",
+        "estado": "PR",
+        "pais": "Brasil",
+        "contato": [
+          {
+            "id": "1",
+            "nome": "João Silva",
+            "telefone": "(11) 98765-4321",
+            "email": "uvxza@abc.com",
+            "cargo": "Peão"
+          },
+          {
+            "id": "2",
+            "nome": "Duda Sousa",
+            "telefone": "(11) 98765-4321",
+            "email": "yxz@abc.com",
+            "cargo": "Programador"
+          },
+          {
+            "id": "3",
+            "nome": "Antônio",
+            "telefone": "(11) 98765-4321",
+            "email": "joao.silva@abc.com",
+            "cargo": "Diretor"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "razao_social": "Serviços Digital SRL",
+        "nome_fantasia": "Digital Serviços",
+        "cnpj": "22.333.444/0001-55",
+        "inscricao_estadual": "2233344455",
+        "endereco_fiscal": "Avenida Central",
+        "cep": "44455-666",
+        "numero": "999",
+        "complemento": "Andar 5",
+        "cidade": "Belo Horizonte",
+        "estado": "MG",
+        "pais": "Brasil",
+        "contato": [
+          {
+            "id": "1",
+            "nome": "João Silva",
+            "telefone": "(11) 98765-4321",
+            "email": "uvxza@abc.com",
+            "cargo": "Peão"
+          },
+          {
+            "id": "1",
+            "nome": "Duda Sousa",
+            "telefone": "(11) 98765-4321",
+            "email": "yxz@abc.com",
+            "cargo": "Programador"
+          },
+          {
+            "id": "1",
+            "nome": "Antônio",
+            "telefone": "(11) 98765-4321",
+            "email": "joao.silva@abc.com",
+            "cargo": "Diretor"
+          }
+        ]
+      }
+    ]
+  }
+  

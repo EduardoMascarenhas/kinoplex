@@ -46,10 +46,8 @@ const MenuList = () => {
             return false;
         });
         if (menuLoading) {
-            menuItem.items.splice(1, 0, widgetMenu);
             setMenuItems({ items: [...menuItem.items] });
         } else if (!menuLoading && widgetMenu?.id !== undefined && !isFound) {
-            menuItem.items.splice(1, 1, widgetMenu);
             setMenuItems({ items: [...menuItem.items] });
         } else {
             setMenuItems({ items: [...menuItem.items] });

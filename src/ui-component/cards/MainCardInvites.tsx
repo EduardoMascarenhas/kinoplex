@@ -1,4 +1,4 @@
-import React, { Ref, useState } from 'react';
+import React, { Ref } from 'react';
 
 // material-ui
 import Card, { CardProps } from '@mui/material/Card';
@@ -11,15 +11,13 @@ import Typography from '@mui/material/Typography';
 import useConfig from 'hooks/useConfig';
 
 // assets
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
 import { KeyedObject } from 'types';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import AddClient from 'views/invitations/Client/AddClient';
 import Box from '@mui/material/Box';
 
 // constant
@@ -92,8 +90,8 @@ const MainCardInvites = React.forwardRef(
                                     type="submit"
                                     variant="contained"
                                     sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/invitations/invite/create')}
-                                    startIcon={<AddIcon />}
+                                    onClick={() => (window.location.href = '/convites/novo')}
+                                    startIcon={<AddCircleTwoToneIcon />}
                                 >
                                     Novo Convite
                                 </Button>
@@ -107,8 +105,8 @@ const MainCardInvites = React.forwardRef(
                                 <Button
                                     color="secondary"
                                     sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/invitations/invite/create')}
-                                    startIcon={<AddIcon />}
+                                    onClick={() => (window.location.href = '/convites/novo')}
+                                    startIcon={<AddCircleTwoToneIcon />}
                                 >
                                     Novo Convite
                                 </Button>

@@ -208,9 +208,32 @@ html[dir='rtl'] .apexcharts-tooltip .apexcharts-tooltip-marker {
 .actions-icon {
     cursor: pointer;
 }
+.actions-icon-alterar {
+    cursor: pointer;
+    color: $primary800;
+}
+.actions-icon-ativar {
+    cursor: pointer;
+    color: $errorDark;
+}
+.actions-icon-inativar {
+    cursor: pointer;
+    color: $successDark;
+}
+.actions-icon-detalhes {
+    cursor: pointer;
+    color: $secondary800;
+}
+.actions-icon-editar {
+    cursor: pointer;
+    color: $primary800;
+}
 .inativo-row {
     color: rgb(145, 145, 145);
 }
 #category-select-label {
     transform: translate(14px, -16px) scale(0.75);
+}
+.disabledEditableTextField div input:disabled {
+    -webkit-text-fill-color: initial !important;
 }

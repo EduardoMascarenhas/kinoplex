@@ -2,10 +2,19 @@ export interface Invoice {
     avatar: number;
     customer_name: string;
     date: number;
+    cinema: string;
     due_date: number;
     email: string;
     invoice_id: number;
     quantity: number;
+    impresso: number;
+    eletronico: number;
+    price_total: string;
+    reserva: string;
+    pagamento: string;
+    separacao: string;
+    entrega: string;
+    tipoConvite: string;
     status: string;
     discount: number;
 }
@@ -29,6 +38,7 @@ export type InvoiceAmount = {
 };
 
 export type AddInvoice = {
+    rate: any;
     about?: string | undefined;
     brand?: string | undefined;
     categories?: string[];

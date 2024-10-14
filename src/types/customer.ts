@@ -1,4 +1,5 @@
 import { Invoice } from './invoice';
+import { Oportunidade } from './oportunidade';
 
 export interface CustomerStateProps {
     customers: Customer[];
@@ -6,6 +7,7 @@ export interface CustomerStateProps {
     products: Product[];
     productreviews: ProductReview[];
     invoices: Invoice[];
+    oportunidades: Oportunidade[];
     error: object | string | null;
 }
 
