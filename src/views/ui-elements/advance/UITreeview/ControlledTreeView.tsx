@@ -3,6 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { TreeItem, SimpleTreeView } from '@mui/x-tree-view';
+import { TreeItem, SimpleTreeView } from '@mui/x-tree-view';
 
 export default function ControlledTreeView() {
     const [expanded, setExpanded] = React.useState<string[]>([]);
@@ -22,7 +23,7 @@ export default function ControlledTreeView() {
                 <Button onClick={handleExpandClick}>{expanded.length === 0 ? 'Expand all' : 'Collapse all'}</Button>
                 <Button onClick={handleSelectClick}>{selected.length === 0 ? 'Select all' : 'Unselect all'}</Button>
             </Box>
-            <SimpleTreeView aria-label="controlled" multiSelect>
+            <SimpleTreeView aria-label="controlled" expandedItems={expanded} selectedItems={selected} multiSelect>
                 <TreeItem itemId="1" label="Applications">
                     <TreeItem itemId="2" label="Calendar" />
                     <TreeItem itemId="3" label="Chrome" />
@@ -33,9 +34,15 @@ export default function ControlledTreeView() {
                         <TreeItem itemId="7" label="src">
                             <TreeItem itemId="8" label="index.js" />
                             <TreeItem itemId="9" label="tree-view.js" />
+                <TreeItem itemId="5" label="Documents">
+                    <TreeItem itemId="6" label="MUI">
+                        <TreeItem itemId="7" label="src">
+                            <TreeItem itemId="8" label="index.js" />
+                            <TreeItem itemId="9" label="tree-view.js" />
                         </TreeItem>
                     </TreeItem>
                 </TreeItem>
+            </SimpleTreeView>
             </SimpleTreeView>
         </>
     );
