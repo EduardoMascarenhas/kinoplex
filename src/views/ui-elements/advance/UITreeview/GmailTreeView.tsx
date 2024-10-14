@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { TreeItem, SimpleTreeView } from '@mui/x-tree-view';
-import { TreeItem, SimpleTreeView } from '@mui/x-tree-view';
 import { TreeItemProps, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 
 // assets
@@ -54,7 +53,6 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
         }
     },
     [`& .${treeItemClasses.groupTransition}`]: {
-    [`& .${treeItemClasses.groupTransition}`]: {
         marginLeft: 0,
         [`& .${treeItemClasses.content}`]: {
             paddingLeft: theme.spacing(2)
@@ -94,7 +92,6 @@ export default function GmailTreeView() {
             <StyledTreeItem itemId="3" labelText="Categories" labelIcon={Label}>
                 <StyledTreeItem
                     itemId="5"
-                    itemId="5"
                     labelText="Social"
                     labelIcon={SupervisorAccountIcon}
                     labelInfo="90"
@@ -103,10 +100,7 @@ export default function GmailTreeView() {
                 />
                 <StyledTreeItem itemId="6" labelText="Updates" labelIcon={InfoIcon} labelInfo="2,294" color="#e3742f" bgColor="#fcefe3" />
                 <StyledTreeItem itemId="7" labelText="Forums" labelIcon={ForumIcon} labelInfo="3,566" color="#a250f5" bgColor="#f3e8fd" />
-                <StyledTreeItem itemId="6" labelText="Updates" labelIcon={InfoIcon} labelInfo="2,294" color="#e3742f" bgColor="#fcefe3" />
-                <StyledTreeItem itemId="7" labelText="Forums" labelIcon={ForumIcon} labelInfo="3,566" color="#a250f5" bgColor="#f3e8fd" />
                 <StyledTreeItem
-                    itemId="8"
                     itemId="8"
                     labelText="Promotions"
                     labelIcon={LocalOfferIcon}
@@ -115,8 +109,6 @@ export default function GmailTreeView() {
                     bgColor="#e6f4ea"
                 />
             </StyledTreeItem>
-            <StyledTreeItem itemId="4" labelText="History" labelIcon={Label} />
-        </SimpleTreeView>
             <StyledTreeItem itemId="4" labelText="History" labelIcon={Label} />
         </SimpleTreeView>
     );

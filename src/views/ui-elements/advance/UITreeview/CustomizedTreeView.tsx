@@ -2,7 +2,6 @@
 import { alpha, styled } from '@mui/material/styles';
 import Collapse, { CollapseProps } from '@mui/material/Collapse';
 import { TreeItem, SimpleTreeView } from '@mui/x-tree-view';
-import { TreeItem, SimpleTreeView } from '@mui/x-tree-view';
 import { TreeItemProps, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 
 // animation
@@ -12,13 +11,11 @@ function TransitionComponent(props: CollapseProps) {
 
 // style constant
 const StyledTreeItem = styled((props: TreeItemProps) => <TreeItem {...props} ContentComponent={TransitionComponent} />)(({ theme }) => ({
-const StyledTreeItem = styled((props: TreeItemProps) => <TreeItem {...props} ContentComponent={TransitionComponent} />)(({ theme }) => ({
     [`& .${treeItemClasses.iconContainer}`]: {
         '& .close': {
             opacity: 0.3
         }
     },
-    [`& .${treeItemClasses.groupTransition}`]: {
     [`& .${treeItemClasses.groupTransition}`]: {
         marginLeft: 15,
         paddingLeft: 18,
@@ -41,14 +38,10 @@ export default function CustomizedTreeView() {
                         <StyledTreeItem itemId="11" label="Child 3" />
                     </StyledTreeItem>
                     <StyledTreeItem itemId="8" label="Hello" />
-                    <StyledTreeItem itemId="8" label="Hello" />
                 </StyledTreeItem>
                 <StyledTreeItem itemId="4" label="World" />
                 <StyledTreeItem itemId="5" label="Something something" />
-                <StyledTreeItem itemId="4" label="World" />
-                <StyledTreeItem itemId="5" label="Something something" />
             </StyledTreeItem>
-        </SimpleTreeView>
         </SimpleTreeView>
     );
 }

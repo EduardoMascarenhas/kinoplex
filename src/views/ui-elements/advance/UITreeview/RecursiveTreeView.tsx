@@ -1,5 +1,4 @@
 import { TreeItem, SimpleTreeView } from '@mui/x-tree-view';
-import { TreeItem, SimpleTreeView } from '@mui/x-tree-view';
 
 interface RTVChildrenProps {
     id: string;
@@ -32,7 +31,6 @@ const data: any = {
 
 export default function RecursiveTreeView() {
     const renderTree = (nodes: RTVChildrenProps) => (
-        <TreeItem key={nodes.id} itemId={nodes.id} label={nodes.name}>
         <TreeItem key={nodes.id} itemId={nodes.id} label={nodes.name}>
             {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
         </TreeItem>
