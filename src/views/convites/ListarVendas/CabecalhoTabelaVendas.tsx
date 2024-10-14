@@ -21,13 +21,13 @@ const headCells: HeadCell[] = [
         label: 'ID'
     },
     {
-        id: 'nome',
+        id: 'cliente',
         numeric: true,
         label: 'Cliente',
         align: 'left'
     },
     {
-        id: 'data',
+        id: 'data_venda',
         numeric: false,
         label: 'Data Venda'
     },
@@ -36,7 +36,6 @@ const headCells: HeadCell[] = [
         numeric: true,
         label: 'Cinema'
     },
-
     {
         id: 'quantidade',
         numeric: true,
@@ -46,12 +45,6 @@ const headCells: HeadCell[] = [
         id: 'valor',
         numeric: true,
         label: 'Valor',
-    },
-    {
-        id: 'reserva',
-        numeric: true,
-        label: 'Reserva',
-        align: 'center'
     },
     {
         id: 'pagamento',

@@ -23,12 +23,6 @@ import DownloadIcon from '@mui/icons-material/Download';
 import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import EditIcon from '@mui/icons-material/Edit';
 
-// Reserva
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import EventBusyIcon from '@mui/icons-material/EventBusy';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-
 // Pagamento
 import PaidIcon from '@mui/icons-material/Paid';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -44,7 +38,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 // types
 import { ArrangementOrder, KeyedObject, GetComparator } from 'types';
-import { Venda } from 'types/invoice';
+import { Invoice } from 'types/invoice';
 import CabecalhoTabelaVendas from './CabecalhoTabelaVendas';
 import Dialog from '@mui/material/Dialog';
 import { ChangeEvent, SyntheticEvent, useState, FC } from 'react';
@@ -70,10 +64,10 @@ function descendingComparator(a: KeyedObject, b: KeyedObject, orderBy: string) {
 const getComparator: GetComparator = (order, orderBy) =>
     order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
 
-function stableSort(array: Venda[], comparator: (a: Venda, b: Venda) => number) {
-    const stabilizedThis = array.map((el: Venda, index: number) => [el, index]);
+function stableSort(array: Invoice[], comparator: (a: Invoice, b: Invoice) => number) {
+    const stabilizedThis = array.map((el: Invoice, index: number) => [el, index]);
     stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0] as Venda, b[0] as Venda);
+        const order = comparator(a[0] as Invoice, b[0] as Invoice);
         if (order !== 0) return order;
         return (a[1] as number) - (b[1] as number);
     });
@@ -88,25 +82,8 @@ const TextoLimitado = ({ texto, limite }: { texto: string | undefined; limite: n
     }
 
     const textoFormatado = texto.length > limite ? texto.substring(0, limite) + '...' : texto;
-    
+
     return <span>{textoFormatado}</span>;
-};
-
-
-
-const getStatusReserva = (status: string) => {
-    switch (status) {
-        case 'Confirmado':
-            return <EventAvailableIcon color="success" />;
-        case 'Pendente':
-            return <CalendarMonthIcon color="warning" />;
-        case 'Cancelado':
-            return <EventBusyIcon color="error" />;
-        case 'Não confirmado':
-            return <CalendarTodayIcon color="disabled" />;
-        default:
-            return <CalendarTodayIcon color="disabled" />;
-    }
 };
 
 const getStatusPagamento = (status: string) => {
@@ -154,7 +131,7 @@ const getStatusEntrega = (status: string) => {
     }
 };
 
-const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
+const TabelaVendas = ({ rows }: { rows: Invoice[] }) => {
     const theme = useTheme();
 
     const [order, setOrder] = useState<ArrangementOrder>('asc');
@@ -164,9 +141,9 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
     const [rowsPerPage, setRowsPerPage] = useState<number>(5);
     const [open, setOpen] = useState(false);
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const [selectedRow, setSelectedRow] = useState<Venda | null>(null);
+    const [selectedRow, setSelectedRow] = useState<Invoice | null>(null);
 
-    const handleDialogToggler = (row: Venda) => {
+    const handleDialogToggler = (row: Invoice) => {
         setSelectedRow(row);
         setOpen(!open);
     };
@@ -203,7 +180,6 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
         setPage(0);
     };
 
-    const isSelected = (name: string) => selected.indexOf(name) !== -1;
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
     const handleClose = () => {
@@ -214,7 +190,7 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
             {/* table */}
             <TableContainer>
                 <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
-                <CabecalhoTabelaVendas
+                    <CabecalhoTabelaVendas
                         numSelected={selected.length}
                         order={order}
                         orderBy={orderBy}
@@ -229,17 +205,12 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
                                 /** Make sure no display bugs if row isn't an OrderData object */
                                 if (typeof row === 'number') return null;
 
-                                const isItemSelected = isSelected(row.customer_name);
-
                                 return (
                                     <TableRow
                                         hover
-                                        aria-checked={isItemSelected}
                                         tabIndex={-1}
                                         key={index}
-                                        selected={isItemSelected}
                                     >
-
                                         <TableCell>{row.invoice_id}</TableCell>
                                         <TableCell sx={{ whiteSpace: 'nowrap' }}>
                                             <Tooltip title={row.customer_name}>
@@ -266,12 +237,6 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
                                         <TableCell sx={{ whiteSpace: 'nowrap' }}>R$ {row.price_total}</TableCell>
 
                                         <TableCell align="left">
-                                            <Tooltip title={`Reserva ${row.reserva}`}>
-                                                <span>{getStatusReserva(row.reserva)}</span>
-                                            </Tooltip>
-                                        </TableCell>
-
-                                        <TableCell align="left">
                                             <Tooltip title={`Pagamento ${row.pagamento}`}>
                                                 <span>{getStatusPagamento(row.pagamento)}</span>
                                             </Tooltip>
@@ -291,6 +256,12 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
 
                                         <TableCell align="center" sx={{ pr: 3 }}>
                                             <Stack direction="row" alignItems="center" spacing={1} justifyContent="center">
+                                                <Tooltip title="Clique se deseja enviar por email ou efetuar o download">
+                                                    <IconButton onClick={() => handleDialogToggler(row)} size="small" aria-label="deseja enviar por email ou efetuar o download">
+                                                        <DownloadIcon sx={{ fontSize: '1.3rem' }} />
+                                                    </IconButton>
+                                                </Tooltip>
+
                                                 <Tooltip title="Bloqueio de Convite">
                                                     <IconButton
                                                         color="primary"
@@ -312,12 +283,6 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
                                                         aria-label="Vincular lote"
                                                     >
                                                         <CommitIcon sx={{ fontSize: '1.5rem' }} />
-                                                    </IconButton>
-                                                </Tooltip>
-
-                                                <Tooltip title="Clique se deseja enviar por email ou efetuar o download">
-                                                    <IconButton onClick={() => handleDialogToggler(row)} size="small" aria-label="deseja enviar por email ou efetuar o download">
-                                                        <DownloadIcon sx={{ fontSize: '1.3rem' }} />
                                                     </IconButton>
                                                 </Tooltip>
 
@@ -383,17 +348,14 @@ const TabelaVendas = ({ rows }: { rows: Venda[] }) => {
                 <DialogContent>
                     <DialogContentText>
                         {selectedRow?.email}
-                        <Button  sx={{ml: '8px', mr: '8px'}} onClick={handleEmailSend} variant='outlined' color="primary">
+                        <Button sx={{ ml: '8px', mr: '8px' }} onClick={handleEmailSend} variant='outlined' color="primary">
                             Enviar
                         </Button>
                         ou
-                        <Button sx={{ml: '8px', mr: '8px'}}  onClick={handleDownload} variant='outlined' color="primary">
+                        <Button sx={{ ml: '8px', mr: '8px' }} onClick={handleDownload} variant='outlined' color="primary">
                             Fazer Download
                         </Button>
                     </DialogContentText>
-
-
-
                 </DialogContent>
                 <Divider />
                 <DialogActions>

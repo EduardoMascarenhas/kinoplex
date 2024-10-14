@@ -1,20 +1,3 @@
-export interface Venda {
-    customer_name: string;
-    date: number;
-    cinema: string;
-    email: string;
-    invoice_id: number;
-    quantity: number;
-    impresso: number;
-    eletronico: number;
-    price_total: string;
-    reserva: string;
-    pagamento: string;
-    separacao: string;
-    entrega: string;
-    status: string;
-}
-
 export interface Invoice {
     avatar: number;
     customer_name: string;
@@ -31,6 +14,7 @@ export interface Invoice {
     pagamento: string;
     separacao: string;
     entrega: string;
+    tipoConvite: string;
     status: string;
     discount: number;
 }

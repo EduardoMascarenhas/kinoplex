@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 
 // material-ui
-import { Box, Stack, Menu, MenuItem, Grid, Chip, Tooltip, FormControl, InputLabel, Select } from '@mui/material';
+import { Box, Stack, MenuItem, Grid, Chip, Tooltip, FormControl, InputLabel, Select } from '@mui/material';
 import { DataGrid, GridColDef, GridRowsProp, GridToolbarQuickFilter, GridLogicOperator } from '@mui/x-data-grid';
 import { ptBR } from '@mui/x-data-grid/locales';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
