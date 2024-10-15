@@ -77,24 +77,12 @@ const DetalheOportunidade = () => {
                 }}
             >
                 <Tab icon={<DescriptionTwoToneIcon />} component={Link} to="#" label="Detalhes" {...a11yProps(0)} />
-                <Tab icon={<ReceiptTwoToneIcon />} component={Link} to="#" label="Oportunidade" {...a11yProps(1)} />
-                {/* <Tab icon={<LocalShippingTwoToneIcon />} component={Link} to="#" label="Status" {...a11yProps(2)} /> */}
             </Tabs>
 
             {/* tab - details */}
             <TabPanel value={value} index={0}>
                 <TabDetalhe />
             </TabPanel>
-
-            {/* tab - invoice */}
-            <TabPanel value={value} index={1}>
-                <TabOportunidade />
-            </TabPanel>
-
-            {/* tab - status */}
-            {/* <TabPanel value={value} index={2}>
-                <TabStatus />
-            </TabPanel> */}
         </MainCard>
     );
 };

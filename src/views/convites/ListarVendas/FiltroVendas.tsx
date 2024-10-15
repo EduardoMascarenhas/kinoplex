@@ -11,7 +11,7 @@ import { Invoice } from 'types/invoice';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Autocomplete from '@mui/material/Autocomplete';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -26,13 +26,16 @@ import Checkbox from '@mui/material/Checkbox';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import Menu from '@mui/material/Menu';
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import FilterListTwoToneIcon from '@mui/icons-material/FilterListTwoTone';
+import SearchIcon from '@mui/icons-material/Search';
+
 // ==============================|| INVOICE LIST - FILTER ||============================== //
 
 interface Props {
     rows: Invoice[];
     setRows: (rows: Invoice[]) => void;
+    expandedItems?: string[];
 }
 
 const CustomTreeItem: React.FC<TreeItemProps> = styled(TreeItem)(({ }) => ({
@@ -125,35 +128,6 @@ const locaisEntrega = [
     { label: '(52) Kinoplex Leblon Globoplay', value: '52' }
 ];
 
-// Lista de clientes
-const listaClientes = [
-    { label: '-- Todos --', value: '' },
-    { label: 'Maria Silva', value: '1' },
-    { label: 'João Oliveira', value: '2' },
-    { label: 'Carlos Souza', value: '3' },
-    { label: 'Empresa XYZ Ltda.', value: '4' },
-    { label: 'Ana Pereira', value: '5' },
-    { label: 'Tech Innovators Inc.', value: '6' },
-    { label: 'José Almeida', value: '7' },
-    { label: 'Digital Solutions Co.', value: '8' },
-    { label: 'Luciana Costa', value: '9' },
-    { label: 'Global Ventures S.A.', value: '10' },
-    { label: 'Fabiana Rodrigues', value: '11' },
-    { label: 'Creative Minds Ltd.', value: '12' },
-    { label: 'Pedro Santos', value: '13' },
-    { label: 'Empresa Alpha S.A.', value: '14' },
-    { label: 'Renato Lima', value: '15' },
-    { label: 'Beta Solutions Ltda.', value: '16' },
-    { label: 'Clara Ribeiro', value: '17' },
-    { label: 'Consultoria Global', value: '18' },
-    { label: 'Eduardo Barros', value: '19' },
-    { label: 'Inovação Tech Ltda.', value: '20' },
-    { label: 'Patricia Mendes', value: '21' },
-    { label: 'Empresa Delta S.A.', value: '22' },
-    { label: 'Ricardo Azevedo', value: '23' },
-    { label: 'Star Technologies Inc.', value: '24' }
-];
-
 const convitesData = [
     { label: 'CINETICKET', value: '4', type: 'impresso' },
     { label: 'CINETICKET 3D', value: '2', type: 'impresso' },
@@ -202,20 +176,94 @@ const listaOperadores = [
     { label: 'Larissa de Lima Fernandes Ramos', value: '5' },
 ];
 
-const FiltroVendas = ({ rows, setRows }: Props) => {
+const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'] }: Props) => {
     const [searchId, setSearchId] = useState<string>('');
     const [searchClient, setSearchClient] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<string>('Todas');
     const [selectedLocal, setSelectedLocal] = useState<{ label: string; value: string } | null>(locaisEntrega[0]);
-    const [selectedCliente, setSelectedCliente] = useState<{ label: string; value: string } | null>(listaClientes[0]);
+    const [selectedOperador, setSelectedOperador] = useState<{ label: string; value: string } | null>(listaOperadores[0]);
+    const [checkedItems, setCheckedItems] = useState<string[]>(convitesData.map(item => item.value));
+
     const [startDate, setStartDate] = useState<Date | null>(new Date());
     const [endDate, setEndDate] = useState<Date | null>(addDays(new Date(), -30));
-    const [selectedOperador, setSelectedOperador] = useState<{ label: string; value: string } | null>(listaOperadores[0]);
-    const [checkedItems, setCheckedItems] = useState<string[]>(
-        convitesData.map(item => item.value)
-    );
-    const [expandedItems, setExpandedItems] = useState<string[]>(['impresso', 'eletronico']);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+    // Função para aplicar todos os filtros
+    const applyFilters = () => {
+        let filteredRows = rows;
+
+        // Filtro por ID
+        if (searchId) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.id.toString().includes(searchId));
+        }
+
+        // Filtro por Cliente
+        if (searchClient) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.cliente && row.cliente.includes(searchClient));
+        }
+
+        // Filtro por Status
+        if (selectedStatus !== 'Todas') {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.status === selectedStatus);
+        }
+
+        // Filtro por Local de Entrega
+        if (selectedLocal && selectedLocal.value) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.localEntrega === selectedLocal.value);
+        }
+
+        // Filtro por Operador Selecionado
+        if (selectedOperador && selectedOperador.value) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.operador === selectedOperador.value);
+        }
+
+        // Filtrar por valores dos checkboxes
+        if (checkedItems.length > 0) {
+            filteredRows = filteredRows.filter((row) => checkedItems.includes(row.tipoConvite));
+        }
+
+        // Aplica o filtro de datas
+        if (startDate && endDate) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => {
+                const rowDate = new Date(row.date); // Assegurar que row.date seja uma data
+                return rowDate >= startDate && rowDate <= endDate;
+            });
+        }
+
+        setRows(filteredRows);
+    };
+
+    // Função para lidar com a seleção de grupo ou item único
+    const handleToggle = (value: string, children: string[] = []) => {
+        const currentIndex = checkedItems.indexOf(value);
+        let newChecked = [...checkedItems];
+
+        if (children.length > 0) {
+            if (areAllChildrenChecked(children)) {
+                newChecked = newChecked.filter((item) => item !== value && !children.includes(item));
+            } else {
+                newChecked = [...newChecked, value, ...children.filter((child) => !newChecked.includes(child))];
+            }
+        } else {
+            if (currentIndex === -1) {
+                newChecked.push(value);
+            } else {
+                newChecked.splice(currentIndex, 1);
+            }
+        }
+
+        setCheckedItems(newChecked);
+
+        // Filtrar linhas com base nos itens marcados
+        if (newChecked.length > 0) {
+            const filteredRows = rows.filter((row) => newChecked.includes(row.tipoConvite));
+            setRows(filteredRows);
+        } else {
+            setRows(rows); // Exibir todas as linhas se nada estiver selecionado
+        }
+
+        applyFilters();
+    };
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -225,175 +273,9 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
         setAnchorEl(null);
     };
 
-    const handleSearchId = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-        const newString = event?.target.value;
-        setSearchId(newString || '');
-
-        if (newString) {
-            const newRows = rows?.filter((row: KeyedObject) => {
-                let matches = true;
-
-                const properties = ['id'];
-
-                let containsQuery = false;
-
-                properties.forEach((property) => {
-                    // Verifica se a propriedade existe antes de chamar toString
-                    const value = row[property];
-                    if (value && value.toString().toLowerCase().includes(newString.toLowerCase())) {
-                        containsQuery = true;
-                    }
-                });
-
-
-                if (!containsQuery) {
-                    matches = false;
-                }
-                return matches;
-            });
-            setRows(newRows);
-        } else {
-            setRows(rows);
-        }
-    };
-
-    const handleSearchClient = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | undefined) => {
-        const newString = event?.target.value;
-        setSearchClient(newString || '');
-
-        if (newString) {
-            const newRows = rows?.filter((row: KeyedObject) => {
-                let matches = true;
-
-                const properties = ['cliente'];
-
-                let containsQuery = false;
-
-                properties.forEach((property) => {
-                    // Verifica se a propriedade existe antes de chamar toString
-                    const value = row[property];
-                    if (value && value.toString().toLowerCase().includes(newString.toLowerCase())) {
-                        containsQuery = true;
-                    }
-                });
-
-
-                if (!containsQuery) {
-                    matches = false;
-                }
-                return matches;
-            });
-            setRows(newRows);
-        } else {
-            setRows(rows);
-        }
-    };
-
-    const handleStatusFilter = (event: ChangeEvent<HTMLInputElement>) => {
-        const status = event.target.value;
-        setSelectedStatus(status);
-
-        const filteredRows = rows?.filter((row: KeyedObject) => {
-            switch (status) {
-                case 'Confirmadas/Pagas':
-                    return row.status === 'confirmada' || row.status === 'paga';
-                case 'Sem confirmação de pagamento':
-                    return row.status === 'sem_confirmacao_pagamento';
-                case 'Canceladas':
-                    return row.status === 'cancelada';
-                case 'Separadas':
-                    return row.status === 'separada';
-                case 'Não Separadas':
-                    return row.status === 'nao_separada';
-                case 'Não confirmadas':
-                    return row.status === 'nao_confirmada';
-                default:
-                    return true; // 'Todas' retorna todos os registros
-            }
-        });
-        setRows(filteredRows);
-    };
-
-    const handleLocalChange = (event: any, newValue: { label: string; value: string } | null) => {
-        setSelectedLocal(newValue);
-
-        if (newValue && newValue.value) {
-            const filteredRows = rows.filter((row: KeyedObject) => row.localEntrega === newValue.value);
-            setRows(filteredRows);
-        } else {
-            setRows(rows);
-        }
-    };
-
-    const handleClienteChange = (event: any, newValue: { label: string; value: string } | null) => {
-        setSelectedCliente(newValue);
-
-        if (newValue && newValue.value) {
-            const filteredRows = rows.filter((row: KeyedObject) => row.listaClientes === newValue.value);
-            setRows(filteredRows);
-        } else {
-            setRows(rows);
-        }
-    };
-
-    const handleDateChange = (newDate: Date | null, isStartDate: boolean) => {
-        if (isStartDate) {
-            setStartDate(newDate);
-        } else {
-            setEndDate(newDate);
-        }
-
-        const currentStartDate = isStartDate ? newDate : startDate;
-        const currentEndDate = isStartDate ? endDate : newDate;
-
-        const filteredRows = rows.filter((row: KeyedObject) => {
-            const rowDate = new Date(row.date);
-            return (
-                (!currentStartDate || rowDate >= currentStartDate) &&
-                (!currentEndDate || rowDate <= currentEndDate)
-            );
-        });
-        setRows(filteredRows);
-    };
-
     // Função para verificar se todos os filhos estão selecionados
     const areAllChildrenChecked = (children: string[]) => {
         return children.every((child) => checkedItems.includes(child));
-    };
-
-    // Função para lidar com a seleção de grupo ou item único
-    const handleToggle = (value: string, children: string[] = []) => {
-        const currentIndex = checkedItems.indexOf(value);
-        let newChecked = [...checkedItems];
-
-        // Se for item pai, tratar todos os filhos
-        if (children.length > 0) {
-            if (areAllChildrenChecked(children)) {
-                // Desmarcar todos os filhos
-                newChecked = newChecked.filter((item) => item !== value && !children.includes(item));
-            } else {
-                // Marcar todos os filhos
-                newChecked = [...newChecked, value, ...children.filter((child) => !newChecked.includes(child))];
-            }
-        } else {
-            // Tratamento para item individual
-            if (currentIndex === -1) {
-                newChecked.push(value);
-            } else {
-                newChecked.splice(currentIndex, 1);
-            }
-        }
-
-        setCheckedItems(newChecked);
-        setExpandedItems(newChecked)
-
-        // Filtrar linhas com base nos itens marcados
-        if (newChecked.length > 0) {
-            const filteredRows = rows.filter((row) => newChecked.includes(row.tipoConvite));
-            setRows(filteredRows);
-        } else {
-            setRows(rows); // Exibir todas as linhas se nada estiver selecionado
-        }
     };
 
     const renderTreeItems = (type: string) => {
@@ -432,18 +314,6 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
         );
     };
 
-
-    const handleOperadorChange = (event: any, newValue: { label: string; value: string } | null) => {
-        setSelectedOperador(newValue);
-
-        if (newValue && newValue.value) {
-            const filteredRows = rows.filter((row: KeyedObject) => row.listaOperadores === newValue.value);
-            setRows(filteredRows);
-        } else {
-            setRows(rows);
-        }
-    };
-
     return (
         <Grid container spacing={1}>
 
@@ -452,7 +322,7 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
                 <Grid item xs={12} md={6}>
                     <FormLabel sx={{ mb: '8px', fontWeight: 600 }} component="legend">Filtrar por Cliente:</FormLabel>
                     <TextField
-                        onChange={handleSearchClient}
+                        onChange={(e) => setSearchClient(e.target.value)}
                         placeholder="Digite o cliente"
                         value={searchClient}
                         size="small"
@@ -462,7 +332,7 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
                 <Grid item xs={12} md={6}>
                     <FormLabel sx={{ mb: '8px', fontWeight: 600 }} component="legend">Filtrar por ID:</FormLabel>
                     <TextField
-                        onChange={handleSearchId}
+                        onChange={(e) => setSearchId(e.target.value)}
                         placeholder="Insira o ID"
                         value={searchId}
                         size="small"
@@ -478,25 +348,8 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
                         <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
                             <DatePicker
                                 label="Data Início"
-                                value={endDate}
-                                onChange={(date) => handleDateChange(date, true)}
-                                slots={{ textField: TextField }}
-                                slotProps={{
-                                    textField: {
-                                        fullWidth: true,
-                                        variant: "outlined",
-                                        size: "small",
-                                        InputProps: {
-                                            value: endDate ? format(endDate, 'dd/MM/yyyy') : '',
-                                        },
-                                    },
-                                }}
-                                sx={{ mr: '8px' }}
-                            />
-                            <DatePicker
-                                label="Data Fim"
                                 value={startDate}
-                                onChange={(date) => handleDateChange(date, false)}
+                                onChange={(date) => setStartDate(date)}
                                 slots={{ textField: TextField }}
                                 slotProps={{
                                     textField: {
@@ -505,6 +358,23 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
                                         size: "small",
                                         InputProps: {
                                             value: startDate ? format(startDate, 'dd/MM/yyyy') : '',
+                                        },
+                                    },
+                                }}
+                                sx={{ mr: '8px' }}
+                            />
+                            <DatePicker
+                                label="Data Fim"
+                                value={endDate}
+                                onChange={(date) => setEndDate(date)}
+                                slots={{ textField: TextField }}
+                                slotProps={{
+                                    textField: {
+                                        fullWidth: true,
+                                        variant: "outlined",
+                                        size: "small",
+                                        InputProps: {
+                                            value: endDate ? format(endDate, 'dd/MM/yyyy') : '',
                                         },
                                     },
                                 }}
@@ -519,7 +389,7 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
                         options={locaisEntrega}
                         getOptionLabel={(option) => option.label}
                         value={selectedLocal}
-                        onChange={handleLocalChange}
+                        onChange={(event, newValue) => setSelectedLocal(newValue)}
                         renderInput={(params) => <TextField {...params} placeholder="Local de Entrega" size="small" />}
                     />
                 </Grid>
@@ -609,7 +479,7 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
                         options={listaOperadores}
                         getOptionLabel={(option) => option.label}
                         value={selectedOperador}
-                        onChange={handleOperadorChange}
+                        onChange={(event, newValue) => setSelectedOperador(newValue)}
                         renderInput={(params) => <TextField {...params} placeholder="Selecione o Operador" size="small" />}
                     />
                 </Grid>
@@ -617,34 +487,39 @@ const FiltroVendas = ({ rows, setRows }: Props) => {
 
             <Grid item xs={12} md={5}>
                 <FormLabel sx={{ mb: '8px', fontWeight: 600 }} component="legend">Filtrar por Status:</FormLabel>
-                <Stack direction="row" alignItems="flex-start" spacing={1}>
-                    <FormControl component="fieldset">
+                    <FormControl component="fieldset" sx={{width: '100%'}}>
                         <RadioGroup
                             aria-label="status"
                             name="status-filter"
                             value={selectedStatus}
-                            onChange={handleStatusFilter}
+                            onChange={(event, newValue) => setSelectedStatus(newValue)}
                         >
-                            <FormControlLabel value="Todas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Todas" />
-                            <FormControlLabel value="Confirmadas/Pagas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Confirmadas/Pagas" />
-                            <FormControlLabel value="Sem confirmação de pagamento" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Sem confirmação de pagamento" />
-                            <FormControlLabel value="Canceladas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Canceladas" />
+                            <Grid container spacing={0}>
+                                <Grid item xs={12} md={7} display="flex" flexDirection="column">
+                                    <FormControlLabel value="Todas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Todas" />
+                                    <FormControlLabel value="Confirmadas/Pagas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Confirmadas/Pagas" />
+                                    <FormControlLabel  value="Sem confirmação de pagamento" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Sem confirmação de pagamento" />
+                                    <FormControlLabel value="Canceladas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Canceladas" />
+                                </Grid>
+                                <Grid item xs={12} md={5} display="flex" flexDirection="column">
+                                    <FormControlLabel value="Separadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Separadas" />
+                                    <FormControlLabel value="Não Separadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Não Separadas" />
+                                    <FormControlLabel value="Não confirmadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Não Entregues" />
+                                </Grid>
+                            </Grid>
                         </RadioGroup>
                     </FormControl>
+            </Grid>
 
-                    <FormControl component="fieldset">
-                        <RadioGroup
-                            aria-label="status"
-                            name="status-filter"
-                            value={selectedStatus}
-                            onChange={handleStatusFilter}
-                        >
-                            <FormControlLabel value="Separadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Separadas" />
-                            <FormControlLabel value="Não Separadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Não Separadas" />
-                            <FormControlLabel value="Não confirmadas" control={<Radio sx={{ pb: '2px', pt: '2px' }} />} label="Não Entregues" />
-                        </RadioGroup>
-                    </FormControl>
-                </Stack>
+            <Grid item xs={12} display="flex" justifyContent="flex-end">
+                <Button
+                    variant="contained"
+                    onClick={applyFilters}
+                    color="primary"
+                    endIcon={<SearchIcon />}
+                >
+                    Pesquisar
+                </Button>
             </Grid>
         </Grid>
     );

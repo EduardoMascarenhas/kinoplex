@@ -23,6 +23,7 @@ interface SubCardProps {
     sx?: {};
     contentSX?: {};
     title?: ReactNode | string;
+    action?: ReactNode;
 }
 
 // ==============================|| CUSTOM SUB CARD ||============================== //

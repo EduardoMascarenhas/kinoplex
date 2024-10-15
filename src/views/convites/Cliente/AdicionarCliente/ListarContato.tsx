@@ -29,23 +29,6 @@ function ListarContato({ contatoData, deleteContatoHandler }: ProductDataProps) 
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow>
-                        <TableCell align="left">Aderbaldo da Silva</TableCell>
-                        <TableCell align="left">(11) 95870-6688</TableCell>
-                        <TableCell align="left">texto@exemplo.com</TableCell>
-                        <TableCell align="left">Diretor de Marketing</TableCell>
-                        <TableCell sx={{ pr: 1 }} align="right">
-                            <IconButton
-                                color="error"
-                                size="small"
-                                onClick={() => deleteContatoHandler(10!)}
-                                aria-label="Delete"
-                            >
-                                <DeleteTwoToneIcon fontSize="small" />
-                            </IconButton>
-                        </TableCell>
-                    </TableRow>
-
                     {contatoData.map((row, index) => (
                         <TableRow key={index}>
                             <TableCell align="left">{row.nome}</TableCell> {/* Usando nome */}
