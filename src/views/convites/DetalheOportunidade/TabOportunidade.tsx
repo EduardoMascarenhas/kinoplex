@@ -50,7 +50,7 @@ const TabOportunidade = () => {
     return (
         <Grid container justifyContent="center" spacing={gridSpacing}>
             <Grid item xs={12} md={10} lg={8} ref={componentRef}>
-                <SubCard darkTitle title="Oportunidade #125863" secondary={<LogoKino />}>
+                <SubCard darkTitle title="Nota de Débito #125863" secondary={<LogoKino />}>
                     <Grid container spacing={gridSpacing}>
                         <Grid item xs={12}>
                             <Grid container spacing={0}>
@@ -59,7 +59,9 @@ const TabOportunidade = () => {
                                     <Stack>
                                         <Stack direction="row" spacing={1}>
                                             <Typography variant="subtitle1">Nome/Razão Social:</Typography>
-                                            <Typography variant="body2">Laboratorio de Analises Clinicas Dr. Roberto Franco do Amaral Ltda</Typography>
+                                            <Typography variant="body2">
+                                                Laboratorio de Analises Clinicas Dr. Roberto Franco do Amaral Ltda
+                                            </Typography>
                                         </Stack>
                                         <Stack direction="row" spacing={1}>
                                             <Typography variant="subtitle1">CNPJ/CPF:</Typography>
@@ -171,7 +173,7 @@ const TabOportunidade = () => {
                                                 <Grid container spacing={1}>
                                                     <Grid item xs={12}>
                                                         <Typography align="right" color="primary" variant="subtitle1">
-                                                            Total:  R$ 18.000,00
+                                                            Total: R$ 18.000,00
                                                         </Typography>
                                                     </Grid>
                                                 </Grid>
@@ -181,10 +183,9 @@ const TabOportunidade = () => {
                                 </Grid>
                             </SubCard>
                         </Grid>
-                        
                     </Grid>
                 </SubCard>
-            </Grid >
+            </Grid>
             <Grid item xs={12} lg={8}>
                 <Stack direction="row" justifyContent="center">
                     <AnimateButton>
@@ -192,7 +193,7 @@ const TabOportunidade = () => {
                     </AnimateButton>
                 </Stack>
             </Grid>
-        </Grid >
+        </Grid>
     );
 };
 

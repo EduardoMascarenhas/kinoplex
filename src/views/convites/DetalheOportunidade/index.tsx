@@ -10,12 +10,10 @@ import Tabs from '@mui/material/Tabs';
 // project imports
 import TabDetalhe from './TabDetalhe';
 import TabOportunidade from './TabOportunidade';
-import TabStatus from './TabStatus';
 import MainCard from 'ui-component/cards/MainCard';
 
 // assets
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
-import LocalShippingTwoToneIcon from '@mui/icons-material/LocalShippingTwoTone';
 import ReceiptTwoToneIcon from '@mui/icons-material/ReceiptTwoTone';
 
 // types
