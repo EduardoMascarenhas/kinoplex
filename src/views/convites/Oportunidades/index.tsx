@@ -9,31 +9,28 @@ import TabelaOportunidades from './TabelaOportunidades';
 
 import { dispatch, useSelector } from 'store';
 import { getInvoice } from 'store/slices/customer';
+import opportunities from 'api/opportunities.json';
 
 // types
-import { Invoice } from 'types/invoice';
 import MainCardInvitations from 'ui-component/cards/MainCardInvitations';
+import { Oportunidade } from 'types/oportunidade';
 
 // ==============================|| INVOICE LIST ||============================== //
 
 const Oportunidades = () => {
-    const { invoices } = useSelector((state) => state.customer);
 
-    const [rows, setRows] = useState<Invoice[]>([]);
+    const [rows, setRows] = useState<Oportunidade[]>([]);
 
     useEffect(() => {
-        dispatch(getInvoice());
+        const fetchedClients = opportunities.opportunities as unknown as Oportunidade[]; // Assegurando que o tipo está correto
+        setRows(fetchedClients);
     }, []);
-
-    useEffect(() => {
-        setRows(invoices);
-    }, [invoices]);
 
     return (
         <MainCardInvitations title="Lista de Oportunidade">
             {/* filter section */}
             <CardContent sx={{paddingTop: 0}}>
-                <FiltrarOportunidades {...{ rows: invoices, setRows }} />
+                <FiltrarOportunidades {...{ rows, setRows }} />
             </CardContent>
 
             {/* table */}

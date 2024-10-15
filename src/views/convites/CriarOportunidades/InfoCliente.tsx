@@ -17,6 +17,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AdicionarCliente from '../Cliente/AdicionarCliente';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import Fab from '@mui/material/Fab';
+import Tooltip from '@mui/material/Tooltip';
+import { IconButton } from '@mui/material';
 
 interface ClienteInfoProps {
     formik: any;
@@ -154,7 +156,10 @@ const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
                                     <Typography variant="h4" mr={1}>Contato:</Typography>
                                     <Autocomplete
                                         size='small'
-                                        sx={{ marginTop: '-8px' }}
+                                        sx={{
+                                            marginTop: '-8px',
+                                            marginRight: { md: '8px' }
+                                        }}
                                         fullWidth
                                         options={client[0]?.contato || []}
                                         getOptionLabel={(option) => option.nome || 'Nome não disponível'}
@@ -173,21 +178,25 @@ const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
                                                 {...params}
                                                 label="Selecione um Contato"
                                                 InputProps={{
-                                                    ...params.InputProps,
-                                                    endAdornment: (
-                                                        <>
-                                                            {params.InputProps.endAdornment}
-                                                            <InputAdornment position="end">
-                                                                <Fab onClick={handleDialogContato} style={{ width: '36px', height: '30px' }} variant='circular' color="primary" aria-label="new">
-                                                                    <AddRoundedIcon fontSize="small" />
-                                                                </Fab>
-                                                            </InputAdornment>
-                                                        </>
-                                                    ),
+                                                    ...params.InputProps
                                                 }}
                                             />
                                         )}
                                     />
+                                    <Tooltip title="Novo contato">
+                                        <Button
+                                            onClick={handleDialogContato}
+                                            color="primary"
+                                            aria-label="add"
+                                            variant="contained"
+                                            sx={{
+                                                marginTop: '-8px',
+                                                height: 36
+                                            }}
+                                        >
+                                            <AddIcon fontSize="small" />
+                                        </Button>
+                                    </Tooltip>
                                 </Stack>
                             </FormControl>
                             <Stack spacing={0}>
@@ -210,7 +219,7 @@ const InfoCliente = ({ formik, handleOnSelectValue }: ClienteInfoProps) => {
                 </>
             )}
 
-            {indexContato === 2? (
+            {indexContato === 2 ? (
                 <Dialog open={open} onClose={handleDialogContato} sx={{ '& .MuiDialog-paper': { maxWidth: '100%', width: 980 } }}>
                     {open && <AdicionarCliente isOpen handleDialogContato={handleDialogContato} tabContato={indexContato} />}
                 </Dialog>

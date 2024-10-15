@@ -9,7 +9,12 @@ export default defineConfig({
     define: {
         global: 'window'
     },
-    build: { chunkSizeWarningLimit: 1600 },
+    build: {
+        chunkSizeWarningLimit: 1600,
+        rollupOptions: {
+            external: ['@mui/system/RtlProvider']
+        }
+    },
     resolve: {
         alias: [
             // { find: '', replacement: path.resolve(__dirname, 'src') },

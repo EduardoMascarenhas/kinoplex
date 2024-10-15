@@ -26,6 +26,11 @@ const headCells: HeadCell[] = [
         label: 'Cliente'
     },
     {
+        id: 'tipo',
+        numeric: false,
+        label: 'Tipo'
+    },
+    {
         id: 'quantidade',
         numeric: false,
         label: 'Quantidade Total'
