@@ -203,7 +203,7 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
                                                     <IconButton
                                                         color="primary"
                                                         component={Link}
-                                                        to={`/convites/detalhe/${row.id}`}
+                                                        to={`/oportunidade/detalhe/${row.id}`}
                                                         size="small"
                                                         aria-label="Ver Detalhes"
                                                     >
