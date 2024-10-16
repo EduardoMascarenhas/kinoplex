@@ -2,7 +2,7 @@ import React, { Ref } from 'react';
 
 // material-ui
 import Card, { CardProps } from '@mui/material/Card';
-import CardContent, { CardContentProps } from '@mui/material/CardContent';
+import { CardContentProps } from '@mui/material/CardContent';
 import CardHeader, { CardHeaderProps } from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -11,13 +11,10 @@ import Typography from '@mui/material/Typography';
 import useConfig from 'hooks/useConfig';
 
 // assets
-import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
 import { KeyedObject } from 'types';
-import InputAdornment from '@mui/material/InputAdornment';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 // constant
@@ -27,7 +24,7 @@ const headerSX = {
 
 // ==============================|| CUSTOM MAIN CARD ||============================== //
 
-export interface MainCardInvites extends KeyedObject {
+export interface MainCardBatchInviteCreate extends KeyedObject {
     border?: boolean;
     boxShadow?: boolean;
     children: React.ReactNode | string;
@@ -44,7 +41,7 @@ export interface MainCardInvites extends KeyedObject {
     title?: React.ReactNode | string;
 }
 
-const MainCardInvites = React.forwardRef(
+const MainCardBatchInviteCreate = React.forwardRef(
     (
         {
             border = false,
@@ -59,7 +56,7 @@ const MainCardInvites = React.forwardRef(
             sx = {},
             title,
             ...others
-        }: MainCardInvites,
+        }: MainCardBatchInviteCreate,
         ref: Ref<HTMLDivElement>
     ) => {
         const { mode } = useConfig();
@@ -83,51 +80,21 @@ const MainCardInvites = React.forwardRef(
                     {!darkTitle && title && (
                         <Box display="flex" alignItems="center" justifyContent="space-between">
                             <CardHeader sx={headerSX} title={title} action={secondary} />
-                            <InputAdornment position="end">
-                                <Button
-                                    color="secondary"
-                                    size="large"
-                                    type="submit"
-                                    variant="contained"
-                                    sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/convite/novo')}
-                                    startIcon={<AddCircleTwoToneIcon />}
-                                >
-                                    Novo Convite
-                                </Button>
-                            </InputAdornment>
                         </Box>
                     )}
                     {darkTitle && title && (
                         <Box>
                             <CardHeader sx={headerSX} title={<Typography variant="h3">{title}</Typography>} action={secondary} />
-                            <InputAdornment position="end">
-                                <Button
-                                    color="secondary"
-                                    sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/convite/novo')}
-                                    startIcon={<AddCircleTwoToneIcon />}
-                                >
-                                    Novo Convite
-                                </Button>
-                            </InputAdornment>
                         </Box>
                     )}
 
                     {/* content & header divider */}
                     {title && <Divider />}
-
-                    {/* card content */}
-                    {content && (
-                        <CardContent sx={contentSX} className={contentClass}>
-                            {children}
-                        </CardContent>
-                    )}
-                    {!content && children}
                 </Card>
+                {children}
             </>
         );
     }
 );
 
-export default MainCardInvites;
+export default MainCardBatchInviteCreate;
