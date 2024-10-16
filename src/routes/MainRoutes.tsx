@@ -14,7 +14,7 @@ import AuthGuard from 'utils/route-guard/AuthGuard';
 // Convites
 const DetalheOportunidade = Loadable(lazy(() => import('views/convites/Oportunidades/DetalheOportunidade')));
 const AdicionarCliente = Loadable(lazy(() => import('views/convites/Cliente/AdicionarCliente')));
-const AdicionarVenda = Loadable(lazy(() => import('views/convites/Vendas/AdicionarVenda')));
+const AdicionarFaturamento = Loadable(lazy(() => import('views/convites/Faturamento/AdicionarFaturamento')));
 const ListarClientes = Loadable(lazy(() => import('views/convites/Cliente/ListarClientes')));
 const Vendas = Loadable(lazy(() => import('views/convites/Vendas')));
 
@@ -64,12 +64,12 @@ const MainRoutes = {
             element: <InvitationsInvites />
         },
         {
-            path: '/convite/faturamento',
-            element: <ConviteFaturamento />
+            path: '/convites/criar-oportunidades',
+            element: <CriarOportunidades />
         },
         {
             path: '/convites/venda/:id',
-            element: <AdicionarVenda />
+            element: <AdicionarFaturamento />
         },
         {
             path: '/convite/separacao/:id',

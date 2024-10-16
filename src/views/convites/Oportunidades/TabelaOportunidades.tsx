@@ -102,6 +102,8 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
         if (event.target.checked) {
             const newSelectedId = rows.map((n) => n.cliente?.razao_social);
             setSelected(newSelectedId as []);
+            const newSelectedId = rows.map((n) => n.cliente?.razao_social);
+            setSelected(newSelectedId as []);
             return;
         }
         setSelected([]);
@@ -139,6 +141,7 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => {
                                 const isItemSelected = isSelected(row.cliente.razao_social as string);
+                                const isItemSelected = isSelected(row.cliente.razao_social as string);
                                 const tipoConvite = getTipoConvite(row.tipo);
                                 const quantidadeImpresso = row.quantidade?.impresso || 0;
                                 const quantidadeEletronico = row.quantidade?.eletronico || 0;
@@ -156,8 +159,12 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
                                         <TableCell>
                                             <Stack>
                                                 <Tooltip title={row.cliente?.razao_social}>
+                                                <Tooltip title={row.cliente?.razao_social}>
                                                     <span>
                                                         <Typography variant="body1">
+                                                            {row.cliente?.razao_social && row.cliente?.razao_social.length > 50
+                                                                ? `${row.cliente?.razao_social.substring(0, 50)}...`
+                                                                : row.cliente.razao_social}
                                                             {row.cliente?.razao_social && row.cliente?.razao_social.length > 50
                                                                 ? `${row.cliente?.razao_social.substring(0, 50)}...`
                                                                 : row.cliente.razao_social}
