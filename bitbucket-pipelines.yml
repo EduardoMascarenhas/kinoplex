@@ -24,10 +24,10 @@ definitions:
 
 pipelines:
   branches:
-    homolog:
+    develop:
       - stage:
-          name: Build to Homolog
-          deployment: staging
+          name: Build to Develop
+          deployment: test
           steps:
             - step: *build-test
             - step: *deploy
