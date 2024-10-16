@@ -8,7 +8,6 @@ definitions:
                   - node
               script:
                   - rm -rf node_modules
-                  - rm *.lock
                   - yarn cache clean --all
                   - yarn install --immutable
                   - echo "BITBUCKET_DEPLOYMENT_ENVIRONMENT = " $BITBUCKET_DEPLOYMENT_ENVIRONMENT
