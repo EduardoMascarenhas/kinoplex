@@ -27,7 +27,7 @@ const headerSX = {
 
 // ==============================|| CUSTOM MAIN CARD ||============================== //
 
-export interface MainCardInvites extends KeyedObject {
+export interface MainCardConvitesLotes extends KeyedObject {
     border?: boolean;
     boxShadow?: boolean;
     children: React.ReactNode | string;
@@ -44,7 +44,7 @@ export interface MainCardInvites extends KeyedObject {
     title?: React.ReactNode | string;
 }
 
-const MainCardInvites = React.forwardRef(
+const MainCardConvitesLotes = React.forwardRef(
     (
         {
             border = false,
@@ -59,7 +59,7 @@ const MainCardInvites = React.forwardRef(
             sx = {},
             title,
             ...others
-        }: MainCardInvites,
+        }: MainCardConvitesLotes,
         ref: Ref<HTMLDivElement>
     ) => {
         const { mode } = useConfig();
@@ -90,10 +90,10 @@ const MainCardInvites = React.forwardRef(
                                     type="submit"
                                     variant="contained"
                                     sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/convite/novo')}
+                                    onClick={() => (window.location.href = '/convite/lote/novo')}
                                     startIcon={<AddCircleTwoToneIcon />}
                                 >
-                                    Novo Convite
+                                    Novo Lote
                                 </Button>
                             </InputAdornment>
                         </Box>
@@ -105,10 +105,10 @@ const MainCardInvites = React.forwardRef(
                                 <Button
                                     color="secondary"
                                     sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/convite/novo')}
+                                    onClick={() => (window.location.href = '/convite/lote/novo')}
                                     startIcon={<AddCircleTwoToneIcon />}
                                 >
-                                    Novo Convite
+                                    Novo Lote
                                 </Button>
                             </InputAdornment>
                         </Box>
@@ -130,4 +130,4 @@ const MainCardInvites = React.forwardRef(
     }
 );
 
-export default MainCardInvites;
+export default MainCardConvitesLotes;

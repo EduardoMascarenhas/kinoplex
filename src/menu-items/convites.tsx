@@ -10,6 +10,7 @@ import PeopleAltTwoToneIcon from '@mui/icons-material/PeopleAltTwoTone';
 import ListTwoToneIcon from '@mui/icons-material/ListTwoTone';
 import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
 import PriceChangeTwoToneIcon from '@mui/icons-material/PriceChangeTwoTone';
+import Inventory2TwoToneIcon from '@mui/icons-material/Inventory2TwoTone';
 
 // type
 import { NavItemType } from 'types';
@@ -22,10 +23,9 @@ const icons = {
     PeopleAltTwoToneIcon: PeopleAltTwoToneIcon,
     ListTwoToneIcon: ListTwoToneIcon,
     RemoveCircleTwoToneIcon: RemoveCircleTwoToneIcon,
-    PriceChangeTwoToneIcon: PriceChangeTwoToneIcon
+    PriceChangeTwoToneIcon: PriceChangeTwoToneIcon,
+    Inventory2TwoToneIcon: Inventory2TwoToneIcon
 };
-
-// ==============================|| MENU ITEMS - DASHBOARD ||============================== //
 
 const convites: NavItemType = {
     id: 'convites-collapse',
@@ -52,7 +52,7 @@ const convites: NavItemType = {
                     id: 'invite-block',
                     title: <FormattedMessage id="Bloqueio" />,
                     type: 'item',
-                    url: '/convites/bloqueio',
+                    url: '/convite/bloqueio',
                     breadcrumbs: false,
                     icon: icons.RemoveCircleTwoToneIcon
                 },
@@ -68,9 +68,17 @@ const convites: NavItemType = {
                     id: 'invite-sales',
                     title: <FormattedMessage id="Vendas" />,
                     type: 'item',
-                    url: '/convites/vendas',
+                    url: '/convite/vendas',
                     breadcrumbs: false,
                     icon: icons.PriceChangeTwoToneIcon
+                },
+                {
+                    id: 'invite--batch-sales',
+                    title: <FormattedMessage id="Lotes" />,
+                    type: 'item',
+                    url: '/convite/lotes',
+                    breadcrumbs: false,
+                    icon: icons.Inventory2TwoToneIcon
                 }
             ]
         }

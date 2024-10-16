@@ -14,10 +14,12 @@ const ListarVendas = Loadable(lazy(() => import('views/convites/ListarVendas')))
 const ListarClientes = Loadable(lazy(() => import('views/convites/Cliente/ListarClientes')));
 const InvitationsInvites = Loadable(lazy(() => import('views/invitations/Invites')));
 const CreateInvitation = Loadable(lazy(() => import('views/invitations/Invites/create')));
+const BatchCreateInvitation = Loadable(lazy(() => import('views/invitations/Invites/batchCreate')));
 const InviteSeparation = Loadable(lazy(() => import('views/invitations/Invites/separation')));
 const InvitationBlocking = Loadable(lazy(() => import('views/invitations/Invites/blocking')));
 const EventList = Loadable(lazy(() => import('views/events')));
 const ClientList = Loadable(lazy(() => import('views/clients')));
+const ConvitesLotesList = Loadable(lazy(() => import('views/convites-lotes')));
 const ClientEdit = Loadable(lazy(() => import('views/client-edit')));
 const ClientDetail = Loadable(lazy(() => import('views/client-detail')));
 const EventDetails = Loadable(lazy(() => import('views/event')));
@@ -51,7 +53,15 @@ const MainRoutes = {
             element: <InvitationsInvites />
         },
         {
-            path: '/convites/novo',
+            path: '/convite/lotes',
+            element: <ConvitesLotesList />
+        },
+        {
+            path: '/convite/lote/novo',
+            element: <BatchCreateInvitation />
+        },
+        {
+            path: '/convite/novo',
             element: <CreateInvitation />
         },
         {
@@ -59,7 +69,7 @@ const MainRoutes = {
             element: <InviteSeparation />
         },
         {
-            path: '/convites/bloqueio',
+            path: '/convite/bloqueio',
             element: <InvitationBlocking />
         },
         {
@@ -99,7 +109,7 @@ const MainRoutes = {
             element: <ListarClientes />
         },
         {
-            path: '/convites/vendas',
+            path: '/convite/vendas',
             element: <ListarVendas />
         },
         {
