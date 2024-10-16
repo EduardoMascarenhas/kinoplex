@@ -102,6 +102,9 @@
     "scripts": {
         "start": "vite",
         "build": "tsc && vite build",
+        "build:production": "tsc && vite build",
+        "build:staging": "tsc && vite build --mode staging",
+        "build:test": "tsc && vite build --mode test",
         "build-stage": "env-cmd -f .env.qa vite build",
         "preview": "vite preview",
         "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
