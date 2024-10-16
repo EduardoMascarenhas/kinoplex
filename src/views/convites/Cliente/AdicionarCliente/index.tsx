@@ -188,50 +188,68 @@ const AdicionarCliente = ({ isOpen, handleDialogToggler, handleDialogContato, ta
                     </Grid>
                     <Divider />
                     <CardActions>
-                        <Grid container justifyContent="space-between" spacing={0}>
-                            <Grid item>
-                                {value > 0 && (
-                                    <AnimateButton>
-                                        <Button variant="outlined" size="large" onClick={(e) => handleChange(e, value - 1)}>
-                                            Voltar
-                                        </Button>
-                                    </AnimateButton>
-                                )}
-                            </Grid>
-                            <Grid item>
-                                {value < 2 && (
-                                    <Stack spacing={1.5} direction="row">
+                        {tabContato === 2 ? (
+                            <Grid container justifyContent="flex-end" spacing={0}>
+                                <Grid item>
+                                    {value === 2 && (
                                         <AnimateButton>
-                                            <Button variant="outlined" size="large">
+                                            <Button
+                                                variant="contained"
+                                                size="large"
+                                                onClick={handleDialogContato}
+                                            >
+                                                Fechar
+                                            </Button>
+                                        </AnimateButton>
+                                    )}
+                                </Grid>
+                            </Grid>
+                        ) : (
+                            <Grid container justifyContent="space-between" spacing={0}>
+                                <Grid item>
+                                    {value > 0 && (
+                                        <AnimateButton>
+                                            <Button variant="outlined" size="large" onClick={(e) => handleChange(e, value - 1)}>
+                                                Voltar
+                                            </Button>
+                                        </AnimateButton>
+                                    )}
+                                </Grid>
+                                <Grid item>
+                                    {value < 2 && (
+                                        <Stack spacing={1.5} direction="row">
+                                            <AnimateButton>
+                                                <Button variant="outlined" size="large">
+                                                    Gravar
+                                                </Button>
+                                            </AnimateButton>
+                                            <AnimateButton>
+                                                <Button variant="contained" size="large" onClick={(e) => handleChange(e, 1 + value)}>
+                                                    Continuar
+                                                </Button>
+                                            </AnimateButton>
+                                        </Stack>
+                                    )}
+                                    {value === 2 && (
+                                        <AnimateButton>
+                                            <Button
+                                                variant="contained"
+                                                size="large"
+                                                {...(!isOpen && { component: Link, to: '/apps/invoice/client/client-list' })}
+                                                {...(isOpen && {
+                                                    onClick: () => {
+                                                        handleDialogToggler?.(),
+                                                            handleDialogContato?.()
+                                                    }
+                                                })}
+                                            >
                                                 Gravar
                                             </Button>
                                         </AnimateButton>
-                                        <AnimateButton>
-                                            <Button variant="contained" size="large" onClick={(e) => handleChange(e, 1 + value)}>
-                                                Continuar
-                                            </Button>
-                                        </AnimateButton>
-                                    </Stack>
-                                )}
-                                {value === 2 && (
-                                    <AnimateButton>
-                                        <Button
-                                            variant="contained"
-                                            size="large"
-                                            {...(!isOpen && { component: Link, to: '/apps/invoice/client/client-list' })}
-                                            {...(isOpen && {
-                                                onClick: () => {
-                                                    handleDialogToggler?.(),
-                                                    handleDialogContato?.()
-                                                }
-                                            })}
-                                        >
-                                            Gravar
-                                        </Button>
-                                    </AnimateButton>
-                                )}
+                                    )}
+                                </Grid>
                             </Grid>
-                        </Grid>
+                        )}
                     </CardActions>
                 </MainCard>
             </Grid>

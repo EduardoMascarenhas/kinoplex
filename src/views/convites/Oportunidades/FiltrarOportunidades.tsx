@@ -4,7 +4,6 @@ import * as React from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
 
 // assets
 import SearchIcon from '@mui/icons-material/Search';
@@ -75,8 +74,8 @@ const FiltrarOportunidades = ({ rows, setRows }: Props) => {
                 sx={{ width: { xs: 1, sm: 'auto' } }}
             />
             <Stack direction="row" alignItems="center" spacing={1.25}>
-                <Button sx={{ textTransform: 'initial' }} variant="contained" onClick={() => handleCriarOportunidade()} size="medium">
-                    <AddIcon fontSize="small" /> Venda de Convite ou Venda de Evento
+                <Button sx={{textTransform: 'initial'}} variant="contained" onClick={() => handleCriarOportunidade()} size="medium">
+                    <AddIcon fontSize="small" />  Venda de Convite ou Venda de Evento
                 </Button>
             </Stack>
         </Stack>

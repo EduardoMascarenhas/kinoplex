@@ -72,6 +72,7 @@ const getTipoConvite = (tipo: string | { convite: string[] }) => {
 // ==============================|| INVOICE LIST - TABLE ||============================== //
 
 const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
+
     const [order, setOrder] = useState<ArrangementOrder>('asc');
     const [orderBy, setOrderBy] = useState<string>('cliente');
     const [selected, setSelected] = useState<string[]>([]);
@@ -120,72 +121,82 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
                         selected={selected}
                     />
                     <TableBody>
-                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                            const isItemSelected = isSelected(row.cliente);
-                            const tipoConvite = getTipoConvite(row.tipo);
-                            const quantidadeImpresso = row.quantidade?.impresso || 0;
-                            const quantidadeEletronico = row.quantidade?.eletronico || 0;
+                        {rows
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((row) => {
+                                const isItemSelected = isSelected(row.cliente);
+                                const tipoConvite = getTipoConvite(row.tipo);
+                                const quantidadeImpresso = row.quantidade?.impresso || 0;
+                                const quantidadeEletronico = row.quantidade?.eletronico || 0;
 
-                            return (
-                                <TableRow
-                                    hover
-                                    role="checkbox"
-                                    aria-checked={isItemSelected}
-                                    tabIndex={-1}
-                                    key={row.id} // Usar id único da Oportunidade
-                                    selected={isItemSelected}
-                                >
-                                    <TableCell>{row.data_criacao}</TableCell>
-                                    <TableCell>
-                                        <Stack>
-                                            <Tooltip title={row.cliente}>
-                                                <span>
-                                                    <Typography variant="body1">
-                                                        {row.cliente.length > 50 ? `${row.cliente.substring(0, 50)}...` : row.cliente}
-                                                    </Typography>
-                                                </span>
-                                            </Tooltip>
-                                        </Stack>
-                                    </TableCell>
-                                    <TableCell>{tipoConvite}</TableCell>
-                                    <TableCell>
-                                        <Stack direction="row" alignItems="center" spacing={1} justifyContent="left">
-                                            {tipoConvite !== 'Evento' ? (
-                                                <Tooltip
-                                                    title={
-                                                        quantidadeImpresso && quantidadeEletronico
-                                                            ? `Impressos: ${quantidadeImpresso}, Eletrônicos: ${quantidadeEletronico}`
-                                                            : quantidadeImpresso
-                                                              ? `Impressos: ${quantidadeImpresso}`
-                                                              : `Eletrônicos: ${quantidadeEletronico}`
-                                                    }
-                                                >
-                                                    <Typography variant="body1">{quantidadeImpresso + quantidadeEletronico}</Typography>
+                                return (
+                                    <TableRow
+                                        hover
+                                        role="checkbox"
+                                        aria-checked={isItemSelected}
+                                        tabIndex={-1}
+                                        key={row.id} // Usar id único da Oportunidade
+                                        selected={isItemSelected}
+                                    >
+                                        <TableCell>{row.data_criacao}</TableCell>
+                                        <TableCell>
+                                            <Stack>
+                                                <Tooltip title={row.cliente}>
+                                                    <span>
+                                                        <Typography variant="body1">
+                                                            {row.cliente.length > 50
+                                                                ? `${row.cliente.substring(0, 50)}...`
+                                                                : row.cliente}
+                                                        </Typography>
+                                                    </span>
                                                 </Tooltip>
-                                            ) : (
-                                                <Typography variant="body1">#</Typography>
-                                            )}
-                                        </Stack>
-                                    </TableCell>
-                                    <TableCell>R$ {row.preco_total}</TableCell>
-                                    <TableCell sx={{ pr: 3 }}>
-                                        <Stack direction="row" alignItems="center" spacing={1} justifyContent="right">
-                                            <Tooltip title="Ver Detalhes">
-                                                <IconButton
-                                                    color="primary"
-                                                    component={Link}
-                                                    to={`/convites/detalhe-oportunidade/${row.id}`}
-                                                    size="small"
-                                                    aria-label="Ver Detalhes"
-                                                >
-                                                    <VisibilityTwoToneIcon sx={{ fontSize: '1.3rem' }} className="actions-icon-detalhes" />
-                                                </IconButton>
-                                            </Tooltip>
-                                        </Stack>
-                                    </TableCell>
-                                </TableRow>
-                            );
-                        })}
+                                            </Stack>
+                                        </TableCell>
+                                        <TableCell>{tipoConvite}</TableCell>
+                                        <TableCell>
+                                            <Stack direction="row" alignItems="center" spacing={1} justifyContent="left">
+                                                {tipoConvite !== "Evento" ? (
+                                                    <Tooltip
+                                                        title={
+                                                            quantidadeImpresso && quantidadeEletronico
+                                                                ? `Impressos: ${quantidadeImpresso}, Eletrônicos: ${quantidadeEletronico}`
+                                                                : quantidadeImpresso
+                                                                    ? `Impressos: ${quantidadeImpresso}`
+                                                                    : `Eletrônicos: ${quantidadeEletronico}`
+                                                        }
+                                                    >
+                                                        <Typography variant='body1'>
+                                                            {quantidadeImpresso + quantidadeEletronico}
+                                                        </Typography>
+                                                    </Tooltip>
+                                                ) : (
+                                                    <Typography variant='body1'>#</Typography>
+                                                )}
+                                            </Stack>
+
+                                        </TableCell>
+                                        <TableCell>R$ {row.preco_total}</TableCell>
+                                        <TableCell sx={{ pr: 3 }}>
+                                            <Stack direction="row" alignItems="center" spacing={1} justifyContent="right">
+                                                <Tooltip title="Ver Detalhes">
+                                                    <IconButton
+                                                        color="primary"
+                                                        component={Link}
+                                                        to={`/convites/detalhe-oportunidade/${row.id}`}
+                                                        size="small"
+                                                        aria-label="Ver Detalhes"
+                                                    >
+                                                        <VisibilityTwoToneIcon
+                                                            sx={{ fontSize: '1.3rem' }}
+                                                            className="actions-icon-detalhes"
+                                                        />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Stack>
+                                        </TableCell>
+                                    </TableRow>
+                                );
+                            })}
                         {emptyRows > 0 && (
                             <TableRow sx={{ height: 53 * emptyRows }}>
                                 <TableCell colSpan={10} />

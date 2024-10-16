@@ -6,7 +6,7 @@ interface RTVChildrenProps {
     children?: RTVChildrenProps[];
 }
 
-const data = {
+const data: any = {
     id: 'root',
     name: 'Parent',
     children: [
