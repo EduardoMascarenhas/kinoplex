@@ -1,0 +1,41 @@
+image: node:21.3.0
+
+definitions:
+  steps:
+    - step: &build-test
+        name: Build and Test
+        caches:
+          - node
+        script:
+          - rm -rf node_modules
+          - rm *.lock
+          - yarn cache clean --force
+          - yarn
+          - echo "BITBUCKET_DEPLOYMENT_ENVIRONMENT = " $BITBUCKET_DEPLOYMENT_ENVIRONMENT
+          - yarn build:$BITBUCKET_DEPLOYMENT_ENVIRONMENT
+        artifacts:
+          - dist/**
+
+    - step: &deploy
+        name: Deploy
+        script:
+          - apt-get update && apt-get install -y rsync
+          - rsync -az --delete $BITBUCKET_CLONE_DIR/dist/ $USER@$HOST:/home/bitbucket/app/
+
+pipelines:
+  branches:
+    homolog:
+      - stage:
+          name: Build to Homolog
+          deployment: staging
+          steps:
+            - step: *build-test
+            - step: *deploy
+
+    master:
+      - stage:
+          name: Build to Production
+          deployment: production
+          steps:
+            - step: *build-test
+            - step: *deploy
