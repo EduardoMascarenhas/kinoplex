@@ -1,4 +1,4 @@
-import React, { Ref, useState } from 'react';
+import React, { Ref } from 'react';
 
 // material-ui
 import Card, { CardProps } from '@mui/material/Card';
@@ -90,7 +90,7 @@ const MainCardConvitesLotes = React.forwardRef(
                                     type="submit"
                                     variant="contained"
                                     sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/cliente/novo')}
+                                    onClick={() => (window.location.href = '/convite/lote/novo')}
                                     startIcon={<AddCircleTwoToneIcon />}
                                 >
                                     Novo Lote
@@ -105,7 +105,7 @@ const MainCardConvitesLotes = React.forwardRef(
                                 <Button
                                     color="secondary"
                                     sx={{ mr: '15px' }}
-                                    onClick={() => (window.location.href = '/cliente/novo')}
+                                    onClick={() => (window.location.href = '/convite/lote/novo')}
                                     startIcon={<AddCircleTwoToneIcon />}
                                 >
                                     Novo Lote
