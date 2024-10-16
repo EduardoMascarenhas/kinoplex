@@ -9,7 +9,7 @@ definitions:
         script:
           - rm -rf node_modules
           - rm *.lock
-          - yarn cache clean --force
+          - yarn cache clean --all
           - yarn
           - echo "BITBUCKET_DEPLOYMENT_ENVIRONMENT = " $BITBUCKET_DEPLOYMENT_ENVIRONMENT
           - yarn build:$BITBUCKET_DEPLOYMENT_ENVIRONMENT
