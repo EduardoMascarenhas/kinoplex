@@ -10,7 +10,7 @@ definitions:
                   - rm -rf node_modules
                   - rm *.lock
                   - yarn cache clean --all
-                  - yarn install --no-lockfile
+                  - yarn install --immutable
                   - echo "BITBUCKET_DEPLOYMENT_ENVIRONMENT = " $BITBUCKET_DEPLOYMENT_ENVIRONMENT
                   - yarn build:$BITBUCKET_DEPLOYMENT_ENVIRONMENT
               artifacts:
