@@ -100,8 +100,8 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
     const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
     const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
-            const newSelectedId = rows.map((n) => n.cliente);
-            setSelected(newSelectedId);
+            const newSelectedId = rows.map((n) => n.cliente?.razao_social);
+            setSelected(newSelectedId as []);
             return;
         }
         setSelected([]);
@@ -138,7 +138,7 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
                         {rows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => {
-                                const isItemSelected = isSelected(row.cliente);
+                                const isItemSelected = isSelected(row.cliente.razao_social as string);
                                 const tipoConvite = getTipoConvite(row.tipo);
                                 const quantidadeImpresso = row.quantidade?.impresso || 0;
                                 const quantidadeEletronico = row.quantidade?.eletronico || 0;
@@ -155,12 +155,12 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
                                         <TableCell>{row.data_criacao}</TableCell>
                                         <TableCell>
                                             <Stack>
-                                                <Tooltip title={row.cliente}>
+                                                <Tooltip title={row.cliente?.razao_social}>
                                                     <span>
                                                         <Typography variant="body1">
-                                                            {row.cliente.length > 50
-                                                                ? `${row.cliente.substring(0, 50)}...`
-                                                                : row.cliente}
+                                                            {row.cliente?.razao_social && row.cliente?.razao_social.length > 50
+                                                                ? `${row.cliente?.razao_social.substring(0, 50)}...`
+                                                                : row.cliente.razao_social}
                                                         </Typography>
                                                     </span>
                                                 </Tooltip>
@@ -196,7 +196,7 @@ const TabelaOportunidades = ({ rows }: { rows: Oportunidade[] }) => {
                                                     <IconButton
                                                         color="primary"
                                                         component={Link}
-                                                        to={`/convites/detalhe-oportunidade/${row.id}`}
+                                                        to={`/convites/detalhe/${row.id}`}
                                                         size="small"
                                                         aria-label="Ver Detalhes"
                                                     >
