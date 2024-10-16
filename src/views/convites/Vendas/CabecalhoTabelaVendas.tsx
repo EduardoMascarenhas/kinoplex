@@ -95,7 +95,7 @@ interface ListTableHeaderProps {
     onRequestSort: (event: React.SyntheticEvent<Element, Event>, property: string) => void;
 }
 
-const CabecalhoListarVendas = ({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, selected }: ListTableHeaderProps) => {
+const CabecalhoVendas = ({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, selected }: ListTableHeaderProps) => {
     const createSortHandler = (property: string) => (event: React.SyntheticEvent<Element, Event>) => {
         onRequestSort(event, property);
     };
@@ -142,4 +142,4 @@ const CabecalhoListarVendas = ({ onSelectAllClick, order, orderBy, numSelected, 
     );
 };
 
-export default CabecalhoListarVendas;
+export default CabecalhoVendas;

@@ -8,12 +8,13 @@ import CriarOportunidades from 'views/convites/CriarOportunidades';
 import NotFound from 'views/NotFound';
 
 // Convites
-const DetalheOportunidade = Loadable(lazy(() => import('views/convites/DetalheOportunidade')));
+const DetalheOportunidade = Loadable(lazy(() => import('views/convites/Oportunidades/DetalheOportunidade')));
 const AdicionarCliente = Loadable(lazy(() => import('views/convites/Cliente/AdicionarCliente')));
-const ListarVendas = Loadable(lazy(() => import('views/convites/ListarVendas')));
+const AdicionarFaturamento = Loadable(lazy(() => import('views/convites/Faturamento/AdicionarFaturamento')));
 const ListarClientes = Loadable(lazy(() => import('views/convites/Cliente/ListarClientes')));
+const Vendas = Loadable(lazy(() => import('views/convites/Vendas')));
+
 const InvitationsInvites = Loadable(lazy(() => import('views/invitations/Invites')));
-const CreateInvitation = Loadable(lazy(() => import('views/invitations/Invites/create')));
 const InviteSeparation = Loadable(lazy(() => import('views/invitations/Invites/separation')));
 const InvitationBlocking = Loadable(lazy(() => import('views/invitations/Invites/blocking')));
 const EventList = Loadable(lazy(() => import('views/events')));
@@ -51,8 +52,12 @@ const MainRoutes = {
             element: <InvitationsInvites />
         },
         {
-            path: '/convites/novo',
-            element: <CreateInvitation />
+            path: '/convites/criar-oportunidades',
+            element: <CriarOportunidades />
+        },
+        {
+            path: '/convites/venda/:id',
+            element: <AdicionarFaturamento />
         },
         {
             path: '/convite/separacao/:id',
@@ -100,7 +105,7 @@ const MainRoutes = {
         },
         {
             path: '/convites/vendas',
-            element: <ListarVendas />
+            element: <Vendas />
         },
         {
             path: '*',

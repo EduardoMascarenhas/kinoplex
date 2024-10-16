@@ -26,8 +26,11 @@ import PhoneAndroidTwoToneIcon from '@mui/icons-material/PhoneAndroidTwoTone';
 
 // types
 import { ThemeMode } from 'types/config';
-import { TextoLimitado } from '../Oportunidades/TabelaOportunidades';
 import Tooltip from '@mui/material/Tooltip';
+import { TextoLimitado } from '../TabelaOportunidades';
+import { useParams } from 'react-router-dom';
+import React from 'react';
+import { Cliente } from 'types/cliente';
 
 const detailsIconSX = {
     width: 15,
@@ -50,7 +53,10 @@ const rows = [
 
 // ==============================|| INVOICE DETAILS - DETAILS ||============================== //
 
-const TabDetalhe = () => {
+interface VendaProps{
+    cliente: Cliente;
+}
+const TabDetalhe: React.FC<VendaProps> = ({cliente}) => {
     const theme = useTheme();
 
     const sxDivider = {
@@ -71,7 +77,7 @@ const TabDetalhe = () => {
                                 </Grid>
                                 <Grid item>
                                     <Typography variant="body2">
-                                        <strong>CNPJ/CPF:</strong> 12.345.678/0001-00
+                                        <strong>CNPJ/CPF:</strong> 12.345.678/0001-00{cliente.razao_social}
                                     </Typography>
                                 </Grid>
                                 <Grid item>

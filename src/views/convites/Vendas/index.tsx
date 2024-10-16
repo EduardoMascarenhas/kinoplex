@@ -18,7 +18,7 @@ import vendas from 'api/vendas.json'; // Importando o JSON local
 
 // ==============================|| INVOICE LIST ||============================== //
 
-const ListarVendas = () => {
+const Vendas = () => {
     const { invoices } = useSelector((state) => state.customer);
 
     const [rows, setRows] = useState<Invoice[]>([]);
@@ -46,4 +46,4 @@ const ListarVendas = () => {
     );
 };
 
-export default ListarVendas;
+export default Vendas;

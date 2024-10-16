@@ -1,7 +1,9 @@
+import { Cliente } from "./cliente";
+
 export interface Oportunidade {
     id: number;
     data_criacao: string;
-    cliente: string;
+    cliente: Cliente; 
     tipo: string | TipoConvite; // Pode ser "Evento" (string) ou um objeto de convites
     quantidade?: QuantidadeConvites; // Só presente quando não for "Evento"
     preco_total: string;
