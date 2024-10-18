@@ -18,7 +18,7 @@ const headCells: HeadCell[] = [
     {
         id: 'date',
         numeric: true,
-        label: 'Data da Criação'
+        label: 'Data da CriaÃ§Ã£o'
     },
     {
         id: 'name',
@@ -38,7 +38,7 @@ const headCells: HeadCell[] = [
     {
         id: 'amount',
         numeric: true,
-        label: 'Valor Total',
+        label: 'Valor Total'
     }
 ];
 
@@ -78,7 +78,6 @@ const CabecalhoTabelaOportunidades = ({ order, orderBy, numSelected, onRequestSo
     return (
         <TableHead>
             <TableRow>
-               
                 {numSelected > 0 && (
                     <TableCell padding="none" colSpan={12}>
                         <EnhancedTableToolbar numSelected={selected.length} />
@@ -111,7 +110,7 @@ const CabecalhoTabelaOportunidades = ({ order, orderBy, numSelected, onRequestSo
                     })}
                 {numSelected <= 0 && (
                     <TableCell sortDirection={false} align="center" sx={{ pr: 0 }}>
-                        Ação
+                        AÃ§Ã£o
                     </TableCell>
                 )}
             </TableRow>

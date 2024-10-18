@@ -18,7 +18,6 @@ import { Oportunidade } from 'types/oportunidade';
 // ==============================|| INVOICE LIST ||============================== //
 
 const Oportunidades = () => {
-
     const [rows, setRows] = useState<Oportunidade[]>([]);
 
     useEffect(() => {
@@ -29,7 +28,7 @@ const Oportunidades = () => {
     return (
         <MainCardInvitations title="Lista de Oportunidade">
             {/* filter section */}
-            <CardContent sx={{paddingTop: 0}}>
+            <CardContent sx={{ paddingTop: 0 }}>
                 <FiltrarOportunidades {...{ rows, setRows }} />
             </CardContent>
 

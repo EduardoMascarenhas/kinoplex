@@ -4,7 +4,6 @@ import * as React from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
 
 // assets
 import SearchIcon from '@mui/icons-material/Search';
@@ -14,11 +13,8 @@ import AddIcon from '@mui/icons-material/AddTwoTone';
 import { KeyedObject } from 'types';
 import Button from '@mui/material/Button';
 import { Oportunidade } from 'types/oportunidade';
-import { Oportunidade } from 'types/oportunidade';
 
 interface Props {
-    rows: Oportunidade[];
-    setRows: (rows: Oportunidade[]) => void;
     rows: Oportunidade[];
     setRows: (rows: Oportunidade[]) => void;
 }
