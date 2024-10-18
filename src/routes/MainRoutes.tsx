@@ -6,6 +6,10 @@ import Loadable from 'ui-component/Loadable';
 import Oportunidades from 'views/convites/Oportunidades';
 import CriarOportunidades from 'views/convites/CriarOportunidades';
 import NotFound from 'views/NotFound';
+import OportunidadeFaturamento from 'views/convites/Oportunidades/Faturamento';
+import ConviteFaturamento from 'views/convites/Faturamento';
+import EventoFaturamento from 'views/events/Faturamento';
+import AuthGuard from 'utils/route-guard/AuthGuard';
 
 // Convites
 const DetalheOportunidade = Loadable(lazy(() => import('views/convites/Oportunidades/DetalheOportunidade')));
@@ -33,11 +37,19 @@ const EventNew = Loadable(lazy(() => import('views/event-new')));
 */
 const MainRoutes = {
     path: '/',
-    element: <MainLayout />,
+    element: (
+        <AuthGuard>
+            <MainLayout />
+        </AuthGuard>
+    ),
     children: [
         {
             path: '/oportunidade/novo',
             element: <CriarOportunidades />
+        },
+        {
+            path: '/oportunidade/faturamento',
+            element: <OportunidadeFaturamento />
         },
         {
             path: '/oportunidades',
@@ -52,8 +64,8 @@ const MainRoutes = {
             element: <InvitationsInvites />
         },
         {
-            path: '/convites/criar-oportunidades',
-            element: <CriarOportunidades />
+            path: '/convite/faturamento',
+            element: <ConviteFaturamento />
         },
         {
             path: '/convites/venda/:id',
@@ -98,6 +110,10 @@ const MainRoutes = {
         {
             path: '/evento/novo',
             element: <EventNew />
+        },
+        {
+            path: '/evento/faturamento',
+            element: <EventoFaturamento />
         },
         {
             path: '/convite/clientes',

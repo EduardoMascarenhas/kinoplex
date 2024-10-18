@@ -84,9 +84,9 @@ function CriarOportunidades() {
             cidade: fieldValue ? fieldValue?.cidade : '',
             estado: fieldValue ? fieldValue?.estado : '',
             pais: fieldValue ? fieldValue?.pais : '',
-            nome: fieldValue?.contato ? fieldValue?.contato[0]?.nome: '',
+            nome: fieldValue?.contato ? fieldValue?.contato[0]?.nome : '',
             telefone: fieldValue?.contato ? fieldValue?.contato[0]?.telefone : '',
-            email: fieldValue?.contato ? fieldValue?.contato[0]?.email : '',
+            email: fieldValue?.contato ? fieldValue?.contato[0]?.email : ''
         },
 
         validationSchema,
@@ -176,14 +176,20 @@ function CriarOportunidades() {
                     {/* item list page */}
                     {convitesEletronicos.length >= 0 && (
                         <Grid item xs={12}>
-                            <ListaItemEletronico convitesData={convitesEletronicos} deleteConviteHandler={(id) => deleteConviteHandler(id, 'eletronico')} />
+                            <ListaItemEletronico
+                                convitesData={convitesEletronicos}
+                                deleteConviteHandler={(id) => deleteConviteHandler(id, 'eletronico')}
+                            />
                             <SelectItemEletronico handleAddItem={handleAddItem} setAddItemClicked={setAddItemClicked} />
                         </Grid>
                     )}
 
                     {convitesImpressos.length >= 0 && (
                         <Grid item xs={12}>
-                            <ListaItemImpresso convitesData={convitesImpressos} deleteConviteHandler={(id) => deleteConviteHandler(id, 'impresso')} />
+                            <ListaItemImpresso
+                                convitesData={convitesImpressos}
+                                deleteConviteHandler={(id) => deleteConviteHandler(id, 'impresso')}
+                            />
                             <SelectItemImpresso handleAddItem={handleAddItem} setAddItemClicked={setAddItemClicked} />
                         </Grid>
                     )}
@@ -198,7 +204,12 @@ function CriarOportunidades() {
                             <Button variant="contained" type="submit" size="small">
                                 Gravar
                             </Button>
-                            <Button variant="outlined" type="submit" size="small">
+                            <Button
+                                variant="outlined"
+                                onClick={() => (window.location.href = '/oportunidade/faturamento')}
+                                type="submit"
+                                size="small"
+                            >
                                 Enviar para faturamento
                             </Button>
                         </Stack>

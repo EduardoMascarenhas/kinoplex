@@ -51,17 +51,16 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
     return (
         <Formik
             initialValues={{
-                email: 'info@codedthemes.com',
-                password: '123456',
+                username: '',
+                password: '',
                 submit: null
             }}
             validationSchema={Yup.object().shape({
-                email: Yup.string().email('Digite um E-mail válido.').max(255).required('O e-mail é obrigatório!'),
                 password: Yup.string().max(255).required('A senha é obrigatória!')
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
-                    await login(values.email, values.password);
+                    await login(values.username, values.password);
 
                     if (scriptedRef.current) {
                         setStatus({ success: true });
@@ -79,20 +78,20 @@ const JWTLogin = ({ loginProp, ...others }: { loginProp?: number }) => {
         >
             {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                 <form noValidate onSubmit={handleSubmit} {...others}>
-                    <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-email-login">E-mail / Usuário</InputLabel>
+                    <FormControl fullWidth error={Boolean(touched.username && errors.username)} sx={{ ...theme.typography.customInput }}>
+                        <InputLabel htmlFor="outlined-adornment-username-login">Usuário</InputLabel>
                         <OutlinedInput
-                            id="outlined-adornment-email-login"
-                            type="email"
-                            value={values.email}
-                            name="email"
+                            id="outlined-adornment-username-login"
+                            type="username"
+                            value={values.username}
+                            name="username"
                             onBlur={handleBlur}
                             onChange={handleChange}
                             inputProps={{}}
                         />
-                        {touched.email && errors.email && (
-                            <FormHelperText error id="standard-weight-helper-text-email-login">
-                                {errors.email}
+                        {touched.username && errors.username && (
+                            <FormHelperText error id="standard-weight-helper-text-username-login">
+                                {errors.username}
                             </FormHelperText>
                         )}
                     </FormControl>

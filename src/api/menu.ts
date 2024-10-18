@@ -1,12 +1,8 @@
 import useSWR, { mutate } from 'swr';
 import { useMemo } from 'react';
 
-// Project-imports
-import { fetcher } from 'utils/axios';
-
 // types
 import { MenuProps } from 'types/menu';
-import { NavItemType } from 'types';
 
 const initialState: MenuProps = {
     isDashboardDrawerOpened: false
@@ -14,31 +10,10 @@ const initialState: MenuProps = {
 
 export const endpoints = {
     key: 'api/menu',
-    master: 'master',
-    widget: '/widget' // server URL
+    master: 'master'
 };
 
-export function useGetMenu() {
-    const { data, isLoading, error, isValidating } = useSWR(endpoints.key + endpoints.widget, fetcher, {
-        revalidateIfStale: false,
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false
-    });
-
-    const memoizedValue = useMemo(
-        () => ({
-            menu: data?.widget as NavItemType,
-            menuLoading: isLoading,
-            menuError: error,
-            menuValidating: isValidating,
-            menuEmpty: !isLoading && !data?.length
-        }),
-        [data, error, isLoading, isValidating]
-    );
-
-    return memoizedValue;
-}
-
+// Fetches master menu data
 export function useGetMenuMaster() {
     const { data, isLoading } = useSWR(endpoints.key + endpoints.master, () => initialState, {
         revalidateIfStale: false,
@@ -57,9 +32,9 @@ export function useGetMenuMaster() {
     return memoizedValue;
 }
 
+// Handles opening/closing of the dashboard drawer
 export function handlerDrawerOpen(isDashboardDrawerOpened: boolean) {
-    // to update local state based on key
-
+    // Update local state based on key
     mutate(
         endpoints.key + endpoints.master,
         (currentMenuMaster: any) => {

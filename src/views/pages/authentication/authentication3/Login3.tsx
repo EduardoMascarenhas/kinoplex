@@ -43,7 +43,7 @@ const Login = () => {
                                                         fontSize="16px"
                                                         textAlign={{ xs: 'center', md: 'inherit' }}
                                                     >
-                                                        Digite seu login e senha para continuar
+                                                        Digite seu usuário e senha para continuar
                                                     </Typography>
                                                 </Stack>
                                             </Grid>

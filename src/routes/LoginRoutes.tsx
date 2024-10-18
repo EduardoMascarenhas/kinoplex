@@ -28,22 +28,6 @@ const LoginRoutes = {
         {
             path: '/login',
             element: <AuthLogin />
-        },
-        {
-            path: '/register',
-            element: <AuthRegister />
-        },
-        {
-            path: '/forgot',
-            element: <AuthForgotPassword />
-        },
-        {
-            path: '/reset-password',
-            element: <AuthResetPassword />
-        },
-        {
-            path: '/check-mail',
-            element: <AuthCheckMail />
         }
     ]
 };

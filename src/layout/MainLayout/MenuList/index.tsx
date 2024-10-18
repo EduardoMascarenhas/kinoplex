@@ -14,9 +14,7 @@ import NavGroup from './NavGroup';
 import menuItem from 'menu-items';
 import useConfig from 'hooks/useConfig';
 
-import { Menu } from 'menu-items/widget';
 import { HORIZONTAL_MAX_ITEM } from 'config';
-import { useGetMenu, useGetMenuMaster } from 'api/menu';
 
 // types
 import { NavItemType } from 'types';
@@ -28,32 +26,16 @@ const MenuList = () => {
     const downMD = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
     const { menuOrientation } = useConfig();
-    const { menuLoading } = useGetMenu();
-    const { menuMaster } = useGetMenuMaster();
-    const drawerOpen = menuMaster.isDashboardDrawerOpened;
+    const drawerOpen = false; // You can adjust this based on your application logic
     const isHorizontal = menuOrientation === MenuOrientation.HORIZONTAL && !downMD;
 
     const [selectedID, setSelectedID] = useState<string | undefined>('');
     const [menuItems, setMenuItems] = useState<{ items: NavItemType[] }>({ items: [] });
 
-    let widgetMenu = Menu();
-
     useLayoutEffect(() => {
-        const isFound = menuItem.items.some((element) => {
-            if (element.id === 'group-widget') {
-                return true;
-            }
-            return false;
-        });
-        if (menuLoading) {
-            setMenuItems({ items: [...menuItem.items] });
-        } else if (!menuLoading && widgetMenu?.id !== undefined && !isFound) {
-            setMenuItems({ items: [...menuItem.items] });
-        } else {
-            setMenuItems({ items: [...menuItem.items] });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [menuLoading]);
+        // Simplified the logic since we removed `menuLoading`
+        setMenuItems({ items: [...menuItem.items] });
+    }, []);
 
     // last menu-item to show in horizontal menu bar
     const lastItem = isHorizontal ? HORIZONTAL_MAX_ITEM : null;

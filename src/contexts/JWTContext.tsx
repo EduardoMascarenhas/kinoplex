@@ -15,6 +15,7 @@ import axios from 'utils/axios';
 // types
 import { KeyedObject } from 'types';
 import { InitialLoginContextProps, JWTContextType } from 'types/auth';
+import { UserProfile } from 'types/user-profile';
 
 const chance = new Chance();
 
@@ -39,7 +40,7 @@ const verifyToken: (st: string) => boolean = (serviceToken) => {
 const setSession = (serviceToken?: string | null) => {
     if (serviceToken) {
         localStorage.setItem('serviceToken', serviceToken);
-        axios.defaults.headers.common.Authorization = `Bearer ${serviceToken}`;
+        axios.defaults.headers.common.Authorization = `${serviceToken}`;
     } else {
         localStorage.removeItem('serviceToken');
         delete axios.defaults.headers.common.Authorization;
@@ -57,9 +58,13 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             try {
                 const serviceToken = window.localStorage.getItem('serviceToken');
                 if (serviceToken && verifyToken(serviceToken)) {
-                    setSession(serviceToken);
-                    const response = await axios.get('/api/account/me');
-                    const { user } = response.data;
+                    // Decodificar o token JWT para obter o "user"
+                    const decodedToken = jwtDecode<{ sub: string }>(serviceToken || '');
+                    const user: UserProfile = {
+                        id: '1',
+                        name: decodedToken.sub
+                    };
+
                     dispatch({
                         type: LOGIN,
                         payload: {
@@ -83,9 +88,19 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         init();
     }, []);
 
-    const login = async (email: string, password: string) => {
-        const response = await axios.post('/api/account/login', { email, password });
-        const { serviceToken, user } = response.data;
+    const login = async (username: string, password: string) => {
+        const response = await axios.post('/login', { username, password });
+
+        // Extrair o token do cabeçalho 'authorization'
+        const authorizationHeader = response.headers['authorization'];
+        const serviceToken = authorizationHeader?.split(' ')[1]; // Remove o "Bearer" do token
+
+        // Decodificar o token JWT para obter o "user"
+        const decodedToken = jwtDecode<{ sub: string }>(serviceToken || '');
+        const user: UserProfile = {
+            id: '1',
+            name: decodedToken.sub
+        };
         setSession(serviceToken);
         dispatch({
             type: LOGIN,
@@ -96,11 +111,11 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         });
     };
 
-    const register = async (email: string, password: string, firstName: string, lastName: string) => {
+    const register = async (username: string, password: string, firstName: string, lastName: string) => {
         const id = chance.bb_pin();
         const response = await axios.post('/api/account/register', {
             id,
-            email,
+            username,
             password,
             firstName,
             lastName
@@ -113,7 +128,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
                 ...JSON.parse(localUsers!),
                 {
                     id,
-                    email,
+                    username,
                     password,
                     name: `${firstName} ${lastName}`
                 }
@@ -128,7 +143,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         dispatch({ type: LOGOUT });
     };
 
-    const resetPassword = async (email: string) => {};
+    const resetPassword = async (username: string) => {};
 
     const updateProfile = () => {};
 
