@@ -64,8 +64,8 @@ const MainRoutes = {
             element: <InvitationsInvites />
         },
         {
-            path: '/convites/criar-oportunidades',
-            element: <CriarOportunidades />
+            path: '/convite/faturamento',
+            element: <ConviteFaturamento />
         },
         {
             path: '/convites/venda/:id',
