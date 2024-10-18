@@ -58,7 +58,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             try {
                 const serviceToken = window.localStorage.getItem('serviceToken');
                 if (serviceToken && verifyToken(serviceToken)) {
-                    // Decodificar o token JWT para obter o "user"
                     const decodedToken = jwtDecode<{ sub: string }>(serviceToken || '');
                     const user: UserProfile = {
                         id: '1',
