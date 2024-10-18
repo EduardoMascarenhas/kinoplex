@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 // routes
@@ -7,13 +6,27 @@ import LoginRoutes from './LoginRoutes';
 import AuthenticationRoutes from './AuthenticationRoutes';
 
 // project import
-import Loadable from 'ui-component/Loadable';
-
-const PagesLanding = Loadable(lazy(() => import('views/pages/landing')));
+import MainLayout from 'layout/MainLayout';
+import AuthGuard from 'utils/route-guard/AuthGuard';
 
 // ==============================|| ROUTING RENDER ||============================== //
-const router = createBrowserRouter([{ path: '/', element: <PagesLanding /> }, AuthenticationRoutes, LoginRoutes, MainRoutes], {
-    basename: import.meta.env.VITE_APP_BASE_NAME
-});
+const router = createBrowserRouter(
+    [
+        {
+            path: '/',
+            element: (
+                <AuthGuard>
+                    <MainLayout />
+                </AuthGuard>
+            )
+        },
+        AuthenticationRoutes,
+        LoginRoutes,
+        MainRoutes
+    ],
+    {
+        basename: import.meta.env.VITE_APP_BASE_NAME
+    }
+);
 
 export default router;
