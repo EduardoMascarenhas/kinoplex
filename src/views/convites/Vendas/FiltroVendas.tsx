@@ -1,5 +1,4 @@
 // material-ui
-import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -11,6 +10,7 @@ import { Invoice } from 'types/invoice';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Autocomplete from '@mui/material/Autocomplete';
+import { useState } from 'react';
 import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -27,7 +27,10 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import Menu from '@mui/material/Menu';
 import { Button, IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import FilterListTwoToneIcon from '@mui/icons-material/FilterListTwoTone';
+import SearchIcon from '@mui/icons-material/Search';
+
 import SearchIcon from '@mui/icons-material/Search';
 
 // ==============================|| INVOICE LIST - FILTER ||============================== //
@@ -35,6 +38,7 @@ import SearchIcon from '@mui/icons-material/Search';
 interface Props {
     rows: Invoice[];
     setRows: (rows: Invoice[]) => void;
+    expandedItems?: string[];
     expandedItems?: string[];
 }
 
@@ -176,6 +180,7 @@ const listaOperadores = [
 ];
 
 const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'] }: Props) => {
+const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'] }: Props) => {
     const [searchId, setSearchId] = useState<string>('');
     const [searchClient, setSearchClient] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<string>('Todas');
@@ -219,6 +224,46 @@ const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'
         // Filtrar por valores dos checkboxes
         if (checkedItems.length > 0) {
             filteredRows = filteredRows.filter((row) => checkedItems.includes(row.tipoConvite));
+    // Função para aplicar todos os filtros
+    const applyFilters = () => {
+        let filteredRows = rows;
+
+        // Filtro por ID
+        if (searchId) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.id.toString().includes(searchId));
+        }
+
+        // Filtro por Cliente
+        if (searchClient) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.cliente && row.cliente.includes(searchClient));
+        }
+
+        // Filtro por Status
+        if (selectedStatus !== 'Todas') {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.status === selectedStatus);
+        }
+
+        // Filtro por Local de Entrega
+        if (selectedLocal && selectedLocal.value) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.localEntrega === selectedLocal.value);
+        }
+
+        // Filtro por Operador Selecionado
+        if (selectedOperador && selectedOperador.value) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => row.operador === selectedOperador.value);
+        }
+
+        // Filtrar por valores dos checkboxes
+        if (checkedItems.length > 0) {
+            filteredRows = filteredRows.filter((row) => checkedItems.includes(row.tipoConvite));
+        }
+
+        // Aplica o filtro de datas
+        if (startDate && endDate) {
+            filteredRows = filteredRows.filter((row: KeyedObject) => {
+                const rowDate = new Date(row.date); // Assegurar que row.date seja uma data
+                return rowDate >= startDate && rowDate <= endDate;
+            });
         }
 
         // Aplica o filtro de datas
@@ -260,6 +305,21 @@ const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'
         } else {
             setRows(rows); // Exibir todas as linhas se nada estiver selecionado
         }
+
+        applyFilters();
+    };
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    // Função para verificar se todos os filhos estão selecionados
+    const areAllChildrenChecked = (children: string[]) => {
+        return children.every((child) => checkedItems.includes(child));
 
         applyFilters();
     };
@@ -324,6 +384,7 @@ const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'
                     </FormLabel>
                     <TextField
                         onChange={(e) => setSearchClient(e.target.value)}
+                        onChange={(e) => setSearchClient(e.target.value)}
                         placeholder="Digite o cliente"
                         value={searchClient}
                         size="small"
@@ -335,6 +396,7 @@ const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'
                         Filtrar por ID:
                     </FormLabel>
                     <TextField
+                        onChange={(e) => setSearchId(e.target.value)}
                         onChange={(e) => setSearchId(e.target.value)}
                         placeholder="Insira o ID"
                         value={searchId}
@@ -353,6 +415,8 @@ const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'
                                 label="Data Início"
                                 value={startDate}
                                 onChange={(date) => setStartDate(date)}
+                                value={startDate}
+                                onChange={(date) => setStartDate(date)}
                                 slots={{ textField: TextField }}
                                 slotProps={{
                                     textField: {
@@ -368,6 +432,8 @@ const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'
                             />
                             <DatePicker
                                 label="Data Fim"
+                                value={endDate}
+                                onChange={(date) => setEndDate(date)}
                                 value={endDate}
                                 onChange={(date) => setEndDate(date)}
                                 slots={{ textField: TextField }}
@@ -394,6 +460,7 @@ const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'
                         options={locaisEntrega}
                         getOptionLabel={(option) => option.label}
                         value={selectedLocal}
+                        onChange={(event, newValue) => setSelectedLocal(newValue)}
                         onChange={(event, newValue) => setSelectedLocal(newValue)}
                         renderInput={(params) => <TextField {...params} placeholder="Local de Entrega" size="small" />}
                     />
@@ -477,6 +544,7 @@ const FiltroVendas = ({ rows, setRows, expandedItems = ['impresso', 'eletronico'
                         options={listaOperadores}
                         getOptionLabel={(option) => option.label}
                         value={selectedOperador}
+                        onChange={(event, newValue) => setSelectedOperador(newValue)}
                         onChange={(event, newValue) => setSelectedOperador(newValue)}
                         renderInput={(params) => <TextField {...params} placeholder="Selecione o Operador" size="small" />}
                     />

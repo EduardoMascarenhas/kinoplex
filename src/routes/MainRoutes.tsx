@@ -23,6 +23,7 @@ const InviteSeparation = Loadable(lazy(() => import('views/invitations/Invites/s
 const InvitationBlocking = Loadable(lazy(() => import('views/invitations/Invites/blocking')));
 const EventList = Loadable(lazy(() => import('views/events')));
 const ClientList = Loadable(lazy(() => import('views/clients')));
+const ConvitesLotesList = Loadable(lazy(() => import('views/convites-lotes')));
 const ClientEdit = Loadable(lazy(() => import('views/client-edit')));
 const ClientDetail = Loadable(lazy(() => import('views/client-detail')));
 const EventDetails = Loadable(lazy(() => import('views/event')));
@@ -76,6 +77,7 @@ const MainRoutes = {
             element: <InviteSeparation />
         },
         {
+            path: '/convite/bloqueio',
             path: '/convite/bloqueio',
             element: <InvitationBlocking />
         },
