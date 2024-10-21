@@ -16,7 +16,6 @@ import axios from 'utils/axios';
 import { KeyedObject } from 'types';
 import { InitialLoginContextProps, JWTContextType } from 'types/auth';
 import { UserProfile } from 'types/user-profile';
-import { UserProfile } from 'types/user-profile';
 
 const chance = new Chance();
 
@@ -103,19 +102,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             id: '1',
             name: decodedToken.sub
         };
-    const login = async (username: string, password: string) => {
-        const response = await axios.post('/login', { username, password });
-
-        // Extrair o token do cabeçalho 'authorization'
-        const authorizationHeader = response.headers['authorization'];
-        const serviceToken = authorizationHeader?.split(' ')[1]; // Remove o "Bearer" do token
-
-        // Decodificar o token JWT para obter o "user"
-        const decodedToken = jwtDecode<{ sub: string }>(serviceToken || '');
-        const user: UserProfile = {
-            id: '1',
-            name: decodedToken.sub
-        };
         setSession(serviceToken);
         dispatch({
             type: LOGIN,
@@ -127,11 +113,9 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     };
 
     const register = async (username: string, password: string, firstName: string, lastName: string) => {
-    const register = async (username: string, password: string, firstName: string, lastName: string) => {
         const id = chance.bb_pin();
         const response = await axios.post('/api/account/register', {
             id,
-            username,
             username,
             password,
             firstName,
@@ -145,7 +129,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
                 ...JSON.parse(localUsers!),
                 {
                     id,
-                    username,
                     username,
                     password,
                     name: `${firstName} ${lastName}`
@@ -161,7 +144,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         dispatch({ type: LOGOUT });
     };
 
-    const resetPassword = async (username: string) => {};
     const resetPassword = async (username: string) => {};
 
     const updateProfile = () => {};
