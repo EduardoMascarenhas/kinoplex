@@ -18,7 +18,7 @@ const headCells: HeadCell[] = [
     {
         id: 'date',
         numeric: true,
-        label: 'Data da CriaÃ§Ã£o'
+        label: 'Data da Criação'
     },
     {
         id: 'name',
@@ -110,7 +110,7 @@ const CabecalhoTabelaOportunidades = ({ order, orderBy, numSelected, onRequestSo
                     })}
                 {numSelected <= 0 && (
                     <TableCell sortDirection={false} align="center" sx={{ pr: 0 }}>
-                        AÃ§Ã£o
+                        Ação
                     </TableCell>
                 )}
             </TableRow>

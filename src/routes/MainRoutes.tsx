@@ -78,7 +78,6 @@ const MainRoutes = {
         },
         {
             path: '/convite/bloqueio',
-            path: '/convite/bloqueio',
             element: <InvitationBlocking />
         },
         {
